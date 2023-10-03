@@ -1,0 +1,36 @@
+.viewPage{
+	div.table-responsive {
+		> div.dataTables_wrapper  {
+			> div.row {
+				> div[class^="col-"]{
+					&:first-child{
+						padding-left:15px;
+					}
+					&:last-child{
+						padding-right:15px;
+					}
+				}
+			}
+		}
+	}
+	.card-aside-wrap { 
+		.card-content{
+			max-width: calc(100% - 380px);
+			@media(max-width:1540px){
+				max-width: calc(100% - 300px);
+			}
+			@media(max-width:991.98px){
+				max-width: 100%;
+			}
+		}
+	}
+	&.viewManageDoctor{
+		@media (max-width: 991.98px){
+			.card-aside-wrap {
+				.card-content{
+					max-width: 100%;
+				}
+			}
+		}
+	} 
+} 

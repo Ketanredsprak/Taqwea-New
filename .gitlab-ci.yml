@@ -1,0 +1,21 @@
+image: ubuntu:18.04
+
+before_script:
+  - apt-get update -qy
+  - apt-get install -y lftp
+
+build:
+  script:
+    # Sync to FTP
+    # Create “Environment variables” 
+    # FTP_HOST #Host for FTP connection
+    # FTP_USERNAME #User for FTP connection
+    # FTP_PASSWORD #Password for FTP connection
+    - pwd
+    - ls -la
+    - lftp -e "set ssl:verify-certificate no; open $FTP_HOST; user $FTP_USERNAME $FTP_PASSWORD; mirror -X .* -X .*/ --reverse --verbose --delete --exclude .env --exclude public/uploads/ --exclude vendor/ --exclude public/assets/css/ --exclude public/assets/js/ --exclude storage/framework/ --exclude public/assets/fonts/ --exclude public/swagger/include/config.php /builds/web/taqwea/ /; bye"
+    # - lftp -e "open $FTP_HOST; user $FTP_USERNAME $FTP_PASSWORD; mirror -X .* -X .*/ --reverse --verbose --delete ./ dest_dir/; bye"
+
+  only:
+    - master
+

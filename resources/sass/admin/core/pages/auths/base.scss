@@ -1,0 +1,43 @@
+/// Global Auths
+/////////////////////////////
+.pg-auth{
+    .nk-auth-body{
+        margin-left: auto; margin-right: auto; width: 100%;
+    }
+    .brand-logo{
+        .logo-img-lg{
+            max-height: 100px;
+        }
+    }
+    .form-icon{
+        top: 1px;
+        transform: none;
+    }
+    h5{font-weight: 500; font-size:18px;}
+    .otp-group{
+        input{
+            text-align: center;
+            -webkit-box-flex: 1 1 25%;    
+            -moz-box-flex: 1 1 25%;
+            -webkit-flex: 1 1 25%; 
+            -ms-flex: 1 1 25%;     
+            flex: 1 1 25%;
+            width: 25%;
+            &:not(:last-child){margin-right: 15px;}
+        }
+    }
+    @media (max-width: 1199.98px){
+        .brand-logo{
+            .logo-img-lg{
+                max-height: 65px;
+            }
+        }
+    }
+    @media (max-width: 575.98px){
+        .brand-logo{
+            .logo-img-lg{
+                max-height: 55px;
+            }
+        }
+    }
+}

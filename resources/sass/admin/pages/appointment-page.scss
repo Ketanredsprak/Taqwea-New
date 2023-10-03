@@ -1,0 +1,189 @@
+@-webkit-keyframes fadeInUp { 
+	0% { opacity: 0; transform: translate3d(0, 100% , 0); visibility: hidden; } 
+	100% { opacity: 1; transform: translateZ(0);visibility: visible; } 
+} 
+@keyframes fadeInUp {
+	 0% { opacity: 0; transform: translate3d(0, 100% , 0);visibility: hidden; } 
+	 100% { opacity: 1; transform: translateZ(0);visibility: visible; } 
+ }
+ $animationDelay   :0 0.5s 1.0s 1.5s; 
+.appointment{
+	&__list{padding: 30px; border-radius:4px;border: 1px solid $base-300; 
+			margin-bottom: 30px; background-color:$white; border-left-color: #085fd5; border-left-width:2px;
+			visibility: hidden;
+			 // 	animation-delay: 0.7s;
+				//  animation-fill-mode: both;
+				//  transition: all 0.3s linear;
+				//  animation-duration:0.5s;
+			 // 	@for $i from 1 through length($animationDelay) {
+				//     &:nth-of-type(#{$i}){
+				//         animation-delay:nth($animationDelay, $i);
+				//     }
+				// }
+	
+			&.fadeInUp{
+				animation-name: fadeInUp; animation-delay: 0.1s; animation-fill-mode: both;
+				animation-duration:0.5s;
+				@for $i from 1 through length($animationDelay) {
+				    &:nth-of-type(#{$i}){
+				        animation-delay:nth($animationDelay, $i);
+				    }
+				}
+			}
+			&:hover{
+				box-shadow:0 4px 21px rgba(0,0,0,0.08)
+			}
+		&__date{font-size:16px; font-family:$nutico-font-family; font-weight: 700;color:#06dfbf;
+			em{font-size:20px; vertical-align: sub;}
+		}
+		.doctorName{font-size:18px; font-family:$nutico-font-family; font-weight: 700; margin-top: 10px; color:$base-color; margin-bottom: 10px;
+			.badge{background:#ECF1F6; border-color:#ECF1F6; margin-left: 5px; text-transform:uppercase; font-weight: 600;}
+		}
+		.status {
+		    padding: 3px 15px;
+		    color: #085fd5;
+		    background: #e1eeff;
+		    border-radius: 17px;
+		    &:before{
+		    	content: ""; height: 5px; width: 5px; 
+			    vertical-align: middle; border-radius:50%;
+			    font-size:13px;
+			    background: #085fd5; display: inline-block; margin-right: 7px;
+			}
+		}
+		&__detail{display: flex; flex-wrap: wrap; margin-bottom: 20px;
+			li{ font-weight:500;
+				span{display: block;}
+				em{font-size:18px; margin-right: 3px; vertical-align: sub;
+					&.icon-stethoscope{font-weight:600;}
+				}	
+				&:not(:last-child){margin-right: 30px; margin-bottom: 10px;}
+			}
+		}
+		.iconList{
+			p{margin-bottom: 0; font-weight:500;
+				em{font-size:18px; vertical-align: sub;}
+			}
+			li{ position: relative;
+				&:not(:last-child){
+					margin-right: 15px;
+				}
+				&.moreOption{
+					ul{position: absolute; right: 100%; top: 0; margin-right: 15px; transition: all 0.3s ease;transform: scale(0,1); background:$white;
+			 			transform-origin: right;}
+			 			&:hover{
+			 				ul{transform:scale(1);}
+			 			}
+				}
+			}
+			.btn{ border-radius:0px;
+				&.btn-trigger{
+					height: 36px;
+				    width: 36px;
+				    font-size:12px;
+				    padding: 0;
+				    color: #fff;
+				    text-align: center;
+				    align-items: center;
+				    justify-content: center;
+				    border-radius: 50%;
+					&:before{display: none;}
+				}
+				&.btn-more{
+					background:#0971fe; border-color:#0971fe;
+					&:hover,&:focus,&:active{
+						background: darken(#0971fe, 5%);
+					}
+				}
+			}
+		}
+		&--completed{
+			border-left-color: $accent-500;
+			.status {
+			    background: #e4fbf5; color: $accent-500;
+			    &:before{background: $accent-500;}
+			}
+		}
+		&--cancelled{
+			border-left-color: #c3463c;
+			.status {
+			    background: #fceae9; color: #c3463c;
+			    &:before{background: #c3463c;}
+			}
+		}
+		&--approved{
+			border-left-color:#08a3ba;
+			.status {
+			    background: #e1f8fb; color: #08a3ba;
+			    &:before{background: #08a3ba;}
+			}
+		}
+
+	}
+	@media (max-width:1439px){
+		&__list{ margin-bottom: 25px; padding: 25px;
+			&__detail{
+				li{ 
+					&:not(:last-child){margin-right:20px;}
+				}
+			}
+		}
+	}
+	@media (max-width: 1199.98px) {
+		&__list{ margin-bottom: 15px; padding: 20px;
+			.doctorName{margin-top:0px; margin-bottom: 5px;}
+			&__detail{margin-bottom: 15px;
+				li{ 
+					&:not(:last-child){margin-right:15px;}
+				}
+			}
+		}
+	}
+	@media (max-width: 767.98px) {
+		&__list{ padding:15px;
+			&__date{font-size:14px;}
+			.doctorName{font-size:16px;}
+			&__detail{margin-bottom: 15px;
+				li{ 
+					&:not(:last-child){margin-right:10px; margin-bottom: 6px;}
+				}
+			}
+			.status{padding: 3px 10px;}
+			.iconList{
+			}
+		}
+	}
+	@media (max-width: 575.98px) {
+		&__list{
+			.doctorName{
+				.badge{display: none;}
+			}
+			&__detail{margin-bottom: 10px;}
+			.iconList{
+				li{
+					&.moreOption{
+						ul{
+						    left: -74px; text-align: center; justify-content:center;
+						    padding: 10px;
+						    width: 208px; top: -62px;
+						    box-shadow: 0 2px 27px rgba($black,0.12%);
+						    border-radius: 5px; margin-right: 0;
+						}
+					}
+				}
+				p{margin-bottom: 5px;}
+			}
+			.status{margin: 10px 0; display: inline-block;}
+		}
+	}
+}
+@media (max-width: 1539px){
+	.card-aside{
+		&.card-aside-left{
+			.col-6{
+				flex:0 0 100%; max-width:100%;
+			}
+		}
+	}
+	.wider .profile-ud-label{width: 100px;}
+}

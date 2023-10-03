@@ -1,0 +1,23 @@
+.commonList{
+    &-item{
+        padding: 15px;
+        border-radius: 5px;
+        &:not(:last-child){
+            margin-bottom: 20px;
+        }
+        &_img{
+            margin-right: 0px;
+            margin-left: 20px;
+            .commonTag{
+                left: auto;
+                right: 8px;
+            }
+        }
+        &_info{
+            h5{
+                padding-right: 0;
+                padding-left: 15px;
+            }
+        }
+    }
+}

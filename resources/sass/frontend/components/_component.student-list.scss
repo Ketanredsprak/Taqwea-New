@@ -1,0 +1,70 @@
+.studentList {
+    padding: 60px 0px; background-color: color(600);  
+    background-image: url('#{$imageurl}/lines.png'); 
+    .listSlider-item{ 
+        padding: 0 8px;
+    }
+    .slick-list {
+        margin: 0 -8px;
+    } 
+    .show-all{ 
+        font-size: 18px;color: color(900);
+    }
+    &__cnt{
+        margin-top: 20px;margin-left: -5px;
+        margin-right: -5px; 
+    }
+    &__box {
+        text-align: center;flex: 0 0 214px;
+        max-width: 214px; margin: 5px; 
+    }
+    &Img {
+        width: 80px;height: 80px;
+        overflow: hidden;margin: auto auto 10px;
+        img {
+            height: 100%; width: 100%;
+            object-fit: cover;   
+        }
+    } 
+    &Name {
+        font-size: 16px;line-height: 22px;
+        font-family: font(bd);margin-bottom: 8px;
+    }
+    .rateStar {
+        margin-bottom: 12px; 
+    }    
+    @media (max-width: 1599px) { 
+        padding: 40px 0;
+    }
+    @media (max-width: 1399px) {
+        padding: 30px 0;   
+    }
+    @include media-breakpoint-down(lg) {
+        .show-all{ 
+            font-size: 16px;
+        }
+    } 
+    @include media-breakpoint-down(sm) { 
+        &Name {
+            font-size: 15px;line-height: 18px;
+            margin-bottom: 5px;
+        }
+        .rateStar {
+            margin-bottom: 10px; 
+        }
+        &Img {
+            width: 60px;height: 60px;
+        }  
+        .show-all{ 
+            font-size: 14px;
+        }
+        &__cnt{ 
+            margin-top: 15px; 
+        }
+    }
+    @include media-breakpoint-down(xs) {
+        &__box {
+            margin: auto;
+        }
+    }
+}  

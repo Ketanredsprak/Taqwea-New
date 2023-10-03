@@ -1,0 +1,22 @@
+&--feedback {
+    .feedbackCol {
+        margin-left: 0;
+        margin-right: 16%;
+        @include media-breakpoint-down(md){
+            // max-width 991 (<=)
+            margin-right: 0;
+        }        
+    }
+    #_4_5{
+        transform: translate(957px, 397px);
+    }
+    .cls-4{
+        // letter-spacing: 4px;
+        &:not(:first-child) {
+            letter-spacing: 7px;
+        }
+    }
+    #Overall_Rating{
+        transform: translate(1052px, 420px);
+    }
+}

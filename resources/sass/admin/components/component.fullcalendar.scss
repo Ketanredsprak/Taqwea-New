@@ -1,0 +1,123 @@
+.fullCalendar{
+	padding:20px;
+	&.fc{
+		.fc-toolbar-title,h2{font-size: 20px;font-weight: 500;}
+		.fc-button-primary{
+			text-transform: capitalize;
+			&:hover, &:focus, &:active, &:not(:disabled):not(.disabled):active {
+				background-color: #fff;color:#486F5D;border-color:#486F5D; box-shadow: none !important;
+			}
+			&:disabled{background-color: #fff; color:#d6d6d6; border-color:#edf2f9; opacity: 1;}
+		}
+
+		.fc-button:not(:disabled), .fc a[data-navlink], .fc-event.fc-event-draggable, .fc-event[href]{
+			background-color: #fff;color:#486F5D;border-color:#486F5D; box-shadow: none !important; outline: none; background-image: none;
+			text-transform: capitalize;
+			&.fc-button-active{
+				background-color: #486F5D;color:#fff;border-color:#486F5D;
+			}
+		}
+		.fc-button{text-transform: capitalize;}
+		.fc-daygrid-day-frame{padding:3px;}
+		.fc-daygrid-day{
+			&.appointmentsTd{
+				.fc-daygrid-day-number{
+					color:#359AF4;
+				}
+			}
+			&.fc-day-today{
+				background-color:rgba(#486F5D, 0.2);
+				// .fc-daygrid-day-number{ background-color: #486F5D; color: #fff; padding: 5px; line-height: 15px; border-radius: 4px;}
+			}
+			.fc-daygrid-day-top{
+				a{text-decoration: none;}
+			}
+			.fc-daygrid-day-events{
+				position:static;
+				.fc-daygrid-event-harness{position:static;}
+				.fc-daygrid-event{
+					background:transparent;  border:0; position:static;
+					.fc-event-main{
+						color: #526484; font-weight:500;
+					}
+					&:before{
+						content: ""; position: absolute; left: 0; top: 0; background: #e4efff; height: 100%;width: 100%;
+					}
+					.fc-event-title{
+						overflow: hidden;white-space: nowrap;width: 100%;text-overflow: ellipsis;z-index:100;
+						&:before{content:"";height: 7px;width: 7px; border-radius:50%; background:#359AF4; display: inline-block; 
+							vertical-align: middle; margin-right: 4px;}
+					}
+				}
+			}
+		}
+
+
+		.fc-scrollgrid{border-color:#edf2f9 !important;}
+		.fc-scrollgrid-section>*{border-color:#edf2f9;}
+
+	}
+	.fc-daygrid-body, .fc-scroller-harness{
+		.fc-day-top,.fc-day-header, th{border:1px solid #edf2f9 !important;}
+	}
+	.fc-scroller-harness{
+		th{font-weight: normal;}
+	}
+	@media (max-width: 991.98px){
+		padding: 15px;
+		&.fc{
+			.fc-toolbar-title{font-size: 16px;}
+			.fc-button-primary{
+				font-size:14px;
+			}
+		}
+	}
+	@media (max-width: 576.98px){
+		.fc-header-toolbar{
+			flex-wrap: wrap;
+			.fc-toolbar-chunk{
+				.fc-button-primary{padding-left: 5px; padding-right: 5px;}
+			}
+		}
+	}
+
+	@media (max-width: 1599px) {
+		&.fc .fc-toolbar-title{font-size: 17px;}
+	}
+
+	@include media-breakpoint-down(xs) {
+		padding:15px;
+		&.fc{
+			.fc-toolbar{flex-wrap: wrap;}
+			.fc-toolbar-chunk{
+				&:first-child{
+					.fc-prev-button, .fc-next-button{padding: 3px; font-size: 12px;}
+					.fc-today-button{margin-left: 6px; padding:3px 10px;}
+				}
+				.fc-toolbar-title{font-size: 14px;}
+				&:last-child{
+					width: 100%;margin-top: 10px;
+					.fc-button-group{
+						width: 100%;
+						.fc-button{font-size: 12px;}
+					}
+				}
+			}
+			.fc-col-header-cell-cushion{font-size: 12px;}
+		}
+	}
+	.fc-event{
+		&.schedule{
+			background: transparent; border: 0;
+			.fc-content{background:#486F5D; padding: 3px 10px; border-radius: 3px; color:#fff;}
+		}
+	}
+	@media (max-width:479px){
+		.fc-right{
+			width: 100%; margin-top: 15px;
+		}
+		.fc-center{
+			h2{font-size:16px;}
+		}
+	}
+}

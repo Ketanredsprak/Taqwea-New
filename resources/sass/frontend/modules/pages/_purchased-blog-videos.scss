@@ -1,0 +1,37 @@
+.purchasedBlogVideosPage{
+    .commonList-item{
+        &_info{
+            .price{
+                font-size: 20px;
+            }
+        } 
+        .dateTime {
+            margin: 10px 0;
+        } 
+    }
+    @media (max-width: 1399px){
+        .commonList-item{
+            &_info{
+                .price{
+                    font-size: 18px;
+                }
+            } 
+        }
+    }
+    @include media-breakpoint-up(md){
+        .commonList-item{
+            &_img{
+                width: 170px;height: 110px; 
+            } 
+        }
+    }
+    @include media-breakpoint-down(md){
+        .commonList-item{
+            &_info{
+                .price{
+                    font-size: 16px;
+                }
+            }  
+        }
+    }
+}

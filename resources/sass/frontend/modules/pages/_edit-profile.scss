@@ -1,0 +1,90 @@
+.editProfilePage{
+    &__Form{
+        .editFormSec {
+            max-width: 645px;margin: 25px auto;
+        }
+        .imgUpload {
+            height: 120px;width: 120px;
+            border-radius: 50%; margin-bottom: 35px;
+            img {
+                width: 100%;height: 100%;object-fit: cover;
+            }
+        }
+        .imgUpload-icon{ 
+            label {
+                position: absolute;right: 0; bottom: 0;font-size: 24px;
+                height: 40px;width: 40px;border-radius: 50%;display: flex;
+                align-items: center;justify-content: center;background-color: color(50);
+                color: color(500);cursor: pointer;margin: 0;  
+            }
+        } 
+        .submitBtn{ 
+            .btn {
+                max-width: 450px;margin: 45px auto auto;
+            }
+        } 
+        .btn-row{
+            margin-top: 45px;
+        }
+    } 
+    .blockContent {
+        &__inner {
+            max-width: 800px;margin: auto;    
+        }
+        &__list { 
+            margin-bottom: 30px;padding: 30px; 
+        }
+    }
+    @media (max-width: 1599px){
+        &__Form{
+            .imgUpload {
+                margin-bottom: 25px; 
+            }
+            .submitBtn{
+                .btn {
+                    margin: 30px auto auto;
+                }
+            } 
+        }
+    }
+    @media (max-width: 1399px){
+        .blockContent {
+            &__list { 
+                margin-bottom: 25px;
+            }  
+        }
+    }
+    @include media-breakpoint-down(lg){
+        &__Form{
+            .editFormSec{
+                margin: auto;
+            } 
+            .submitBtn{
+                .btn {
+                    max-width: 300px;margin: 30px auto auto; 
+                }
+            } 
+        }
+    }
+    @include media-breakpoint-down(sm){
+        .blockContent {
+            &__list { 
+               padding: 15px;
+            }    
+        }
+    }
+    @include media-breakpoint-down(xs){
+        &__Form{
+            .submitBtn{
+                .btn {
+                    margin: 20px auto auto;
+                }
+            } 
+        } 
+        .blockContent {
+            .linkPrimary {
+                font-size: 14px;
+            }   
+        }
+    }
+}

@@ -1,0 +1,92 @@
+.form-group,
+.input-group {
+  margin-bottom: 20px;  
+  &-icon{
+      position: relative;
+      .form-control{padding-right: 45px;}
+      .icon{
+          position: absolute;
+          top: 30px;
+          right: 0;
+          display: inline-flex;
+          align-items: center;
+          padding: 0 15px;
+          height: 50px;
+          font-size: 22px;
+          color: color(200);
+      }
+  }
+  .input-group-addon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 15px;
+    height: 50px;
+    font-size: 22px;
+    color: color(200); 
+    z-index: 99;
+  } 
+}
+
+.form-label {
+  font-family: font(sm);
+  margin-bottom: 5px;
+  color: color(200);
+}
+
+.form-control {
+  height: 50px;
+  border-radius: 3px;
+  border-color: color(70);
+  font-size: 16px;
+  box-shadow: none;
+  padding: 10px 15px;
+  font-family: font(bd);
+  color: color(900);
+  &:focus {
+    border-color: color(500);
+    box-shadow: none !important;
+  }
+  &::placeholder{
+    color: rgba(color(200), .6);
+  }
+
+  &.is-invalid, &.is-valid {
+    background-image: none;
+  }
+}
+
+.was-validated {
+  .form-control{
+    &:valid, &:invalid {
+      background-image: none;
+    }
+  }
+}
+
+textarea {
+  height: auto !important;
+  resize: none;
+  overflow: auto;
+}
+
+@include media-breakpoint-down(md){
+  .form-group,
+    .input-group {
+      margin-bottom: 15px;  
+      &-icon{
+        position: relative;
+        .form-control{padding-right: 45px;}
+        .icon{
+            height: 44px;
+        }
+    }
+  }
+  .form-control {
+    height: 44px;
+    padding: 8px 15px;
+  }
+}
+

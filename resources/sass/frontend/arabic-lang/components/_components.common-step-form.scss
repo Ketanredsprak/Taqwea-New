@@ -1,0 +1,66 @@
+.boxContent{
+    &_subhead{
+        text-align: right;
+    } 
+    .cOption {
+        flex-direction: row-reverse;
+    } 
+    .socialLogin{ 
+        li{
+            &:not(:last-child){margin-right: 0;}
+            &:not(:first-child){margin-right: 25px;} 
+        }
+    }
+    &-inner{
+        &-varifyOtp{ 
+            .otp-group{
+                .otp-control{
+                    &:not(:last-child){
+                        margin-right: 0;margin-left: 0;
+                    }
+                    &:not(:first-child){
+                        margin-left: 20px; 
+                    }
+                }
+            }
+        } 
+        &-stepForm{
+            .steps{
+                &-step{
+                    &:not(:first-child){
+                        &:before{
+                            left: calc(50% + 40px);
+                            right: auto; 
+                        }
+                    }  
+                }
+            }
+        } 
+    }
+    .commonDegree{
+        &-left{ 
+            padding-left: 15px; padding-right: 0;
+            &_img{
+                margin-left: 20px;
+                margin-right: 0;
+            }
+        }
+    }
+    @media (max-width: 1599px){
+        .socialLogin{
+            li{
+                &:not(:last-child){margin-right: 0;}
+                &:not(:first-child){margin-right: 20px;} 
+            }
+        }
+    }
+    @include media-breakpoint-down(xs){
+        .commonDegree{
+            &-left{ 
+                &_img{
+                    margin-left: 15px;
+                }
+            }
+        } 
+    }
+}

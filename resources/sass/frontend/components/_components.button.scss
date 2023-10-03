@@ -1,0 +1,131 @@
+.btn {
+    cursor: pointer;
+    line-height: normal;
+    font-size: 16px;
+    padding: 8px 15px;   
+    border-radius: 5px;  
+    font-family: font(bd);  
+    &-disabled  {
+        opacity: 0.4;
+        pointer-events: none;
+    }
+    &-lg{
+        padding: 11px 20px; 
+        font-size: 20px;
+        @include media-breakpoint-down(md){
+            padding: 10px 20px; 
+            font-size: 16px; 
+        }
+    }
+    &-sm{
+        padding: 5px 15px;
+        font-size: 14px;
+    }
+    &:focus{
+        box-shadow: none;
+    } 
+    &-primary {
+        border-color: color(500);
+        color: color(50);
+        background-color: color(500);
+        &:hover,
+        &:focus, 
+        &:active,
+        &:not(:disabled):not(.disabled):active, 
+        &:not(:disabled):not(.disabled).active:focus { 
+            border-color: transparent;     
+            background: rgba($color: color(500), $alpha: 0.9); 
+            color: color(50);
+            outline: none;box-shadow: none !important;  
+        }
+        &.disabled, &[disabled]{ 
+            background: rgba($color: color(500), $alpha: 0.2);
+            border-color: rgba($color: color(500), $alpha: 0);
+            pointer-events: none;
+        }
+        &--outline{
+            border-color: color(500);
+            color: color(500);
+            background-color: transparent; 
+            em{
+                font-size: 11px;
+                margin-right: 5px;
+            }
+            &:hover,
+            &:focus,
+            &:active{
+                border-color: color(500);
+                color: color(500);
+                background-color: transparent; 
+            }
+        }
+    }
+
+    &-info{
+        border-color: color(800);
+        color: color(50);
+        background-color: color(800); 
+        &:hover,
+        &:focus, 
+        &:active,
+        &:not(:disabled):not(.disabled):active, 
+        &:not(:disabled):not(.disabled).active:focus { 
+            border-color: transparent;     
+            background: rgba($color: color(800), $alpha: 0.9); 
+            color: color(50);
+            outline: none;box-shadow: none !important;  
+        }
+    }
+
+    &-light{
+        border-color: color(100);
+        color: color(200);
+        background-color: color(100); 
+        &:hover,
+        &:focus, 
+        &:active,
+        &:not(:disabled):not(.disabled):active, 
+        &:not(:disabled):not(.disabled).active:focus { 
+            border-color: transparent;     
+            background: rgba($color: color(100), $alpha: 0.9); 
+            color: color(500);
+            outline: none;box-shadow: none !important;  
+        }
+    }
+
+    &-secondary{
+        border-color: color(600);
+        color: color(50);
+        background-color: color(600); 
+        &:hover,
+        &:focus, 
+        &:active,
+        &:not(:disabled):not(.disabled):active, 
+        &:not(:disabled):not(.disabled).active:focus { 
+            border-color: rgba($color: color(600), $alpha: 0.9);     
+            background: rgba($color: color(600), $alpha: 0.9); 
+            color: color(50);
+            outline: none;box-shadow: none !important;  
+        }
+
+        &--outline{
+            border-color: color(150);
+            color: color(150);
+            padding: 10px 8px;
+            background-color: transparent; 
+            em{
+                font-size: 11px;
+                margin-right: 5px;
+            }
+            &:hover,
+            &:focus,
+            &:active{
+                border-color: color(600);
+                color: color(600);
+                background-color: transparent; 
+            }
+        }
+    }
+
+}
+ 

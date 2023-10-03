@@ -1,0 +1,60 @@
+
+
+////////////////////////// DO NOT REMOVE BELOW ///////////////////////
+
+// SET RTL OPTION
+$rtl: false;
+
+// Included Global Variables and Functions
+@import "taqwea_variables";
+
+// Included Fonts
+/** 01. FONTS */
+@import "core/fonts/roboto";
+@import "core/fonts/nunito";
+
+// Included Bootstarp
+@import "extend/bootstrap/variables";
+@import "extend/bootstrap/bootstrap";
+@import "extend/bootstrap/extend";
+
+// Include Other Vendors
+@import "vendors/bundle";
+
+// Include Core Dashlite Style
+@import "core/style";
+
+////////////////////////// DO NOT REMOVE ABOVE ///////////////////////
+
+////// GLOBAL INCLUDED
+@import "global/style";
+
+///////  PREVIEW PURPOSE 
+// @import "core/preview";			// Can be remove on real projoect
+
+///////  UI/MODE OVERRIDE
+@import "core/mode-override";
+
+///////  DARK MODE SKIN
+// @import "core/dark-skin";
+
+/*! END @iO */
+////////////////////////// custom css ///////////////////////
+//components
+@import 'components/component.common';
+@import 'components/component.common-table';
+@import 'components/component.filter';
+@import 'components/component.page-head';
+@import 'components/component.detail-page';
+@import 'components/component.fullcalendar';
+@import 'components/component.blog';
+
+//pages
+@import 'pages/dashboard-page';
+@import 'pages/notification-page';
+@import 'pages/book-appointment';
+@import 'pages/faq-page';
+@import 'pages/category-page';
+@import 'pages/view-manage-doctor';
+
+////////////////////////// END STYLESHEET ////////////////////////////

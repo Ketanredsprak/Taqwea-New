@@ -1,0 +1,97 @@
+.pagination{
+    margin-top: 55px;
+    margin-bottom: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+    .page-item{
+        position: relative;
+        &:first-child, &:last-child{
+            .page-link {
+                color: transparent;
+                position: relative;
+                font-size: 12px;
+                &:before{
+                    position:absolute;
+                    left:0;
+                    top:0;
+                    font-family: 'icomoon';
+                    color: color(900);
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
+        } 
+        &:first-child{
+            .page-link{
+                &:before {
+                    content: "\e902";
+                 }
+            }
+        } 
+        &:last-child{
+            .page-link{
+                &:before {
+                    content: "\e903";
+                 }
+            }
+        } 
+        + .page-item{
+            margin-left: 20px;
+        }
+        &.active{
+            .page-link{
+                background-color: color(600);
+                border-color: color(600);
+            }
+        }
+        &.disabled{
+            .page-link{
+                color: color(200);
+            }
+        }
+        .page-link{
+            border-radius: 5px;
+            color: color(900);
+            margin: 0;
+            height: 40px;
+            min-width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font: 18px font(bd);
+            padding: 0;
+            &:focus{
+                box-shadow: unset;
+            }
+            &.next,&.prev{
+                font-size: 12px;
+                &:hover{
+                    color: color(50);
+                    background-color: color(500);
+                }
+            }
+        }
+        
+    }
+    @media (max-width: 1599px){
+        margin-top: 40px;
+    }
+    @include media-breakpoint-down(md){
+        margin-top: 30px;
+    }
+    @include media-breakpoint-down(sm){
+        margin-top: 15px;
+        .page-item{
+            margin-top: 5px;
+            + .page-item{
+                margin-left: 10px;
+            }
+            .page-link{
+                font-size: 16px;
+            }
+        }
+    }
+}

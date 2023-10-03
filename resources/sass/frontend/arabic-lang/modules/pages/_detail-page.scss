@@ -1,0 +1,120 @@
+.detailPage{
+    .btnRow{
+        .btn {
+            &:first-child {
+                margin-right: 0;
+                margin-left: 15px;
+            }
+        }
+    }  
+    .dateTime{
+        p {
+            padding-right: 10px;
+            padding-left: 0;
+        } 
+    } 
+   .userInfo{
+        &__name {
+            padding-right: 10px;  
+            padding-left: 0;
+        }
+    }
+    .subject{
+        &__topicList { 
+            margin-bottom: 20px;
+            .btn-row {
+                margin-top: 30px;
+            } 
+        }
+        &__moreDetail{ 
+            ul{
+                li {
+                    &:not(:last-child) {
+                        margin-right: 0px;
+                        margin-left: 10px;
+                    } 
+                }
+            }  
+        } 
+        &__info {
+            .view {
+                &:first-child {
+                    padding-right: 0;
+                    padding-left: 50px;
+                }
+                &:not(:last-child) {
+                    &:after {
+                        right: auto;
+                        left: 0px;
+                    }
+                }
+            }
+        } 
+        &__education {
+            table {
+                th {
+                    border-left: 1px solid color(250);
+                    border-right: 0;
+                    &:not(:first-child) {
+                        padding-right: 70px;
+                        padding-left: 0;
+                        border-left: 0;
+                    }
+                }
+                td {
+                    border-left: 1px solid color(250);
+                    border-right: 0;
+                    &:not(:first-child) {
+                        padding-right: 70px;
+                        padding-left: 0;
+                        border-left: 0;   
+                    }
+                }
+            }
+        }
+        .scheduleBtn {
+            .btn{
+                &:first-child {
+                    margin-left: 8px;
+                    margin-right: 0; 
+                }
+            }
+        }
+        .ratingCommentBox{ 
+            .userInfo{
+                &__img {
+                    margin-right: 0px;
+                    margin-left: 10px;   
+                }
+            }
+        }
+        .studentInfo{
+            &__img{
+                margin-right: 0;
+                margin-left: 20px;
+           }
+       }
+    }
+    @include media-breakpoint-down(lg){
+        &Cnt{
+            &--right {
+                .btnRow{
+                    .btn {
+                        &:first-child {
+                            margin-left: 10px;
+                       }
+                   }
+               }
+           }
+       }
+        .subject{
+            .studentInfo{
+                &__img{
+                    margin-right: 0;
+                    margin-left: 15px;
+               }
+           }
+       }
+   }
+}  
+ 

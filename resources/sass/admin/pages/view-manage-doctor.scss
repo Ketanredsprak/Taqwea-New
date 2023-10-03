@@ -1,0 +1,76 @@
+.viewManageDoctor{
+    .card{
+        &-inner{
+            .action {
+                margin-top: 15px;
+                button {
+                    background-color: $accent-color; 
+                    border: 1px solid $accent-color;
+                    color: $white;
+                    border-radius: 5px;
+                    margin-left: 10px;
+                    box-shadow: none;
+                    &:hover{
+                        background-color: rgba($color: $accent-color, $alpha: 0.9); 
+                    }
+                }
+            }
+        }
+    }
+
+    
+    .educationList {
+        .education-action {
+            position: absolute;
+            right: -50px;
+            top: 50%;
+            transform: translate(0, -50%);
+            .viewDoc {
+                right: -30px;
+            }
+            button {
+                background-color: $accent-color; 
+                border: 1px solid $accent-color;
+                color: $white;
+                border-radius: 5px;
+                box-shadow: none;
+                font-size: 15px;
+                &:hover{
+                    background-color: rgba($color: $accent-color, $alpha: 0.9); 
+                } 
+            }
+        }
+    }
+    @media (max-width: 1699px){
+        .educationList {
+            max-width: 750px;
+        }
+    }
+    @media (max-width: 1399px){
+        .educationList {
+            max-width: 500px;
+        }
+    }
+    @media (max-width: 767px){
+        .educationList {
+            .education-action {
+                right: -30px;
+            }
+        }
+    }
+    @media (max-width: 575px){
+        .educationList {
+            .education-action {
+                button {
+                    font-size: 12px;
+                }
+            }
+            .wider {
+                .profile-ud-label {
+                    width: 85px;
+                }  
+            }
+        }
+    }
+
+}

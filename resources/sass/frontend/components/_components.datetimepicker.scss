@@ -1,0 +1,286 @@
+// datepicker css
+.datepicker {
+    td,
+    th {
+        height: 35px;
+        width: 35px;
+    }
+    table {
+        tr {
+            td,
+            span {
+                &:focus {
+                    background-color: color(500) !important;
+                    background-image: none;
+                }
+            }
+        }
+    }
+}
+
+.bootstrap-datetimepicker-widget {
+    -webkit-box-shadow: 0 0 20px rgba(color(500), 0.15);
+    box-shadow: 0 0 20px rgba(color(500), 0.15);
+    font-family: font(sm);
+    &.dropdown-menu {
+        border: none;
+        border-radius: 0;
+        padding: 13px !important;
+        margin: 0 !important;
+        width: 250px !important;
+        &.bottom {
+            &:after {
+                border-bottom-color: color(500);
+            }
+        }
+        > ul {
+            > li.collapse.show,
+            > li.collapsing {
+                padding: 0;
+            }
+            li.accordion-toggle {
+                td {
+                    a {
+                        color: color(600);
+                        span.fa-clock-o {
+                            &:after {
+                                font-family: "icomoon";
+                                content: "\e905";
+                                font-size: 20px;
+                            }
+                        }
+                        span.fa-calendar {
+                            &:after {
+                                font-family: "icomoon";
+                                content: "\e926";
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.top {
+        &:after {
+            border-top-color: color(500);
+        }
+    }
+    &.bottom {
+        &:before {
+            display: none;
+        }
+    }
+    .table {
+        thead {
+            background-color: color(50);
+            color: color(900);
+            th {
+                border: none;
+                border-radius: 0;
+                font-weight: normal;
+                font-size: 14px;
+                padding: 8px 5px;
+                span {
+                    font-size: 16px;
+                }
+                &.dow {
+                    background-color: transparent;
+                    font-size: 13px;
+                    color: color(900); 
+                    font-family: font(sm);
+                }
+                &.prev {
+                    span {
+                        &::after {
+                            font-family: "icomoon";
+                            content: "\e902";
+                            font-size: 16px;
+                        }
+                    }
+                }
+                &.next {
+                    span {
+                        &::after {
+                            font-family: "icomoon";
+                            content: "\e903";
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+            tr {
+                &:first-child {
+                    th {
+                        &:hover {
+                            color: color(500);
+                            background: transparent;
+                            .fa {
+                                color: color(500);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        td {
+            border-top: none;
+            border-radius: 0;
+            font-size: 14px;
+            font-family: font(rg);
+            border-radius: 50% !important;
+            padding: 6px;
+            &.today {
+                background-color: color(200) !important;
+                color: color(50);
+                &:before {
+                    display: none;
+                }
+                &:hover {
+                    background: color(200) !important;
+                }
+            }
+            &.day {
+                border-radius: 2px;
+                height: 32px;
+                width: 32px;
+            }
+            &.active {
+                background-color: color(500);
+                color: color(50);
+                &:before {
+                    border-bottom-color: color(50);
+                }
+            }
+            &:hover {
+                background: color(500) !important;
+                color: color(50);
+            }
+        }
+    }
+
+    .table-condensed {
+        thead {
+            background-color: transparent;
+            color: color(900);
+            th {
+                border: none;
+                border-radius: 0;
+                font-weight: normal;
+                padding: 8px;
+                font-size: 14px;
+                &.dow {
+                    background-color: #b3dc15;
+                }
+                &.prev {
+                    span {
+                        &::after {
+                            font-family: "icomoon";
+                            content: "\e916";
+                            font-size: 12px;
+                        }
+                    }
+                }
+                &.next {
+                    span {
+                        font-size: 16px;
+                        &::after {
+                            font-family: "icomoon";
+                            content: "\e915";
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+            tr {
+                &:first-child {
+                    th {
+                        &:hover {
+                            background-color: transparent;
+                            color: color(500);
+                            .fa {
+                                color: color(500);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        td {
+            span {
+                border-radius: 0;
+                width: 38px;
+                height: 38px;
+                line-height: 38px;
+                font-size: 13px;
+                &.month {
+                    font-size: 14px;
+                }
+                &.active {
+                    background-color: color(500);
+                    color: color(50);
+                }
+                &:hover {
+                    background-color: color(500);
+                    color: color(50);
+                }
+            }
+        }
+    }
+    .timepicker {
+        a[data-action] {
+            padding: 0px;
+        }
+        .btn-primary {
+            background-color: color(500);
+            background-image: none;
+            border-radius: 0;
+            border-color: color(500);
+            margin: 15px 0;
+            &:hover,
+            &:focus,
+            &:active {
+                background-color: darken(color(500), 10%);
+                border-color: darken(color(500), 10%);
+                color: color(50);
+            }
+        }
+        .fa {
+            color: color(900);
+            font-size: 20px !important;
+            &.fa-arrow-up { 
+                transform: rotate(180deg);
+                &:after {
+                    font-family: "icomoon";
+                    content: "\e90c";
+                }
+            }
+            &.fa-arrow-down {
+                &:after {
+                    font-family: "icomoon";
+                    content: "\e90c";
+                }
+            }
+        }
+        table {
+            td {
+                height: 35px;
+                line-height: 35px;
+                width: 35px;
+                span {
+                    font-size: 16px !important;
+                }
+                span,
+                &.day,
+                &.hour,
+                &.minute,
+                &.second {
+                    &:hover {
+                        background-color: color(500);
+                        color: color(50);
+                    }
+                }
+            }
+        }
+    }
+}

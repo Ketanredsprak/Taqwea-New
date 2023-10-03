@@ -1,0 +1,33 @@
+// components
+@import 'component.progressive';
+@import 'components.button'; 
+@import 'component.icomoon';
+@import 'components.select2';
+@import 'components.datetimepicker';
+@import 'components.form';
+@import 'components.custom-checkbox';
+@import 'components.common-filter';
+@import 'component.breadcrumb'; 
+@import 'component.accordion'; 
+@import 'component.slider'; 
+@import 'component.gridlist'; 
+@import 'component.teacher-gridlist'; 
+@import 'components.common-table'; 
+@import 'components.common-banner'; 
+@import 'components.common-tabs'; 
+@import 'components.common-pagination'; 
+@import 'components.radio-checkbox';
+@import 'components.calender';
+@import 'component.tutor-profile'; 
+@import 'component.student-list';  
+@import 'components.common-step-form';  
+@import 'component.common-list'; 
+@import 'components.rating-star';
+@import 'component.switch';
+
+// layout
+@import 'layout/layout.header';
+@import 'layout/layout.footer';
+ 
+//modal
+@import 'modal/modal-main'; 

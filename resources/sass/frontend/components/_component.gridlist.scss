@@ -1,0 +1,143 @@
+.gridList {
+    padding: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: color(50);
+    @include box-shadow(0px, 2px, 15px, rgba(0, 0, 0, 0.06));
+    &__img {
+        position: relative;
+        border-radius: 5px;
+        overflow: hidden;
+        height: 180px;
+        img {
+            width: 100%; 
+            object-fit: cover;
+            height: 100%;
+        }
+    }
+    .subject {
+        background-color: color(220);
+        padding: 3px 5px;
+        font-size: 12px;
+        color: color(50);
+        font-family: font(bd);
+        border-radius: 3px;
+        text-transform: uppercase;
+        display: inline-block;
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        line-height: normal;
+    }
+    .info {
+        background-color: rgba(0, 0, 0, 0.8);
+        position: absolute;
+        bottom: 0;
+        padding: 5px 10px;
+        width: 100%;
+        color: color(50);
+    }
+    .userInfo {
+        // &__img {
+        //     height: 22px;
+        //     width: 22px;
+        //     border-radius: 50%;
+        //     overflow: hidden;
+        //     img {
+        //         height: 100%;
+        //         width: 100%;
+        //         object-fit: cover;
+        //     }
+        // }
+        &__name {
+            font-size: 14px;
+            font-family: font(sm);
+            //margin-left: 5px;
+            max-width: 150px;
+        }
+    }
+    .price {
+        font-size: 16px;
+        color: color(600);
+    }
+
+    &__title {
+        font-size: 16px;
+        font-family: font(bd);
+    }
+    &__info {
+        font-size: 14px;
+        font-family: font(sm);
+        color: color(200);
+        position: relative;
+        &:not(:last-child) {
+            padding-right: 15px;
+            &:after {
+                content: "";
+                height: 4px;
+                width: 4px;
+                background-color: color(200);
+                border-radius: 50%;
+                display: block;
+                position: absolute;
+                right: 1px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
+
+    &__cnt {
+        padding: 15px 0;
+    }
+
+    &__footer {
+        border-top: 1px solid color(60);
+        padding: 15px 0;
+        .date {
+            font-size: 16px;
+            font-family: font(bd);
+            line-height: normal;
+            margin-bottom: 3px;
+        }
+        .time {
+            font-size: 14px;
+            font-family: font(sm);
+            line-height: normal;
+        }
+        .btn {
+            padding: 8px 19px;
+            font-family: font(bd); 
+        }
+        .blogPrice{
+            font-size: 18px;
+        }
+    }
+
+    @media (max-width: 1499px) {
+        &__title {
+            font-size: 15px;
+            line-height: 24px;
+        }
+        .userInfo {
+            &__name {
+                max-width: 105px;
+            }
+        }
+        .price {
+            font-size: 14px;
+        }
+        &__footer {
+            .date {
+                font-size: 15px;
+            }
+            .time {
+                font-size: 13px;
+            }
+            .btn {
+                padding: 7px 10px;
+                font-size: 14px;
+            }
+        }
+    }
+}

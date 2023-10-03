@@ -1,0 +1,87 @@
+<?php
+
+namespace App\Console\Commands;
+
+use Carbon\Carbon;
+use App\Models\ClassRequest;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
+use App\Repositories\NotificationRepository;
+use Illuminate\Container\Container as Application;
+
+class ExpireClassRequest extends Command
+{
+    protected $notificationRepository;
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'expire:classrequest';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Change class request status from active to expired';
+
+    /**
+     * Create a new command instance.
+     *
+     * @param Application     $app
+     * @param NotificationRepository         $notificationRepository
+     *
+     * @return void
+     */
+    public function __construct(Application $app, NotificationRepository $notificationRepository)
+    {
+        parent::__construct($app);
+        $this->notificationRepository = $notificationRepository;
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $currentTime = Carbon::now()->format('Y-m-d H:i');
+        $classData = ClassRequest::with('classRequestDetails', 'tutorAllRequest')->where('status', 'Active')->get();
+
+        foreach ($classData as $class) {
+            Log::channel('cron')
+                        ->info(
+                            "Class Expired",
+                            ["class_request_id" => $class->pluck('id')]
+                        );
+            $time = Carbon::parse($class->created_at)->addMinutes(10)->format('Y-m-d H:i');
+            if ($currentTime >= $time) {
+                $data1['type'] = 'Class Expired';
+                $data1['extra_data'] = [];
+                $data1['from_id'] = $class->user_id;
+                $data1['to_id'] = $class->user_id;
+                $data1['notification_message'] = "Your Class request has been expired.";
+                $this->notificationRepository
+                    ->sendNotification($data1, true);
+                $class->update(['status' => 'Expired']);
+                foreach ($class->classRequestDetails as $c) {
+                    $c->status = 'Expired';
+                    $c->save();
+                }
+
+                foreach ($class->tutorAllRequest as $tutor) {
+                    $data['type'] = 'Class Expired';
+                    $data['extra_data'] = [];
+                    $data['from_id'] = $class->user_id;
+                    $data['to_id'] = $tutor->tutor_id;
+                    $data['notification_message'] = "Class request from this has been expired.";
+                    $this->notificationRepository
+                        ->sendNotification($data, true);
+                    $tutor->update(['status' => 'Expired']);
+                }
+            }
+        }
+    }
+}

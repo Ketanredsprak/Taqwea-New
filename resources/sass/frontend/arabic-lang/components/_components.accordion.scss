@@ -1,0 +1,33 @@
+.customAccordion{
+    .accordion-head {
+        h5 {
+            text-align: right;
+        }
+    } 
+    .action {
+        text-align: right;
+    }
+    .accordion-icon {
+         padding-right: 0px; 
+         padding-left: 20px;
+        &:after {
+           left: 0; 
+           right: auto; 
+        }      
+    }
+    .accordion-inner {
+        ul{ 
+            li {
+                padding-left: 0px;
+                padding-right: 25px;
+                &:after {
+                    right: 0;
+                }
+            }
+        }  
+    }
+}
+
+
+
+

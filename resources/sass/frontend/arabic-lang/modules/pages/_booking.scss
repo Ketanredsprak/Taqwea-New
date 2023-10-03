@@ -1,0 +1,232 @@
+.bookingPage {
+    .paymentCard {
+        &-Box {
+            padding: 30px 50px 30px 30px;
+            &_cards {
+                margin-left: 0px;
+                margin-right: 15px;
+                .cardImg {
+                    &:not(:last-child) {
+                        margin-left: 20px;
+                        margin-right: 0;
+                    }
+                    &-innerText {
+                        &_num {
+                            span {
+                                &:not(:last-child) {
+                                    padding-right: 0;
+                                    padding-left: 25px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &_payOption {
+                .wallet {
+                    margin: 16px 15px 0 0;
+                    &_txt {
+                        padding-right: 0;
+                        padding-right: 20px;
+                    }
+                }
+            }
+            .custom-control {
+                h4 {
+                    margin-right: 15px;
+                    margin-left: 0;
+                }
+                // &-label {
+                //     &:before {
+                //         top: 5px;
+                //         right: -20px;
+                //     }
+                //     &:after {
+                //         right: -15px;
+                //     }
+                // }
+                // &-input:checked ~ .custom-control-label:after {
+                //     right: -15px;
+                // }
+            }
+        }
+        //===================== Responsive scss ====================   
+        @media (max-width: 1599px){
+            &-Box {
+                &_cards {
+                    .cardImg {
+                        &-innerText {
+                            &_num {
+                                span {
+                                    &:not(:last-child) {
+                                        padding-left: 20px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }       
+        @media (max-width: 1399px){
+            &-Box {
+                &_cards {
+                    .cardImg {
+                        &-innerText {
+                            &_num {
+                                span {
+                                    &:not(:last-child) {
+                                        padding-left: 15px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
+        }      
+        @include media-breakpoint-down(lg){
+            // max-width 1199 (<=)        
+            &-Box {
+                a {
+                    padding-bottom: 5px;
+                }
+                &_cards {
+                    .cardImg {
+                        &-innerText {
+                            &_num {
+                                span {
+                                    &:not(:last-child) {
+                                        padding-left: 6px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .custom-control {
+                    &-label {
+                        &:before {
+                            top: 2px;
+                        }
+                    }
+                    &-input:checked ~ .custom-control-label:after {
+                        top: 7px;
+                    }
+                }
+            }
+        } 
+        @include media-breakpoint-down(md){
+            // max-width 991 (<=)
+            &-Box {
+                padding: 15px 30px 15px 10px;
+            }
+        }          
+        @include media-breakpoint-down(sm){
+            // max-width 767 (<=)
+            &-Box {
+                &_cards {
+                    .cardImg {
+                        &-innerText {
+                            &_num {
+                                span {
+                                    &:not(:last-child) {
+                                        padding-left: 12px;
+                                    }
+                                }
+                            } 
+                        }
+                    }
+                }
+            }
+        }    
+        @include media-breakpoint-down(xs){
+            // max-width 575 (<=)
+            &-Box {
+                &_cards {
+                    .cardImg {
+                       
+                        &-innerText {
+                            &_num {
+                                span {
+                                    &:not(:last-child) {
+                                        padding-left: 6px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .custom-control {
+                    h4{
+                        margin-right: 0;
+                    }
+                    // &-label {
+                    //     &:before {
+                    //         top: -2px;
+                    //         left: -25px;
+                    //     }
+                    // }
+                    // &-input:checked ~ .custom-control-label:after {
+                    //     top: 3px;
+                    //     left: -20px;
+                    // }
+                }
+            }
+        } 
+        @media (max-width: 480px) {
+            &-Box {
+                &_cards {
+                    .cardImg {
+                        &-innerText {
+                            &_num {
+                                span {
+                                    &:not(:last-child) {
+                                        padding-left: 3px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        @media (max-width: 320px) {
+            &-Box {
+                a {
+                    font-size: 11px;
+                }
+                &_cards {
+                    .cardImg {
+                        &-innerText {
+                            &_num {
+                                span {
+                                    &:not(:last-child) {
+                                        padding-left: 0px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .custom-control {
+                    h4 {
+                        font-size: 11px;
+                    }
+                }
+            }
+        }
+    }
+    .paymentDetail {
+        &-Box {
+            &_dateContent {
+                .date {
+                    .dateSpace {
+                        padding-right: 0;
+                        padding-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

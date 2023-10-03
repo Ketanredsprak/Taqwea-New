@@ -1,0 +1,28 @@
+.subscriptionPage {
+    &__PlansBox {
+        .planList {
+            ul{
+                li{
+                    padding-left: 0;
+                    padding-right: 30px;
+                    &:before {
+                        left: auto;
+                        right: 0;
+                    }
+                }
+            }
+        }
+    }
+    @include media-breakpoint-down(xs){
+        &__PlansBox {
+            padding: 10px;
+            .planList {
+                ul { 
+                    li {
+                        padding-right: 20px;
+                    }
+                }
+            }
+        }
+    } 
+}

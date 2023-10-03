@@ -1,0 +1,153 @@
+@keyframes slide-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+        -webkit-transform: translateY(-100%);
+    } 
+    100% {
+        opacity: 0.9;
+        transform: translateY(0);
+        -ms-transform: translateY(0);
+        -webkit-transform: translateY(0);
+    } 
+}
+@keyframes ripple {
+    0% {
+        -webkit-transform: scale(4);
+        transform: scale(4);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: scale(40);
+        transform: scale(40);
+    }
+}
+@keyframes spinner-border {
+    0% {
+        animation-timing-function: cubic-bezier(0.5856, 0.0703, 0.4143, 0.9297);
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(1000deg);
+    }
+}
+
+@keyframes wave {
+    0% {
+        -webkit-transform: rotate(0deg) translate(0px, 25px);
+        -ms-transform: rotate(0deg) translate(0px, 25px);
+        transform: rotate(0deg) translate(0px, 25px);
+        opacity: 0.5;
+    }
+    50% {
+        -webkit-transform: rotate(180deg) translate(0px, -8px);
+        -ms-transform: rotate(180deg) translate(0px, -8px);
+        transform: rotate(180deg) translate(0px, -8px);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: rotate(360deg) translate(0px, 25px);
+        -ms-transform: rotate(360deg) translate(0px, 25px);
+        transform: rotate(360deg) translate(0px, 25px);
+        opacity: 0.5;
+    }
+}
+@-webkit-keyframes wave {
+    0% {
+        -webkit-transform: rotate(0deg) translate(0px, 25px);
+        -ms-transform: rotate(0deg) translate(0px, 25px);
+        transform: rotate(0deg) translate(0px, 25px);
+        opacity: 0.5;
+    }
+    50% {
+        -webkit-transform: rotate(180deg) translate(0px, -8px);
+        -ms-transform: rotate(180deg) translate(0px, -8px);
+        transform: rotate(180deg) translate(0px, -8px);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: rotate(360deg) translate(0px, 25px);
+        -ms-transform: rotate(360deg) translate(0px, 25px);
+        transform: rotate(360deg) translate(0px, 25px);
+        opacity: 0.5;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    @keyframes wave {
+        0% {
+            -webkit-transform: rotate(0deg) translate(0px, 20px);
+            -ms-transform: rotate(0deg) translate(0px, 20px);
+            transform: rotate(0deg) translate(0px, 20px);
+            opacity: 0.5;
+        }
+        50% {
+            -webkit-transform: rotate(180deg) translate(0px, -6px);
+            -ms-transform: rotate(180deg) translate(0px, -6px);
+            transform: rotate(180deg) translate(0px, -6px);
+            opacity: 1;
+        }
+        100% {
+            -webkit-transform: rotate(360deg) translate(0px, 20px);
+            -ms-transform: rotate(360deg) translate(0px, 20px);
+            transform: rotate(360deg) translate(0px, 20px);
+            opacity: 0.5;
+        }
+    }
+    @-webkit-keyframes wave {
+        0% {
+            -webkit-transform: rotate(0deg) translate(0px, 20px);
+            -ms-transform: rotate(0deg) translate(0px, 20px);
+            transform: rotate(0deg) translate(0px, 20px);
+        }
+        50% {
+            -webkit-transform: rotate(180deg) translate(0px, -6px);
+            -ms-transform: rotate(180deg) translate(0px, -6px);
+            transform: rotate(180deg) translate(0px, -6px);
+        }
+        100% {
+            -webkit-transform: rotate(360deg) translate(0px, 20px);
+            -ms-transform: rotate(360deg) translate(0px, 20px);
+            transform: rotate(360deg) translate(0px, 20px);
+        }
+    }
+}
+
+
+@keyframes progressive {
+    0% {
+        filter: blur(20px);
+    }
+    to {
+        filter: blur(0);
+    }
+}
+
+@-webkit-keyframes fadeInUpSD {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(100px);
+      transform: translateY(100px);
+    }
+  
+    100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  
+  @keyframes fadeInUpSD {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(100px);
+      transform: translateY(100px);
+    }
+  
+    100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }

@@ -1,0 +1,110 @@
+.customAccordion{
+    .accordion-head {
+        position: relative;padding: 30px;
+        cursor: pointer;
+    } 
+    .accordion-icon {
+        margin-bottom: 0;font-size: 20px;display: block;
+        font-family: font(bd);position: relative; padding-right: 20px; 
+        &:after {
+            content: "\e90e";transition: 0.4s;font-size: 10px;
+            font-family: 'icomoon' !important;color: color(200);margin-left: auto;
+            position: absolute;
+            top: 50%;
+            right: 0; 
+            transform: translateY(-50%);    
+        }
+        &.collapsed{
+            &:after{
+                content: "\e90c"; 
+            }
+        }
+        &:not(.collapsed){
+            color: color(500); 
+            &:after{
+                color: color(500);
+            }   
+        }
+        
+    }
+    .accordion-item { 
+       padding: 0;
+       &:hover{
+            .accordion-icon {
+                color: color(500);
+                &:after{
+                    color: color(500);
+                }
+            } 
+        } 
+    }
+    .accordion-inner {
+        margin-top: 0;padding: 0 30px 30px 30px;
+        p {margin-bottom: 0;}
+        ul{ 
+            margin-top: 15px; margin-bottom: 0; 
+            li {
+                position: relative;padding-left: 25px;
+                margin-bottom: 15px;font-size: 16px;
+                font-family: font(bd);line-height: 27px;
+                &:after {
+                    position: absolute;left: 0;top: 0;color: color(900);
+                    width: 20px; height: 20px; content: "\e910";
+                    font-family: 'icomoon' !important;font-size: 10px;   
+                }
+                &:last-child{
+                    margin-bottom: 0; 
+                }
+            }
+        }  
+    }
+    @media (max-width: 1499px) {
+        .accordion-head {
+            padding: 25px;
+        }
+        .accordion-inner{ 
+            padding: 0 25px 25px 25px;
+         }  
+    }
+    @media (max-width: 1399px) {
+        .accordion-head{
+            h5 {
+                line-height: 40px;
+            } 
+        }  
+        .accordion-icon {
+            font-size: 18px;
+        }
+    }
+    @include media-breakpoint-down(lg) {
+        .accordion-head {
+            padding: 20px;
+        }
+        .accordion-inner{ 
+            padding: 0 20px 20px 20px;
+         }  
+    }
+    @include media-breakpoint-down(md) {
+        .accordion-head {
+            padding: 15px;
+        }
+        .accordion-inner{ 
+            padding: 0 15px 15px 15px;
+         } 
+        .accordion-icon {
+            font-size: 16px;
+        }
+    }
+    @include media-breakpoint-down(sm) {
+        .accordion-icon {
+            &:after {
+                font-size: 8px; 
+            }
+            
+        }
+    }
+}
+
+
+
+

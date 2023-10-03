@@ -1,0 +1,402 @@
+.chatPage {
+    &--tutor{
+        .userList{
+            &-searchBox{
+                p {
+                    max-width: 250px;
+                }
+            } 
+        }
+    }
+	.pageTitle {
+		&__title {
+			display: flex;
+			align-items: center;
+			span {
+				font-size: 16px;
+				font-family: font(sm);
+				margin-left: 15px;
+			}
+		}
+	}
+	.userList {
+		height: 875px;
+		padding: 0;
+		form {
+			padding: 30px 30px 0;
+			.form-group {
+                &.search{
+                    position: relative;
+                }
+				.search-clear{
+					background-color: transparent;
+					border: none;
+					position: absolute;
+					top: 50%;
+					transform: translateY(-50%);
+					right: 12px;
+					i{
+						font-size: 12px;
+					}
+					&:hover{
+						color: color(500);
+					}
+				}
+				.searchIcon {
+					position: absolute;
+                    top: 15px;
+                    left: 12px;
+					font-size: 22px;
+					color: color(200);
+				}
+				.form-control {
+					padding: 10px 40px 10px 40px;
+					font-family: font(sm);
+				}
+			}
+		}
+		&-Box {
+			height: calc(100% - 50px);
+			overflow: auto;
+			padding: 0px 30px 50px;
+		}
+		&-searchBox {
+			padding: 20px 0;
+			border-bottom: 1px solid color(60);
+			cursor: pointer;
+			&.active, &:hover{
+				background-color: color(500);
+				color: #fff;
+				.userInfo-userDetail{
+					p{
+						color:color(600);
+					}
+					.bagde{
+						color:color(900);
+					}
+				}
+			}
+			&:hover{
+				background-color: lighten(color(500), 15%);
+				transition: ease-in-out 0.3s;
+			}
+			h5 {
+				font-size: 18px;
+				max-width: 250px;
+				margin-bottom: 0;
+			}
+			.userInfo {
+				&-userImg {
+					width: 60px;
+					height: 60px;
+					border-radius: 50%;
+					overflow: hidden;
+					img {
+						object-fit: cover;
+						height: 100%;
+						width: 100%;
+					}
+				}
+			}
+		}
+		.userInfo {
+			&-userDetail {
+				flex: 0 0 calc(100% - 60px);
+				max-width: calc(100% - 60px);
+				padding-left: 15px;
+				.bagde {
+					background-color: #B8ECCF;
+					min-width: 25px;
+					height: 25px;
+					display: block;
+					text-align: center;
+					padding: 5px;
+					border-radius: 50%;
+					line-height: 16px;
+					font-size: 14px;
+				}
+				p {
+					color: #707070;
+				}
+			}
+		}
+	}
+	.chatBox {
+		border-radius: 5px;
+		background: color(50);
+		&-head {
+			padding: 30px 30px 15px;
+			border-bottom: 1px solid #F6F8F9;
+			.userInfo {
+				flex: 0 0 60px;
+				max-width: 60px;
+				&_img {
+					height: 50px;
+					width: 50px;
+				}
+			}
+			.userView {
+				flex: 0 0 calc(100% - 60px);
+				max-width: calc(100% - 60px);
+				padding-left: 5px;
+				p {
+					color: color(200);
+					margin-bottom: 0;
+				}
+				h5 {
+					margin-bottom: 0;
+				}
+				&__time {
+					p {
+						color: color(220);
+					}
+				}
+			}
+		}
+		&-body {
+			padding: 30px;
+			height: 640px;
+			overflow: auto;
+			display: flex;
+			flex-direction: column;
+			.msgBox {
+				&:not(:last-child) {
+					margin-bottom: 15px;
+				}
+				&:first-child {
+					margin-top: auto;
+				}
+				&_body {
+					font-family: font(sm);
+					&_textBox {
+						display: inline-block;
+						max-width: 300px;
+						border-radius: 5px;
+						padding: 10px;
+						word-break: break-all;
+					}
+					&_time {
+						font-size: 12px;
+						color: color(200);
+					}
+					.checkmark {
+						margin-left: 10px;
+						font-size: 10px;
+						&:after {
+							content: "\e931";
+							font-family: 'icomoon';
+							color: color(120);
+						}
+						&.seen {
+							&:after {
+								color: color(500);
+							}
+						}
+					}
+				}
+				&-send {
+					text-align: right;
+					.msgBox_body {
+						&_textBox {
+							background: #B8ECCF;
+						}
+					}
+				}
+				&-receive {
+					.msgBox_body {
+						&_textBox {
+							background: color(300);
+						}
+					}
+				}
+			}
+		}
+		&-footer {
+			margin-top: 30px;
+			padding: 30px;
+			.form-control {
+				flex: 1;
+			}
+			.btn {
+				margin-left: 30px;
+				padding: 0;
+				height: 50px;
+				width: 50px;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+	}
+    @media (max-width: 1599px) {
+        &--tutor{
+            .userList{
+                &-searchBox{
+                    p {
+                        max-width: 200px;
+                    }
+                } 
+            }
+        }
+        .userList {
+            height: 735px;
+            &-searchBox {
+				padding: 20px 15px;
+                h5 {
+                 max-width: 200px;
+                }
+            }
+        }
+        .chatBox {
+            &-body {
+                height: 500px;
+            }
+        }
+    }
+    @media (max-width: 1399px) {
+        .userList {
+            height: 760px;  
+        } 
+        &--tutor{
+            .userList{
+                height: 735px; 
+                &-searchBox{
+                    p {
+                        max-width: 180px;
+                    }
+                } 
+            }
+        } 
+        
+    }
+    @include media-breakpoint-down(lg) {
+        &--student{
+            .userList{
+                form{
+                    .form-group{ 
+                        .searchIcon {
+                            top: 30px;
+                        }
+                    } 
+                } 
+            } 
+        }
+        
+        &--tutor{
+            .userList{
+                &-searchBox{
+                    p {
+                        max-width: 150px;
+                    }
+                } 
+            }
+        }
+        .column-1 {
+            flex: 0 0 0;
+            max-width: 0;
+        }
+        .column-2 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        .userList {
+            height: 100%; 
+            &-searchBox {
+                h5 {
+                 max-width: 150px;
+                 font-size: 16px;
+                }
+            }
+            .userInfo{ 
+                &-userImg{
+                    width: 50px;
+                    height: 50px;
+                }
+                &-userDetail{
+                    flex: 0 0 calc(100% - 50px);
+                    max-width: calc(100% - 50px);
+                    p{
+                        font-size: 14px;
+                    }
+                } 
+            } 
+        }
+    }
+    @include media-breakpoint-down(md) {
+        &--student{
+            .userList{
+                form{
+                    .form-group{ 
+                        .searchIcon {
+                            top: 25px;
+                        }
+                    } 
+                } 
+            } 
+        }
+        &--tutor{
+            .userList {
+                form{  
+                    .form-group{  
+                        .searchIcon{
+                            top: 12px;
+                        }
+                    } 
+                }
+            }
+        }
+        .chatBox {
+            &-footer {
+                .btn {
+                    margin-left: 15px;
+                    height: 44px;
+                    width: 44px;
+                }
+            }
+        }
+      
+    }
+    @include media-breakpoint-down(sm) {
+        .userList {
+            form{
+                padding: 30px 15px 0;
+            }
+            &-Box {
+                padding: 0px 15px 50px;
+            }
+            &-searchBox {
+                padding: 15px 0; 
+            }
+        }
+        .chatBox {
+            &-head {
+                padding: 15px;
+                .userView {
+                    p {
+                      font-size: 14px;
+                    }
+                    h5 {
+                        font-size: 16px;
+                    }
+                }
+            }
+            &-body {
+                padding: 15px;
+                height: 440px;
+                .msgBox {
+                    &:not(:last-child) {
+                        margin-bottom: 10px;
+                    }
+                    &_body {
+                        &_textBox {
+                            max-width: 220px;
+                        }
+                    }
+                }
+            }
+            &-footer {
+                padding: 15px;
+            }
+        }
+    }
+}

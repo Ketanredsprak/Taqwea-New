@@ -1,0 +1,47 @@
+.chatPage{
+    .userList {
+        .userInfo {
+			&-userDetail {
+                padding-left: 0;
+                padding-right: 15px;
+            }
+        }    
+    }
+    .pageTitle{
+        &__title{
+            span{
+                margin-left: 0;
+                margin-right: 15px;
+            }
+        }
+    }
+    .chatBox{
+        &-body{  
+            .msgBox{
+                &-send{
+                    text-align: left;
+                }
+                &_body{         
+                    .checkmark{
+                        margin-left: 0;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+        &-footer{
+            .btn{
+                margin-left: 0;
+                margin-right: 30px;
+            }
+        }
+        @include media-breakpoint-down(md){
+            &-footer{
+                .btn{
+                    margin-left: 0;
+                    margin-right: 15px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+.studentListPage{
+    .listingBox{
+        max-width: 912px;
+        margin: 0 auto;
+        background: color(50);
+        padding: 30px;
+        border-radius: 5px;
+        .common-table{
+            max-height: 680px;
+            overflow: auto;
+            cursor: default;
+        }
+        @include media-breakpoint-down(md){
+            padding: 20px;
+            .common-table{
+                max-height: 550px;
+            }
+        }
+        @include media-breakpoint-down(xs){
+            padding: 15px;
+            .common-table{
+                max-height: 400px;
+            }
+        }
+    }
+}

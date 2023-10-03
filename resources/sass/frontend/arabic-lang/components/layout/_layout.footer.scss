@@ -1,0 +1,21 @@
+.footer{
+    &__contact{
+        em{
+            padding-left: 15px;
+            padding-right: 0;
+        }
+    }
+    &__lower{
+        .footer__img{
+            a:not(:last-child){
+                margin-left: 15px;
+                margin-right: 0;
+            }
+        }
+    }
+    .brandLogo{
+        img {
+            max-width: 160px;
+        } 
+    } 
+}

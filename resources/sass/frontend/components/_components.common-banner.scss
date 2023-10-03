@@ -1,0 +1,91 @@
+.commonBanner{
+    background: color(500) url('#{$imageurl}/dashboard-bg.png');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    min-height: 500px;
+    &-head{
+        padding: 50px 0;
+        h2{
+            color: color(50);
+            font-size: 56px;
+            line-height: 70px;
+            margin-bottom: 20px;
+            span{color: color(600);}
+        }
+        p{
+            font-size: 18px;
+            color: rgba(color(50), .6);
+            margin: 0;
+        }
+    }
+    &-img{
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        &:after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(color(500), 0.5);
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    @media (max-width: 1599px){
+        &-head{
+            h2{
+                font-size: 45px;
+                line-height: 58px;
+            }
+            p{
+                font-size: 17px;
+            }
+        }
+    }
+    @include media-breakpoint-down(lg){
+        min-height: 450px;
+        &-head{
+            h2{
+                font-size: 38px;
+                line-height: 46px;
+            }
+        }
+    }
+    @include media-breakpoint-down(md){
+        min-height: 360px;
+        &-head{
+            h2{
+                font-size: 34px;
+                line-height: 42px;
+            }
+        }
+    }
+    @include media-breakpoint-down(sm){
+        min-height: unset;
+        &-head{
+            h2{
+                font-size: 30px;
+                line-height: 38px;
+                margin-bottom: 15px;
+                br{display: none;}
+            }
+        }
+    }
+    @include media-breakpoint-down(xs){
+        &-head{
+            h2{
+                font-size: 24px;
+                line-height: 32px;
+            }
+            p{font-size: 16px;}
+        }
+    }
+}

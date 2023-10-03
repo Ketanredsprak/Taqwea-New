@@ -1,0 +1,96 @@
+.teacherGridBox {
+    background-color: color(50);
+    border-radius: 5px;
+    padding: 15px;
+    .userInfo {
+        border-bottom: 1px solid color(60);
+        padding-bottom: 15px;
+        position: relative;
+        &__img {
+            margin-right: 15px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        &__name {
+            font-size: 16px;
+            font-family: font(bd);
+            margin-bottom: 4px;
+            max-width: 150px;
+        }
+        .btn-circle {
+            padding: 0;
+            height: 32px;
+            width: 32px;
+            line-height: 38px;
+            background-color: color(60);
+            border-radius: 50%;
+            color: color(500);
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        &__cnt {
+            flex: 1;
+        }
+    }
+
+    &__middle {
+        border-bottom: 1px solid color(60);
+        padding: 15px 0;
+    }
+
+    .classInfo {
+        position: relative;
+        width: 33.33%;
+        &:not(:last-child) {
+            padding-right: 15px;
+            &:after {
+                content: "";
+                width: 1px;
+                height: 30px;
+                background-color: color(60);
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+        &__label {
+            color: color(200);
+            font-size: 12px;
+            font-family: font(sm);
+            margin-bottom: 5px;
+            line-height: normal;
+        }
+        &__cnt {
+            font-size: 14px;
+            font-family: font(bd);
+            color: color(900);
+            line-height: normal;
+        }
+    }
+    &__footer {
+        padding-top: 15px;
+        .btn {
+            padding: 8px 20px;
+            font-family: font(bd);
+        }
+    }
+
+    @media (max-width: 1499px) {
+        &__footer {
+            .btn {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+        }
+    }
+}

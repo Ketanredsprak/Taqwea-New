@@ -1,0 +1,383 @@
+.dashboard{
+    .totalList{
+        &-content{
+            background: color(50);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: -70px;
+            .row{
+                margin: 0 -30px;
+                [class*="col-"]{
+                    padding: 0 30px;
+                    &:not(:last-child){
+                        border-right: 1px solid color(100);
+                    }
+                }
+            }
+            .detail{
+                flex: 1;
+                padding-left: 20px;
+            }
+            .sub-title{font-size: 20px;}
+            h5{
+                font: 32px font(eb);
+                margin: 0;
+            }
+        }
+    }
+    .common-tabs{
+        .nav{
+            &-tabs{
+                display: inline-flex;
+                margin: 30px 0;
+                border-color: color(200);
+            }
+            &-link.active{
+                color: color(900);
+                border-color: color(900);
+            }
+        }
+    }
+    .famousTeachers {
+        background-color: color(600);
+        background-image: url("#{$imageurl}/lines.png");
+        .heading {
+            margin-bottom: 35px;
+        }
+        .headingPera { 
+            color: color(900);
+        }
+        .show-all {
+            &:hover {
+                color: color(50);
+            }
+        }
+        &Slider {
+            .slick-list {
+                margin: 0 -8px;
+            }
+            &__item {
+                margin: 0 8px;
+            }
+            .slick-arrow {
+                &:before {
+                    color: color(900);
+                }
+            }
+        }
+        @include media-breakpoint-down(lg){
+            .heading{
+                margin-bottom: 50px;
+            }
+        }
+    }
+    .classLevel{
+        padding: 70px 0 10px;
+        .row{
+            margin: 0 -8px;
+            [class*="col-"]{
+                padding: 0 8px;
+                &:not(:last-child){
+                    margin-bottom: 15px;
+                }
+            }
+        }
+        &-item{ 
+            a{
+            background-color: color(50);
+            padding: 16px;
+            text-align: center;
+            font-size: 20px;
+            border-radius: 5px;
+            display: block; 
+            color: color(900);
+          }
+        }
+    }
+    .sectionHeading {
+        font-size: 40px;
+        font-family: font(eb);
+        @media(max-width:1499px){
+            font-size: 30px;
+        }
+        @include media-breakpoint-down(md){
+            font-size: 24px;
+        }
+        @include media-breakpoint-down(xs){
+            font-size: 18px;
+            br{
+                display: none;
+            }
+        }
+    }
+    .headingPera {
+        font-size: 17px;
+        color: color(200);
+        @include media-breakpoint-down(md){
+            font-size: 15px;
+        }
+    }
+    .show-all {
+        font-size: 18px;
+        color: color(900);
+        font-family: font(eb);
+        text-transform: uppercase;
+        display: inline-block;
+        &:hover {
+            color: color(600);
+        }
+        @media(max-width:1499px){
+            font-size: 16px;
+        }
+        @include media-breakpoint-down(xs){
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    }
+
+    @media (max-width: 1599px){
+        .totalList{
+            img{max-width: 65px;}
+            &-content{
+                padding: 20px;
+                margin-top: -60px;
+                .row{
+                    margin: 0 -20px;
+                    [class*="col-"]{
+                        padding: 0 20px;
+                    }
+                }
+                .detail{
+                    padding-left: 15px;
+                }
+                .sub-title{font-size: 18px;}
+                h5{
+                    font: 26px font(eb);
+                }
+            }
+        }
+    }
+    @media (max-width: 1499px){
+        .classLevel{
+            padding: 40px 0 10px;
+            &-item{
+                a{
+                    font-size: 18px;
+                    padding: 12px;
+                }
+               
+            }
+        }
+    }
+    @include media-breakpoint-down(lg){
+        .totalList{
+            img{max-width: 65px;}
+            &-content{
+                padding: 10px 20px;
+                .row{
+                    [class*="col-"]{
+                        margin: 10px 0;
+                        &:nth-child(2){border: 0;}
+                    }
+                }
+                .sub-title{font-size: 17px;}
+                h5{
+                    font: 24px font(eb);
+                }
+            }
+        }
+        .common-tabs{
+            .nav{
+                &-tabs{
+                    margin: 25px 0 50px;
+                }
+            }
+        }
+        .classLevel{
+            .commonHead{
+                margin-bottom: 20px;
+            }
+        }
+    }
+    @include media-breakpoint-down(md){
+        .totalList{
+            &-content{
+                h5{
+                    font: 22px font(eb);
+                }
+            }
+        }
+        .classLevel{
+            padding: 30px 0 10px;
+            &-item{
+                a{
+                    font-size: 17px;
+                }
+                
+            }
+        }
+    }
+    @include media-breakpoint-down(sm){
+        .totalList{
+            &-content{
+                margin-top: -30px;
+                h5{
+                    font: 20px font(eb);
+                }
+            }
+        }
+    }
+    @include media-breakpoint-down(xs){
+        .totalList{
+            &-content{
+                .row{
+                    [class*="col-"]{
+                        &:not(:last-child){border: 0;}
+                    }
+                }
+            }
+        }
+        .classLevel{
+            &-item{
+                a{
+                    font-size: 16px;
+                }
+               
+            }
+        }
+    }
+    &--Tutor {
+        .totalList{
+            &-content {
+                .detail {
+                    padding-left: 0;
+                    margin-top: 10px;
+                }
+                img {
+                    max-height: 64px;
+                }
+                .sub-title {
+                    font-size: 16px;
+                }
+                h5 {
+                    font-size: 22px;
+                    span {
+                        margin-right: 5px;
+                    }
+                }
+                .row [class*="col-"]{
+                    &:not(:last-child) {
+                        border-right: 0;
+                        position: relative;
+                        &:after {
+                            position: absolute;
+                            right: 0;
+                            top: 50%;
+                            content: "";
+                            background-color: #e1e1e1;
+                            height: 78px;
+                            width: 1px;
+                            transform: translateY(-50%);
+                        }
+                    }
+                }
+                 
+            }
+            .btn-row {
+                margin-top: 22px;
+                .btn {
+                    min-width: 130px;
+                    &:not(:last-child) {
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+        @media (max-width: 1399px){
+            .totalList{
+                &-content {
+                    h5 {
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+        @include media-breakpoint-down(lg){
+            .totalList{
+                &-content {
+                    h5 {
+                        font-size: 18px;
+                    }
+                    .sub-title {
+                        font-size: 15px;
+                    }
+                    img {
+                        max-height: 50px;
+                    }
+                    
+                }
+                .btn-row {
+                    margin-top: 15px;
+                    .btn {
+                        &:not(:last-child) {
+                            margin-right: 15px;
+                        }
+                    }
+                }
+               
+            } 
+        }
+        @include media-breakpoint-down(sm){
+            .totalList{
+                &-content {
+                    img {
+                        max-height: 40px;
+                    }
+                    .detail {
+                        margin-top: 5px;
+                    }
+                    .sub-title {
+                        font-size: 14px;
+                    }
+                    h5 {
+                        font-size: 16px;
+                        word-break: break-word; 
+                    }
+                }
+                .btn-row {
+                    margin-top: 8px;
+                    .btn {
+                        font-size: 14px;
+                        min-width: auto;
+                        &:not(:last-child) {
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            } 
+        }
+        @include media-breakpoint-down(xs){
+            .totalList{
+                .btn-row {
+                    .btn {
+                        padding: 5px 8px;
+                    }
+                }
+            } 
+        }
+        @media (max-width: 359px){
+            .totalList{
+                .btn-row {
+                    .btn {
+                        &:not(:last-child) {
+                            margin-right: 7px;
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
+            }  
+        }
+        
+    }
+}
+

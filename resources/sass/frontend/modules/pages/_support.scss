@@ -1,0 +1,40 @@
+.supportPage{
+    &__table {
+       border-radius: 5px;
+        h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .submitBtn {
+            padding-top: 320px;
+        }
+    }
+    @media (max-width: 1599px){
+        .submitBtn {
+            padding-top: 250px;
+        }
+    }
+    @include media-breakpoint-down(lg){
+        &__table {
+            h3 {
+                font-size: 18px;
+                margin-bottom: 15px; 
+            }
+            .submitBtn { 
+                padding-top: 100px;
+            }
+        }   
+    }
+    @include media-breakpoint-down(sm){
+        &__table {
+            h3 {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            .submitBtn {
+                padding-top: 0;
+            }
+        }
+    }
+}
+ 

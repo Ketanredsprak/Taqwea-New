@@ -1,0 +1,55 @@
+.common-tabs{
+    .nav{
+        &-tabs{
+            border-color: color(100);
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        &-link {
+            background: transparent;
+            border-radius: 0;
+            border-color: transparent;
+            border-width: 0 0 3px 0;
+            color: color(200);
+            font: 18px font(bd);
+            padding: 0 55px 10px;            
+            white-space: nowrap;
+            .number{
+                background-color: rgba(color(500), 0.1);
+                font-size: 14px;
+                display: inline-block;
+                height: 24px;
+                min-width: 24px;
+                line-height: 26px;
+                text-align: center;
+                border-radius: 50rem;
+                padding: 0 6px;
+            }
+            &:hover{
+                color: color(500);
+            }
+            &.active{
+                background: transparent;
+                border-color: color(500);
+                color: color(500);
+                .number{
+                    background-color: color(500);
+                    color: color(50);
+                }
+            }
+        }
+        @media (max-width: 1599px){
+            &-link {
+                font: 17px font(bd);
+                padding: 0 35px 10px;
+            }
+        }
+        @include media-breakpoint-down(sm){
+            &-link {
+                padding: 0 18px 10px;
+                font-size: 16px;
+            }
+        }
+    }
+}

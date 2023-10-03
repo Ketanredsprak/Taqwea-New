@@ -1,0 +1,28 @@
+.select2 {
+    &.select2-container {
+        .select2-selection {
+            &--multiple{
+                padding-right: 15px;
+                &:after{
+                    right: auto;left: 15px;
+                }
+                .select2-selection__choice{
+                    &__remove{
+                        border: 0 !important
+                    }
+                    &__display{
+                        padding-left: 2px;
+                        padding-right: 5px; 
+                    }
+                }
+            }
+            &__arrow {
+                left: 10px;
+                right: auto !important;
+            } 
+            &__rendered{ 
+                padding-right: 0;
+            }
+        }
+    }
+}

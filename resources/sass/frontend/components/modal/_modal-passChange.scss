@@ -1,0 +1,71 @@
+&--passChange {
+    .modal-content {
+        max-width: 448px;
+        margin: 0 auto;
+    }
+    .modal-body {
+        padding: 50px 30px 15px;
+        .innerBox {
+            img {
+                padding-bottom: 30px;
+            }
+            h5 {
+                font-size: 24px;
+                line-height: 32px;
+                font-family: font(eb);
+            }
+            p {
+                font-size: 16px;
+                font-family: font(sm);
+                line-height: 22px;
+            }
+        }
+    }
+    .modal-footer {
+        padding: 10px 30px 30px;
+    }
+    //================ Responsive scss ========================
+    @include media-breakpoint-down(xs){
+        // max-width 575 (<=)
+        .modal-body {
+            padding: 15px;
+            .innerBox {
+                img {
+                    padding-bottom: 10px;
+                    width: 80px;
+                    height: 80px;
+                }
+                h5 {
+                    font-size: 20px;
+                }
+                p {
+                    font-size: 14px;
+                }
+            }
+        } 
+        .modal-footer {
+            padding: 15px;
+        }
+    }
+    @media (max-width: 320px) {
+        .modal-body {
+            padding: 10px;
+            .innerBox {
+                img {
+                    padding-bottom: 10px;
+                    width: 60px;
+                    height: 60px;
+                }
+                h5 {
+                    font-size: 16px;
+                }
+                p {
+                    font-size: 13px;
+                }
+            }
+        } 
+        .modal-footer {
+            padding: 10px;
+        }
+    }
+}

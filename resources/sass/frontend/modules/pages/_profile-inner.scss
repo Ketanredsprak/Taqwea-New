@@ -1,0 +1,30 @@
+.profileInnerSec{
+    padding-bottom: 60px;background-color: color(300); 
+    .flexRow {
+        margin: 0 -8px;
+        [class*="column-"] {
+            padding: 0 8px;
+        } 
+        .column-1 {
+            flex: 0 0 332px;
+            max-width: 332px;
+        }
+        .column-2 {
+            flex: 0 0 calc(100% - 332px);
+            max-width: calc(100% - 332px);
+        }
+    }
+    @media (max-width: 1599px){ 
+        padding-bottom: 50px; 
+    }
+    @include media-breakpoint-down(lg){
+        padding-bottom: 30px;
+        .flexRow {
+            .column-2 { 
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+    }
+} 
+

@@ -1,0 +1,138 @@
+.addBlogPage{
+    padding-bottom: 60px; 
+    &__inner {
+        max-width: 942px;margin: auto;
+    }
+    &__addNewBlog {
+        padding: 40px 15px;
+        .new-blog {
+            max-width: 752px;margin: auto;
+            display: block;text-align: center; border-radius: 5px;
+            border: 2px dashed color(200);padding: 10px;
+            &:hover{
+                border-color: color(500);
+            }
+            a{ 
+                padding: 25px 15px;
+                display: block;
+                background-color: color(300);
+                font-size: 20px;
+            }
+        }
+        
+    } 
+    &__list {
+        margin-top: 30px;margin-left: -10px;
+        margin-right: -10px;
+        [class*="col-"] {
+            padding: 0 10px;
+        }
+    }
+    .btn-row {
+        margin-top: 40px;
+    } 
+    .gridList {
+        margin-bottom: 20px;
+        .commonTag{
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background-color: color(220);
+            border-radius: 3px;
+            font: 12px "NunitoSans-Bold";
+            color: color(50);
+            padding: 4px 10px;
+        }
+        &__footer{ 
+            font-size: 18px;
+        }
+    } 
+    &__form {
+        padding: 35px 15px;
+    } 
+    &__cnt {
+        max-width: 752px;
+        margin: auto;
+        h4 {
+            margin-top: 20px;font-size: 24px;
+        }
+        form {
+            margin-top: 25px;
+        }
+        .linkBlack {
+            font-size: 24px;
+        }
+    }
+    @media (max-width: 1399px){
+        padding-bottom: 40px; 
+        &__addNewBlog {
+            padding: 30px 15px;
+        } 
+        &__list {
+            .btn-row {
+                margin-top: 30px;
+            } 
+        }
+    }
+    @include media-breakpoint-down(lg){ 
+        &__addNewBlog {
+            .blog-link{
+                font-size: 18px;padding: 15px 10px;
+            }
+        } 
+        &__list {
+            .btn-row {
+                margin-top: 20px;
+            } 
+        } 
+        .gridList {
+            &__footer{
+                font-size: 16px;
+            } 
+        } 
+        &__form {
+            padding: 25px 15px;
+        }
+        &__cnt{
+            .linkBlack {
+                font-size: 20px;
+            }
+             h4 {
+                margin-top: 10px;font-size: 20px;    
+            }
+            form {
+                margin-top: 20px;
+            } 
+        } 
+    }
+    @include media-breakpoint-down(md){
+        padding-bottom: 30px; 
+        &__addNewBlog {
+            padding: 20px 15px;
+            .blog-link {
+                font-size: 16px;padding: 10px; 
+            }
+        } 
+        &__list {
+            .btn-row {
+                margin-top: 15px;
+            } 
+        }
+    }
+    @include media-breakpoint-down(sm){
+        &__cnt {
+            h4 {
+                font-size: 18px;    
+            }
+            form {
+                margin-top: 15px;
+            } 
+        }
+        .gridList {
+            &__footer{
+                padding-bottom: 0;
+            } 
+        } 
+      
+    }
+}

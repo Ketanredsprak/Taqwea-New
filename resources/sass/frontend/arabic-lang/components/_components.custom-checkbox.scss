@@ -1,0 +1,17 @@
+// custom checkbox
+.custom-checkbox {
+  .custom-control-input:checked ~ .custom-control-label {
+    &:after {
+      right: 4px;
+    }
+  }
+  .custom-control-label {
+    padding-right: 25px;
+    &:before {
+      right: 0;
+    }
+    &:after {
+      right: 0;
+    }
+  }
+}

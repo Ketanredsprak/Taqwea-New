@@ -1,0 +1,206 @@
+.detailPage{
+    &--blogDetail { 
+            .blogDetailPageCnt{ 
+                padding-bottom: 30px; 
+                &--left { 
+                    min-height: 692px;
+                    padding: 30px; 
+                    .txt {
+                        margin: 40px 0 12px;
+                    }
+                }
+                &--right {
+                    padding: 20px;
+                    .classImg {
+                        height: 290px; overflow: hidden; margin-bottom: 20px;
+                        position: relative;border-radius: 5px;
+                        .playIcon {
+                            position: absolute;top: 50%; height: 100%;right: 0;
+                            text-align: center; left: 0; display: flex;align-items: center;
+                            justify-content: center;transform: translateY(-50%);; 
+                            img {
+                                max-height: 70px;
+                            }
+                        }
+                    }
+                    .class-img{
+                        width: 100%;object-fit: cover;height: 100%; 
+                    } 
+                    .teacherInfo {
+                    background-color: rgba(0,0,0,0.8);position: absolute; bottom: 0;
+                    padding: 10px 15px; width: 100%;color: color(50);  
+                    }
+                    .btnRow{
+                        .btn {
+                            width: 50%; 
+                            &:first-child {
+                                margin-right: 15px;
+                            }
+                        }
+                    }  
+                    .amountInfo{
+                        margin-bottom: 20px;
+                        &__left {
+                            font-family: font(bd);
+                            font-size: 24px;
+                        }
+                        &__right{
+                            font-size: 24px;
+                            span {
+                                font-family: font(bd);
+                            }
+                        } 
+                    }
+                    .dateTime{
+                        margin-bottom: 20px;
+                        p {
+                            line-height: 21px;font-size: 18px;
+                            padding-left: 10px;font-family: font(bd); 
+                            span {
+                                font-size: 15px;
+                                font-family: font(sm);
+                                padding-left: 5px;
+                            } 
+                        }
+                        em {
+                            font-size: 24px;
+                        }
+                    } 
+                .userInfo{
+                        &__img {
+                            height: 40px; width: 40px;
+                            border-radius: 50%;overflow: hidden; 
+                            img{ 
+                                object-fit: cover; height: 100%; width: 100%;
+                            }
+                        }
+                        &__name {
+                            font-size: 20px;padding-left: 10px;  
+                            font-family: font(sm);max-width: 200px;
+                        }
+                    }
+                }
+                //======================= Responsive scss =================== 
+                @media (max-width: 1399px){
+                    &--right {
+                        .userInfo{
+                            &__name{
+                                font-size: 18px; 
+                            }
+                        }
+                        .amountInfo{
+                            &__left {
+                                font-size: 20px;
+                            }
+                            &__right {
+                                font-size: 20px;
+                            }
+                        }
+                        .dateTime{
+                            em {
+                                font-size: 20px;margin-top: -3px; 
+                            }  
+                            p{
+                                font-size: 16px;
+                            }
+                        } 
+                        .btnRow{
+                            .btn {
+                                font-size: 16px;
+                            } 
+                        }
+                    }
+                } 
+                @include media-breakpoint-down(lg){
+                    // max-width 1199 (<=)
+                    &--left {
+                        .txt {
+                            margin: 15px 0 12px;
+                            font-size: 20px;
+                        }
+                    }
+                    &--right {
+                        .classImg {
+                            height: 200px;
+                        }
+                        .teacherInfo {
+                            padding: 8px 10px;
+                        }
+                        .userInfo{
+                            &__img {
+                                height: 30px;
+                                width: 30px;
+                            }
+                            &__name {
+                                font-size: 16px;
+                            }
+                        } 
+                        .btnRow{
+                            .btn {
+                                padding: 10px 12px;
+                                &:first-child{
+                                    margin-right: 10px; 
+                                }
+                            }
+                        } 
+                        .dateTime {
+                            margin-bottom: 15px;
+                        }
+                        .amountInfo {
+                            margin-bottom: 15px;
+                        } 
+                    }
+                }  
+                @include media-breakpoint-down(md){
+                    // max-width 991 (<=)
+                    &--left {
+                        min-height: auto;
+                        padding: 15px;
+                    }
+                    &--right {
+                        .amountInfo{
+                            &__left {
+                                font-size: 18px; 
+                            }
+                            &__right {
+                                font-size: 18px;
+                            }
+                        }
+                        .dateTime{
+                            em {
+                                font-size: 18px;
+                            }  
+                        }
+                    }
+                    .box{  
+                        max-width: 350px;margin: auto; 
+                    } 
+                } 
+                @include media-breakpoint-down(sm){
+                    // max-width 767 (<=)
+                    &--right {
+                        padding-bottom: 10px;  
+                        .amountInfo{
+                            &__left {
+                                font-size: 16px; 
+                            }
+                            &__right {
+                                font-size: 16px;
+                            }
+                        }
+                        .dateTime{
+                            em {
+                                font-size: 16px;
+                            }  
+                            p {
+                                font-size: 14px; 
+                                span{
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                    }
+                }                            
+            } 
+        }
+}

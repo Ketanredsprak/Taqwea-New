@@ -1,0 +1,55 @@
+base_url:- https://reds.a2hosted.com/Taqwea/api/v1/
+
+get all category
+url = {base_url}categories
+header = 
+params = 
+
+level
+url = {base_url}categories/1/levels
+header = 
+params = pass categories id to get levels
+
+grade 
+url = {base_url}categories/grades
+header = 
+params = category_id(ex 8)
+
+subject
+url = {base_url}subjects
+header = 
+params = category_id(ex 8),grade_id(ex 2)
+
+gender and class duration no api 
+
+
+login api
+url = {{base_url}}login
+params = [
+    email:student@mailinator.com
+    password:Test@123
+    device_type:android
+    certification_type:certification_type
+    device_id:test
+]
+
+student class request
+url = {base_url}student-class-request
+header = token
+params =  [
+category_id:1
+level_id:8
+subject_id:12
+preferred_gender:both(option -> both,male,female)
+grade_id:2
+class_type:Single
+class_duration:2 (option -> 0.5,1,1.5,2,2.5,3   too   .. 10)
+class_time:1:01 PM
+class[0][date]:26-09-2023
+class[1][date]:2023-09-06
+note:thsi is description
+]
+
+
+
+

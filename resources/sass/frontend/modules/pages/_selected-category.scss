@@ -1,0 +1,75 @@
+.selectedCategoryPage{
+    .famousTeachers {
+        background-color: color(600);
+        background-image: url("#{$imageurl}/lines.png");
+        .heading {
+            margin-bottom: 35px;
+        }
+        .headingPera { 
+            color: color(900);
+        }
+        .show-all {
+            &:hover {
+                color: color(50);
+            }
+        }
+        &Slider {
+            .slick-list {
+                margin: 0 -8px;
+            }
+            &__item {
+                margin: 0 8px;
+            }
+            .slick-arrow {
+                &:before {
+                    color: color(900);
+                }
+            }
+        }
+        @include media-breakpoint-down(lg){
+            .heading{
+                margin-bottom: 50px;
+            }
+        }
+    }
+    .sectionHeading {
+        font-size: 40px;
+        font-family: font(eb);
+        @media(max-width:1499px){
+            font-size: 30px;
+        }
+        @include media-breakpoint-down(md){
+            font-size: 24px;
+        }
+        @include media-breakpoint-down(xs){
+            font-size: 18px;
+            br{
+                display: none;
+            }
+        }
+    }
+    .headingPera {
+        font-size: 17px;
+        color: color(200);
+        @include media-breakpoint-down(md){
+            font-size: 15px;
+        }
+    }
+    .show-all {
+        font-size: 18px;
+        color: color(900);
+        font-family: font(eb);
+        text-transform: uppercase;
+        display: inline-block;
+        &:hover {
+            color: color(600);
+        }
+        @media(max-width:1499px){
+            font-size: 16px;
+        }
+        @include media-breakpoint-down(xs){
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    }
+}

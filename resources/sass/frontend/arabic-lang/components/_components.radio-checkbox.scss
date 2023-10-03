@@ -1,0 +1,12 @@
+.custom-radio{
+    .custom-control-label{
+        &:before{
+            right: -24px;
+            left: auto;
+        }
+        &:after { 
+            left: auto;
+            right: -19px;
+        }
+    }
+}

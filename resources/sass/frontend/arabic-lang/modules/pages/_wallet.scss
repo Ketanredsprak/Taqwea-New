@@ -1,0 +1,19 @@
+.walletPage {
+    @include media-breakpoint-up(md) {
+      .availableBox {
+        &__icon {
+          margin-left: 10px;
+          margin-right: 0;
+        }
+      }
+    }
+    @media (min-width: 1600px) {
+      .availableBox {
+        &__icon {
+          margin-right: 0;
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+  

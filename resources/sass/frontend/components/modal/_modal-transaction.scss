@@ -1,0 +1,107 @@
+&--transaction {
+    .modal-content {
+        max-width: 448px;
+        margin: 0 auto;
+    }
+    .modal-header {
+        h5 {
+            font-size: 24px;
+            line-height: 32px;
+            font-family: font(eb);
+        }
+    }
+    .modal-body {
+        padding: 30px;
+        h5 {
+            font-size: 18px;
+            line-height: 24px;
+        }
+        .transactionBox {
+            background-color: color(300);
+            padding: 20px 30px;
+            margin-bottom: 38px;
+            &-txt {
+                height: 61px;
+                p {
+                    font-size: 24px;
+                    line-height: 32px;
+                }
+            }
+            &_space-border {
+                width: 1px;
+                height: 61px;
+                border: 1px solid color(250);
+            }
+        }
+        .transcationDetail {
+            background-color: color(300);
+            padding: 25px 20px;
+            &_list {
+                margin-bottom: 15px;
+                .listName {
+                    font-size: 16px;
+                    font-family: font(sm);
+                    line-height: 22px;
+                    width: 125px;
+                    flex-shrink: 0;
+                }
+                span {
+                    display: block;
+                    width: calc(100% - 125px);
+                    font-size: 16px;
+                    font-family: font(bd);
+                    line-height: 22px;
+                }
+                .idNumber { 
+                    word-break: break-all;
+                }
+            }
+        }
+    }
+    //================ Responsive scss ==================
+    @include media-breakpoint-down(xs){
+        // max-width 575 (<=)
+        .modal-content {
+            .close {
+                width: 30px;
+                height: 30px;
+                right: 25px;
+                padding: 1px;
+            }
+        }
+        .modal-header {
+            padding: 15px;
+            h5 {
+                font-size: 18px;
+            }
+        } 
+        .modal-body {
+            padding: 15px;
+            h5 {
+                font-size: 16px;
+            }
+            .transactionBox {
+                padding: 15px;
+                margin-bottom: 20px;
+                h5 {
+                    font-size: 14px;
+                    margin-bottom: 0;
+                }
+                p {
+                    font-size: 18px;
+                }
+            }
+            .transcationDetail {
+                padding: 10px;
+                &_list {
+                    .listName {
+                        font-size: 14px;
+                    }
+                    span {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,91 @@
+[dir='rtl'] .commonSlider, .commonSlider {
+    .slick-prev.slick-disabled:before,
+    .slick-next.slick-disabled:before {
+        opacity: 1;
+    }
+    .slick {
+        &-arrow {
+            height: 60px;
+            width: 60px;
+            border: 1px solid color(500);
+            border-radius: 50px;
+            &:before {
+                font-family: "icomoon" !important;
+                color: color(500);
+                opacity: 1;
+            }
+        }
+        &-track{
+            margin-left: 0; 
+            margin-right: 0;
+        }
+        &-disabled {
+            opacity: 0.25;
+            &:before {
+                opacity: 1;
+            }
+        }
+        &-prev {
+            left: -106px;
+            right: auto;
+            &:before {
+                content: "\e902";
+            }
+        }
+        &-next {
+            right: -106px;
+            &:before {
+                content: "\e903";
+            }
+        }
+    }
+
+    @media (max-width: 1699px) {
+        .slick {
+            &-arrow {
+                height: 50px;
+                width: 50px;
+            }
+            &-prev {
+                left: -80px;
+            }
+            &-next {
+                right: -80px;
+            }
+        }
+    }
+
+    @media (max-width: 1499px) {
+        .slick {
+            &-arrow {
+                height: 45px;
+                width: 45px;
+            }
+            &-prev {
+                left: -60px;
+            }
+            &-next {
+                right: -60px;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(lg) {
+        .slick {
+            &-prev,
+            &-next {
+                top: -20px;
+                height: auto;
+                width: auto;
+                border: none;
+            }
+            &-prev {
+                left: auto;
+                right: 35px;
+            }
+            &-next {
+                right: 0;
+            }
+        }
+    }
+}

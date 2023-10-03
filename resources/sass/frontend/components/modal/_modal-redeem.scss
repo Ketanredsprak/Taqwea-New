@@ -1,0 +1,47 @@
+&--redeemPoint {
+    .modal-content {
+        max-width: 448px;
+        margin: 0 auto;
+    }
+    .modal-header {
+        padding: 30px 30px 5px;
+        h5 {
+            font-size: 24px;
+            line-height: 32px;
+            font-family: font(eb);
+        }
+    }
+    .modal-body {
+        padding: 5px 30px 15px;
+
+    }
+    .modal-footer {
+        padding: 10px 30px 30px;
+    }
+     //=================== Responsive scss =====================
+     @media (max-width: 480px) {
+        .modal-content {
+            .close {
+                width: 30px;
+                height: 30px;
+                right: 25px;
+                padding: 1px;
+            }
+        }
+        .modal-header {
+            padding: 15px 15px 2px;
+            h5 {
+                font-size: 18px;
+            }
+        }
+        .modal-body {
+            padding: 2px 15px;
+            label {
+                font-size: 14px;
+            }
+        }
+        .modal-footer {
+            padding: 15px;
+        }
+    } 
+}

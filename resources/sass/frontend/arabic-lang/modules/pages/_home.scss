@@ -1,0 +1,29 @@
+.homePage {
+    .banner {
+        .btn{
+            &-tutor{
+                margin-right: 0;
+                margin-left: 20px;
+            }
+        }
+    }
+    
+    .learningPrograms{
+        &__icon{
+            margin-right: 0;
+            margin-left: 20px;
+        }
+    }
+
+    .onlineSchool{
+        &__img{
+            direction: ltr;
+        }
+    }
+    .downloadApp{
+        .google-play-btn{
+            margin-right: 0;
+            margin-left: 17px;
+        }
+    }
+}

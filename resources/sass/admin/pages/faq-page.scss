@@ -1,0 +1,58 @@
+.faqCard{
+    .accordion-icon{
+        position: static;transform: none;cursor: pointer;
+        &.collapsed{
+            &:before{
+                content: "";
+            }
+        }
+    }
+    .action{
+        right: 1.5rem;top: 50%;transform: translateY(-50%);
+        position: absolute;
+        a{
+            color: #364a63;
+            font-size: 16px;
+            &:not(:last-child){
+                margin-right: 10px;
+            }
+            &:hover{
+                color: $accent-color;
+            }
+        }
+    }
+    .accordion-head{
+        border-left: 0;border-right: 0;border-top: 0;padding-right: 110px;
+        &:focus{
+            outline: none;
+        }
+        .title{
+            display: inline-block;cursor: pointer;
+        }
+    }
+    .accordion-item{
+        &:last-child{
+            .accordion-head{
+                border-bottom: 0;
+            }
+        }
+    }
+    @media (max-width: 575px){
+        .accordion-head{
+            padding-right: 1.5rem;
+        }
+        .title{margin-bottom: 5px;}
+        .action{
+            position: static;
+            justify-content: flex-end;
+            transform: none;
+        }
+    }
+}
+
+.photoUpload{
+    position: relative;
+    input{
+        position: absolute;width: 100%;top: 0;bottom: 0;left: 0;right: 0;cursor: pointer;opacity: 0;
+    }
+}

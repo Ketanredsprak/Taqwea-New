@@ -1,0 +1,208 @@
+// datatable
+.dataTables_wrapper{
+	.datatable-wrap
+	.row {
+		align-items: center;
+		margin: 0 !important;
+	}
+	.g-2{
+		margin: 0 !important;
+		>li, >div {
+	    	padding: 0 15px !important;
+	    }
+	}
+	.dataTables_scroll {
+		overflow: auto;
+	}
+	.datatable-wrap {
+		margin: 0 !important;
+		border-radius: 0;
+		border-left: none;
+		border-right: none;
+		max-width: 100%;
+    	overflow-x: auto;
+		min-height: 300px;
+	}
+	.dataTables_length{
+	    padding: 15px 0;
+	    label{
+	    	margin-bottom: 0;
+	    }
+	    position: relative;
+	    .form-control{
+	        &:active, &:focus{box-shadow: none;}
+	    }
+	}
+	.dataTables_filter{
+	    padding: 15px 0;
+	    label{
+	        margin-bottom: 0;
+	        font-size: 0;
+	    }
+	    .form-control{
+	        background: #F6F7F8;
+	        height: 38px;
+	        padding: 5px 15px;
+	        margin: 0;
+	        &:active, &:focus{box-shadow: none;}
+	    }
+	}
+	.dataTables_info{
+	    padding: 15px 0 !important;
+	    color: #74778e;
+	    text-align: right;
+	}
+	.dataTables_paginate{
+	    padding: 15px 0;
+	    .pagination{
+	        margin: 0 !important;
+	    }
+	}
+	.table{
+	    width: 100% !important;
+	    margin-top: 0 !important;
+		.userInfo__rating{
+			width: 100px;  
+		}
+	    thead{
+	        tr{
+	            th{
+	            	padding-top: 13px;
+	            	padding-bottom: 13px;
+	                &:before, &:after{
+	                    top: 19px;
+	                }
+	                &:focus{
+	                	outline: none;
+	                }
+	            }
+	        }
+	    }
+	    tbody{
+	    	tr{
+	    		&:hover,&:focus,&:active,&:visited{background:#f8f9fc;}
+	    	}
+	    }
+	}
+	@media (max-width: 767.98px){
+		.dataTables_filter, .dataTables_length, .dataTables_paginate{
+	    	padding: 10px 0;
+	    }
+	    .dataTables_info{
+	    	padding: 10px 0 !important;
+	    }
+	}
+	@media (max-width: 575.98px){
+		.col-7.col-sm-12.col-md-9, .col-5.col-sm-12.col-md-3.text-left.text-md-right{
+			flex: 0 0 100%;
+			max-width: 100%;
+		}
+		.dataTables_length{
+			.form-control{
+				margin: 0;
+			}
+		}
+		.dataTables_paginate{
+			padding-bottom: 0;
+		}
+		.dataTables_info{
+	    	padding: 15px 0 !important;
+	    }
+	}
+}
+@media (max-width: 575px){
+	div.dataTables_wrapper div.dataTables_info{
+		text-align: center !important;
+	}
+	div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+	    justify-content: center;
+	}
+}
+
+
+// table 
+.common-table {
+	.table {
+		th{font-weight:500;}
+		td{font-weight:normal;} 
+		td,
+        th {
+            vertical-align: middle;
+            white-space: nowrap;
+            font-size: 14px;
+            &.w_70 {
+                width: 70px;
+                max-width: 115px
+            }
+            &.w_100 {
+                width: 100px;
+            }
+            .limitText{
+            	max-width:200px;text-overflow:ellipsis;overflow:hidden;
+            	display:inline-block;vertical-align:middle;  
+            }
+            .limitText500{
+            	max-width:500px;text-overflow:ellipsis;overflow:hidden;
+            	display:inline-block;vertical-align:middle;  
+            }
+            .user-card{
+            	.tb-lead {
+					display: block;
+				    line-height: 1.4;
+				    color: #000;
+				    font-weight:500;
+				    + span{
+				    	font-size:13px;color:#8094ae;  
+				    }
+				}
+            }
+        }
+        tbody{
+	        tr{
+	            td{
+	            	.custom-switch{
+	            		padding: 0;
+	            		position: relative;
+	            		margin-top: 5px;
+	            		.custom-control-label{
+	            			width: 3rem;
+	            			&::before{
+	            				left: 0;
+	            				width: 100%;
+	            			}
+	            			&::after{
+	            				left: 5px;
+	            			}
+	            		}
+	            		.custom-control-input:disabled:checked ~ .custom-control-label{
+	            			&:before{background: $accent-color;}
+	            		}
+	            	}
+	            }
+	        }
+	    }
+	}
+	@media (max-width:991.98px){
+		.table {
+			td,
+	        th {
+	        	font-size: 13px;
+	        }
+			tbody{
+				.custom-switch{
+            		.custom-control-label{
+            			width: 2.8rem;
+            			&::before{
+            				height: 1.4rem;
+            			}
+            			&::after{
+            				left: 1px;
+            				top: 3px;
+            			}
+            		}
+            	}
+			}
+		}
+	}
+}
+

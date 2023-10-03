@@ -1,0 +1,86 @@
+.addClassPage{
+    padding-bottom: 60px;
+    &__form{
+        max-width: 912px;margin: auto;
+    }
+    .addNewTopic {
+        padding: 40px 15px;
+        &__cnt {
+            max-width: 752px;
+            margin: auto; 
+            display: block;
+            text-align: center;
+            border: 2px dashed color(200);
+            padding: 10px;
+            border-radius: 5px;
+            &:hover{
+                border-color: color(500);
+            }
+            a{
+                padding: 25px 15px;
+                display: block;
+                background-color: color(300);
+                font-size: 20px;
+            }
+             
+        }
+        
+    }   
+    .customAccordion{
+        .accordion-item {
+            border: 1px solid color(250);
+            margin-bottom: 30px;
+            border-radius: 5px;
+        } 
+        .accordion-icon{
+            padding-right: 55px;
+        }
+    } 
+    .action{ 
+        position: relative;
+    }
+    .edit-link {
+        position: absolute;
+        top: 50%;
+        right: 30px;
+        font-size: 16px;
+        color: color(200); 
+        transform: translateY(-50%);
+    }
+    // new topic scss
+
+    .innerContent {
+        padding: 40px 15px; max-width: 752px;
+        margin: auto;
+        form { 
+            margin-top: 20px;
+            .icon{
+                top:0;font-size: 14px;
+            }
+            .btn-row {
+                margin-top: 45px;
+            } 
+        }
+        .linkBlack {
+            font-size: 24px; 
+        }
+        h4 {
+            margin-top: 20px;font-size: 24px;
+        }
+    }
+
+    @include media-breakpoint-down(xs){
+      .boxContent{
+        &-inner{
+            &-stepForm{
+                .steps{
+                    &-step{
+                        flex: 0 0 50%; 
+                        max-width: 50%;
+                    }
+                }
+            } 
+        }
+      }  
+    }
+}

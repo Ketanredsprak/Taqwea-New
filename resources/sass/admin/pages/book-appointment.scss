@@ -1,0 +1,206 @@
+.rescheduleAppointment {
+	&__content{
+		//box-heading
+		.boxHeading{
+		  margin-bottom:15px;
+		  h4{font-size:14px; font-weight: 500; margin: 0;}
+		  .viewAll{color: color(100);
+		    &:hover{color:#05C6AA;}
+		  }
+		  @media (max-width:1399px){
+		    margin-bottom: 15px;
+		  }
+		  @include media-breakpoint-down(lg){
+		    h4{font-size:16px;}
+		  }
+		  @include media-breakpoint-down(md){
+		    h4{font-size:14px;}
+		  }
+		}
+		.nameFields{
+			margin-left: -5px;margin-right: -5px;
+			> .col, > [class*="col-"]{
+				padding-left: 5px;padding-right: 5px;
+			}
+		}
+		.dateSlide {
+			h5 {
+				margin: 0 15px; font-size: 14px; font-weight: 500;
+			}
+			a {
+				font-size: 20px;
+				vertical-align: middle;
+				position: relative;
+				top: 2px;
+			}
+		}
+		.dateSlot {
+			position: relative;
+			border: 1px solid #ebebeb;
+			
+			padding: 0 30px;
+			overflow: hidden;
+			li {
+				-webkit-box-flex: 1;
+				-ms-flex: 1 1 14.285%;
+				flex: 1 1 14.285%;
+				text-align: center;
+				padding:10px 5px;
+				border-radius: 0;
+				cursor: pointer;
+				.day {
+					font-size: 12px;
+					font-family: font(sm);
+					display: block;
+					color: #05C6AA;
+				}
+				.date {
+					font-size: 13px;
+					color: #3c5a58;
+					margin-top:5px;
+					font-family: font(rbd);
+				}
+				&.active {
+					background-color: #F7DC67;
+					color: #000000;
+					.date,
+					.day {
+						color: #000000;
+					}
+				}
+				&.today-active {
+					background-color: #108984;
+					color: #ffffff;
+					.date, .day{
+						color: #ffffff;
+					}
+				}
+				&.disabled {
+					cursor: default;  pointer-events: none;
+					.day,
+					.date {
+						opacity: 0.5;
+					}
+				}
+			}
+			&__icon {
+				position: absolute;
+				background: #05C6AA;
+				color: #ffffff;
+				width: 30px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				height: 100%;
+				text-align: center;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-orient: vertical;
+				-webkit-box-direction: normal;
+				-ms-flex-direction: column;
+				flex-direction: column;
+				-webkit-box-pack: center;
+				-ms-flex-pack: center;
+				justify-content: center;
+				font-size: 22px;
+				cursor: pointer;
+				@include transition(all 0.3s ease);
+				&--right {
+					right: 0;
+					left: auto;
+				}
+				&:hover {
+					background: #05C6AA;
+					color: #ffffff;
+				}
+			}
+			.scheduleLeft{
+				&.disabled{pointer-events: none; cursor: default; opacity: 0.5;}
+			}
+		}
+		.timeslot {
+			margin: 0 - 5px;
+			max-height: 210px;
+			overflow-y: auto;
+			overflow-x: hidden;
+			&__list {
+				padding: 0 5px;
+				-webkit-box-flex: 1;
+				-ms-flex: 1 1 20%;
+				flex: 1 1 20%;
+				max-width: 20%;
+				&:not(:last-child) {
+					margin-bottom: 6px;
+				}
+				input {
+					display: none;
+					~ label {
+						border: 1px solid #08E1D7;
+						
+						padding: 11px;
+						width: 100%;
+						color: #066f6a;
+						font-size: 14px;
+						font-family: font(rmd);
+						cursor: pointer;
+						margin-bottom: 0;
+						text-align: center;
+					}
+					&:checked {
+						~ label {
+							color: #ffffff;
+							background: #05C6AA;
+							border-color: #05C6AA;
+							span {
+								color: #ffffff;
+							}
+						}
+					}
+					&:disabled {
+						~ label {
+							border-color: #f2f2f2;
+							background: #f7f8f9;
+							color: #b2b2b2;
+						}
+					}
+				}
+			}
+		}
+
+		@include media-breakpoint-down(lg) {
+			.dateSlot li .date{font-size: 11px;}
+		}
+
+		@include media-breakpoint-down(md) {
+			.timeslot{max-height: 250px;}
+		}
+
+		@include media-breakpoint-down(sm) {
+			.timeslot__list{
+				flex: 1 1 16.6%; max-width: 16.6%;
+				input ~ label{
+					padding:6px 5px;font-size: 13px;
+				}
+			} 
+			.dateSlot li{padding-left: 3px;padding-right: 3px;}
+		}
+		@include media-breakpoint-down(xs) {
+			.timeslot{max-height: 195px;}
+			.timeslot__list{
+				flex: 1 1 25%; max-width: 25%;
+				input ~ label{
+					padding:6px 5px;font-size: 13px;
+				}
+			}
+			.dateSlot{
+				padding:0 18px;
+				&__icon{
+					font-size: 16px;width: 18px;
+				}
+			} 
+		}
+
+	}
+
+}

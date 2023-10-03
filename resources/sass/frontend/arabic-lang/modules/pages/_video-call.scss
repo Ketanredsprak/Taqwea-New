@@ -1,0 +1,87 @@
+.videoCallPage{
+    .videoBox{
+        .participantList{
+            &-item{
+                &_img{
+                    margin-right: 0;margin-left: 15px;
+                }
+            }
+            &__right{
+                .btn + .btn{
+                    margin-left: 0; 
+                    margin-right: 5px;
+                }
+            }
+        }
+        &-timer{
+            .text-white{
+                margin-right: 1rem;margin-left: 0!important; 
+            }
+        }
+        &-callPanel{
+            &_link{
+                &:not(:first-child){
+                    margin-left: 0;
+                } 
+                &:not(:last-child){ 
+                    margin-left: 40px;
+                }
+            }
+        }
+        &-head{ 
+            .duration{
+                span:first-child{
+                    margin-right: 0;padding-right: 0;
+                    padding-left: 23px;margin-left: 15px;
+                    &::after{
+                        right: auto; left: 0; 
+                    }
+                }
+            }
+        }
+    }
+    @media (max-width: 1599px){
+        .videoBox{
+            &-callPanel{
+                &_link{
+                    &:not(:last-child){ 
+                        margin-left: 30px;
+                    }
+                }
+            }
+        }   
+    }
+    @include media-breakpoint-down(lg){
+        .videoBox{
+            &-callPanel{
+                &_link{
+                    &:not(:last-child){ 
+                        margin-left: 25px;
+                    }
+                }
+            }
+        }  
+    }
+    @include media-breakpoint-down(xs){
+        .videoBox{
+            &-callPanel{
+                &_link{
+                    &:not(:last-child){ 
+                        margin-left: 15px;
+                    }
+                }
+            }
+            &-head{ 
+                .duration{ 
+                    span:first-child{
+                        margin-right: 0;padding-right: 0;
+                        padding-left: 18px;margin-left: 10px;
+                        &::after{
+                            right: auto; left: 0; 
+                        }
+                    }
+                }
+            }
+        } 
+    }
+}

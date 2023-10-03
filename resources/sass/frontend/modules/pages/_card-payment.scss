@@ -1,0 +1,120 @@
+.cardPaymentPage{
+    .card-header{
+    background-color: color(50); 
+    }
+    .cardPayment{
+        padding: 50px 15px;
+        min-height: 540px; 
+        .wpwl-form {
+            padding: 15px;
+            border-radius: 10px;
+            position: relative;
+            .wpwl-group-card-logos-vertical{  
+                visibility: hidden;
+            }
+            .wpwl-brand{
+                &:before {   
+                     border: 0;
+                    top: 0;
+                    bottom: 0;
+                    height: auto;
+                    right: 0;
+                    left: auto;
+                }
+            }
+            .wpwl-group-card-logos-horizontal, 
+            .wpwl-group-card-logos-horizontal-with-more-button {
+                min-height: auto;
+                padding-left: 0;
+            }
+            .wpwl-brand-card-logo {
+                margin: 0;
+                margin: 0;
+                top: 12px;
+                right: 0;
+                z-index: 1;
+                position: absolute;
+                visibility: visible;
+                &.wpwl-brand-svg-VISA{
+                    background-size: 80%;
+                }
+                &.wpwl-brand-svg-MADA { 
+                    top: 20px;
+                    right: 5px;
+                    width: 56px;
+                }
+            }  
+             .wpwl-button-more {
+                min-height: 35px;
+                width: 50px;
+            }
+        }     
+        form.wpwl-form {
+            background-image: url( ../../images/card-payment-img.png);
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-color: transparent;
+            border: none; 
+            box-shadow: none;
+            position: relative;
+        }
+        .wpwl-button-pay {
+            background-color: color(500);
+            border-color: color(500);
+        } 
+        .customInput{
+            input[type="checkbox"] {
+                width: 18px;
+                height: 18px;
+            } 
+        }
+       .wpwl-wrapper>.wpwl-icon {
+            top: 1px;
+            right: 1px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            width: 25px;
+            justify-content: center;
+            background-color: color(50);
+            box-shadow: none;
+            border-color: #ccc; 
+            border-radius: 0;
+            border-right: 0;
+        }
+       .wpwl-control-cvv {
+            padding-right: 24px;
+        }
+        .wpwl-popover .wpwl-popover-content {
+            font-size: 14px;
+            line-height: 18px;
+            margin-top: 10px;
+        } 
+    }
+    .footer{
+        margin-top: 0;
+    }
+    @include media-breakpoint-down(sm) {
+        .cardPayment{
+            form.wpwl-form{
+                .wpwl-label-brand {
+                    padding-right: 10px;
+                }
+            } 
+            
+        }
+    }
+    @media (max-width: 480px) {
+        .cardPayment{
+            .wpwl-form {
+                .wpwl-brand-card-logo {
+                    top: 40px;
+                }
+
+            }     
+
+        }
+    }
+}

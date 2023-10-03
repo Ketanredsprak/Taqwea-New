@@ -1,0 +1,11 @@
+.commonBreadcrumb {
+    .breadcrumb-item{
+        +.breadcrumb-item{
+            padding-left: 0px;
+            &:before {
+                float: right; 
+                padding-left: 14px;
+            }
+        }
+    }
+}

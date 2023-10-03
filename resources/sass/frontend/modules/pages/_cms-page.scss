@@ -1,0 +1,19 @@
+.cmsPage{
+    &__innerSec{
+        padding-bottom: 30px; 
+        h4{
+            font-size: 24px;margin-bottom: 15px;
+        }
+        p{ 
+            margin-bottom: 0;  
+        }
+        @include media-breakpoint-down(lg){ 
+            h4{
+                font-size: 20px; margin-bottom: 10px;
+            }
+        }
+        @include media-breakpoint-down(md){
+            padding-bottom: 15px; 
+        }
+    }
+} 

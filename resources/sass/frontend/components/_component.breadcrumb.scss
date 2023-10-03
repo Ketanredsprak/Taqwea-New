@@ -1,0 +1,38 @@
+.commonBreadcrumb {
+    padding-bottom: 15px;
+    li {
+        font-size: 16px;
+        font-family: font(sm);
+    }
+    .breadcrumb {
+        background-color: transparent;padding: 0;
+        margin-bottom: 0;
+        a {
+            color: rgba(255, 255, 255, 0.4);
+        }
+    }
+    .breadcrumb-item{
+        &.active {
+            color: color(600);
+        }
+        +.breadcrumb-item{
+            padding-left: 14px;
+            &:before {
+                content: "|";color: rgba(255, 255, 255, 0.4);padding-right: 14px;
+            }
+        }
+    }
+    @include media-breakpoint-down(sm) {
+        li{
+            font-size: 14px;
+        }
+        .breadcrumb-item{
+            +.breadcrumb-item{
+                padding-left: 10px;
+                &:before {
+                    padding-right: 10px; 
+                }
+            }
+        }
+    }
+}

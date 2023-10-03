@@ -1,0 +1,344 @@
+.paymentMethodPage {
+    .paymentCard {
+        &-Box {
+            padding: 30px;
+            padding-right: 82px;
+            border-radius: 5px;
+            min-height: 769px;
+            &:not(:last-child){
+                margin-bottom: 20px;
+            }
+            &_cards {
+                margin-top: 20px;
+                // overflow-x: auto;
+                .cardImg {
+                    background-image: url(../../images/book-card.png);
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    width: 100%;
+                    height: 165px;
+                    max-width: 343px;
+                    min-width: 343px;
+                    border-radius: 8px;
+                    // &:not(:last-child) {
+                        margin-right: 20px;
+                        margin-bottom: 20px;
+                    // }
+                    &-bg {
+                        background-image: url(../../images/visa.png);
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        width: 100%;
+                        height: 165px;
+                        max-width: 343px;
+                        min-width: 343px;
+                        border-radius: 8px;
+                        margin-right: 20px;
+                        margin-bottom: 20px;
+                    }
+                    &-innerText {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        left: 0;
+                        bottom: 0;
+                        padding: 20px;
+                        .delete {
+                            .linkDark {
+                                &:hover {
+                                    color: color(500);
+                                }
+                            }
+                        }
+                        .custom-control {
+                            label {
+                                &:before {
+                                    border: none;
+                                    background-color: rgba(0, 0, 0, 0.39%);
+                                }
+                                &:after {
+                                    background-color: color(900) !important;
+                                }
+                            }
+                        }
+                        &_num {
+                            padding: 30px 0;
+                            span {
+                                font-size: 20px;
+                                font-family: font(eb);
+                                letter-spacing: 5px;
+                                &:not(:last-child) {
+                                    padding-right: 25px;
+                                }
+                            }
+                        }
+                        &_valid {
+                            h5 {
+                                font-size: 14px;
+                            }
+                            input {
+                                border-radius: 5px;
+                                width: 106px;
+                                height: 28px;
+                                padding: 8px;
+                                font-size: 12px;
+                                border: 0;
+                            }
+                        }
+                    }
+                }
+            }
+            &_addNewCard {
+                margin-top: 50px;
+                h4 {
+                    margin-bottom: 15px;
+                }
+                // form {
+                //     .addBtn {
+                //         position: absolute;
+                //         bottom: 30px;
+                //     }
+                // }
+            }
+        }
+        //===================== Responsive scss ====================  
+        @media (max-width: 1399px){
+            &-Box {
+                padding-right: 40px;
+                &_cards {
+                    .cardImg {
+                        height: 140px;
+                        max-width: 320px;
+                        min-width: 320px;
+                        &-bg {
+                            height: 140px;
+                            max-width: 320px;
+                            min-width: 320px;
+                        }
+                        &-innerText {
+                            padding: 10px;
+                            &_num {
+                                padding: 25px 0;
+                                span {
+                                    font-size: 16px;
+                                    &:not(:last-child) {
+                                        padding-right: 20px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }  
+        @include media-breakpoint-down(lg){
+            // max-width 1199 (<=)
+            &-Box {
+                min-height: auto;
+                &_addNewCard {
+                    form {
+                        .addBtn {
+                            position: initial;
+                        }
+                    }
+                }
+            }
+        }                  
+        @include media-breakpoint-down(md){
+            // max-width 991 (<=)
+            &-Box {
+                &_cards {
+                    .cardImg {
+                        max-width: 300px;
+                        min-width: 300px;
+                        &-bg {
+                            max-width: 300px;
+                            min-width: 300px;
+                        }
+                        &-innerText {
+                            &_num {
+                                span {
+                                    &:not(:last-child) {
+                                        padding-right: 20px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }            
+        @include media-breakpoint-down(sm){
+            // max-width 767 (<=)
+            &-Box {
+                padding: 15px;
+                h4 {
+                    font-size: 20px;
+                }
+                &_cards {
+                    .cardImg {
+                        height: 140px;
+                        max-width: 270px;
+                        min-width: 270px;
+                        &-bg {
+                            height: 140px;
+                            max-width: 270px;
+                            min-width: 270px;
+                        }
+                        &-innerText {
+                            padding: 10px;
+                            &_num {
+                                padding: 25px 0;
+                                span {
+                                    &:not(:last-child) {
+                                        padding-right: 12px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }    
+        @include media-breakpoint-down(xs){
+            // max-width 575 (<=)
+            &-Box {
+                &_cards {
+                    .cardImg {
+                        max-width: 230px;
+                        min-width: 230px;
+                        &-bg {
+                            max-width: 230px;
+                            min-width: 230px;
+                        }
+                        &-innerText {
+                            &_num {
+                                span {
+                                    font-size: 15px;
+                                    &:not(:last-child) {
+                                        padding-right: 6px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+        @media (max-width: 480px) {
+            &-Box {
+                &_cards {
+                    .cardImg {
+                        height: 100px;
+                        &-bg {
+                            height: 100px;
+                        }
+                        &-innerText {
+                            padding: 7px;
+                            &_num {
+                                padding: 4px 0 0;
+                                span {
+                                    font-size: 12px;
+                                    &:not(:last-child) {
+                                        padding-right: 4px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        @media (max-width: 415px) {
+            &-Box {
+                &_cards {
+                    .cardImg {
+                        height: 90px;
+                        &-bg {
+                            height: 90px;
+                        }
+                        &-innerText {
+                            padding: 12px;
+                            .delete {
+                                font-size: 14px;
+                            }
+                            &_num {
+                                span {
+                                    font-size: 7px;
+                                }
+                            }
+                            &_valid {
+                                h5 {
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                    }
+                }
+                &_addNewCard {
+                    margin-top: 20px;
+                }
+            }
+        } 
+        @media (max-width: 375px) {
+            &-Box {
+                &_cards {
+                    display: block !important;
+                    .cardImg {
+                        // width: auto;
+                        height: 140px;
+                        max-width: 100%;
+                        min-width: 100%;
+                        &:not(:last-child) {
+                            margin-right: 0px;
+                        }
+                        &-bg {
+                            height: 140px;
+                            max-width: 100%;
+                            min-width: 100%;
+                        }
+                        margin-bottom: 15px;
+                        &-innerText {
+                            padding: 12px;
+                            &_num {
+                                padding: 25px 0;
+                                span {
+                                    font-size: 20px;
+                                    &:not(:last-child) {
+                                        padding-right: 14px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        @media (max-width: 320px) {
+            &-Box {
+                h4 {
+                    font-size: 14px;
+                }
+                &_cards {
+                    .cardImg {
+                        height: 130px;
+                        &-bg {
+                            height: 130px;
+                        }
+                        &-innerText {
+                            &_num {
+                                padding: 22px 0;
+                                span {
+                                    font-size: 16px;
+                                    &:not(:last-child) {
+                                        padding-right: 10px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

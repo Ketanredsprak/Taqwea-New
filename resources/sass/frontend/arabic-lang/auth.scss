@@ -1,0 +1,50 @@
+
+.authPage{ 
+    &-content{
+        &_right{
+            .backLink{
+                span{
+                    margin-left: .5rem; margin-right: 0 !important;
+                }
+
+            } 
+            .icon-left-arrow{
+                &::before{
+                    content: "\e903";
+                }
+            }
+        }   
+        &_left{
+            .authSlider{
+                .slick-dots{
+                    li{
+                        +li{
+                            margin-left: 0;margin-right: 8px; 
+                        }
+                    }
+                } 
+            } 
+        } 
+    } 
+    .boxContent{
+        &-form{
+            .form-group{
+                &:not(:first-child){
+                    .custom-control{
+                        margin-right: 0;
+                        margin-left: 3rem !important; 
+                    }
+                }  
+            }
+            .custom-control{
+                padding-left: 0; 
+                padding-right: 24px;
+            }
+            .submitBtn{
+                .custom-control{ 
+                    padding-right: 0;
+                }
+            }
+        } 
+    }
+} 

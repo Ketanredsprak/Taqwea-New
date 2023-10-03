@@ -1,0 +1,41 @@
+.detailPage {
+    &--blogDetail { 
+    .blogDetailPageCnt{ 
+        &--right {
+            .btnRow{
+                .btn {
+                    &:first-child {
+                        margin-right: 0px;
+                        margin-left: 15px;
+                    }
+                }
+            } 
+            .userInfo{
+                &__name {
+                    padding-left: 0px;
+                    padding-right: 10px;  
+                }
+            } 
+            //================== responsive scss =================
+            @media (max-width: 1599px){
+                .btnRow{
+                    .btn {
+                        &:first-child {
+                            font-size: 19px;
+                        }
+                    }
+                } 
+            }          
+            @media (max-width: 1399px){
+                .btnRow{
+                    .btn {
+                        &:first-child {
+                            font-size: 15px;
+                        }
+                    }
+                } 
+            }
+        }                            
+    } 
+ }
+}

@@ -1,0 +1,8 @@
+// fonts
+
+@include font-face(font(rg), "#{$fonturl}/NunitoSans-Regular", "normal", "normal"); 
+@include font-face(font(sm), "#{$fonturl}/NunitoSans-SemiBold", "normal", "normal");
+@include font-face(font(bd), "#{$fonturl}/NunitoSans-Bold", "normal", "normal");
+@include font-face(font(eb), "#{$fonturl}/NunitoSans-ExtraBold", "normal", "normal");
+@include font-face(font(bl), "#{$fonturl}/NunitoSans-Black", "normal", "normal");
+@include font-face(font(cr), "#{$fonturl}/comic-webfont", "normal", "normal");

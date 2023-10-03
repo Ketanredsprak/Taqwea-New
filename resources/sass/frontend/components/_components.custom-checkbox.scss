@@ -1,0 +1,59 @@
+// custom checkbox
+.custom-checkbox {
+    position: relative;
+    padding-left: 0px;
+    .custom-control-input {
+      z-index: 1;
+      cursor: pointer;
+    }
+    .custom-control-input:focus ~ .custom-control-label::before {
+      box-shadow: none;
+    }
+    .custom-control-input:checked ~ .custom-control-label {
+      &:after {
+        border-left: 2px solid color(50);
+        border-bottom: 2px solid color(50);
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        width: 10px;
+        height: 6px;
+        top: 6px;
+        left: 4px;
+        background-image: none;
+      }
+      &:before {
+        border-color: color(500);
+        background: color(500);
+        box-shadow: none;
+      }
+    }
+    .custom-control-label {
+      cursor: pointer;
+      padding-left: 25px;
+      margin-bottom: 0;
+      font-size: 16px;
+      font-family: font(sm);
+      color: color(900);
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        display: block;
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        background: color(50);
+        top: 2px;
+        border: 1px solid color(70);
+        cursor: pointer;
+        @include transition(0.3s);
+        box-shadow: none;
+      }
+      &:after {
+        content: "";
+        left: 0;
+        @include transition(0.3s);
+      }
+    }
+}

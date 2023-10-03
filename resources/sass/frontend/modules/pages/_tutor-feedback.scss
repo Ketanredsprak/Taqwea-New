@@ -1,0 +1,307 @@
+.feedBackPage {
+    &__inner {
+        padding-bottom: 64px;
+        .leftSide {
+            height: 692px;
+            padding: 0;
+            form {
+                padding: 30px 30px 0;
+                .form-group {
+                    .searchIcon {
+                        position: absolute;
+                        top: 44px;
+                        left: 55px;
+                        font-size: 22px;
+                        color: color(200);
+                    }
+                    .form-control {
+                        padding: 10px 15px 10px 40px;
+                    }
+                }
+            }
+            &-Box {
+                height: calc(100% - 50px);
+                overflow: auto;
+                padding: 0px 30px 50px;
+            }
+            &-searchBox {
+                padding: 20px 0;
+                border-bottom: 1px solid color(60);
+                h5 {
+                    font-size: 16px;
+                    max-width: 160px;
+                    padding-left: 15px;
+                    // padding-right: 60px;
+                }
+                .userInfo {
+                    &-userImg {
+                        width: 60px;
+                        height: 60px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        img {
+                            object-fit: cover;
+                            height: 100%;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+        .rightSide {
+            padding: 60px 30px 20px;
+            height: 692px;
+            .userInfo{
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin: 0 auto;
+                img {
+                    object-fit: cover;
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+            h5 {
+                margin-top: 20px;
+            }
+            .ratingStar{
+                margin: 48px auto 0;
+                svg {
+                    width: 45px;
+                    height: 44px;
+                }
+            }
+            &-txt {
+                margin: 48px 0 76px 0;
+                textarea {
+                    height: 92px;
+                    font-size: 15px;
+                    font-family: font(sm);
+                }
+            }
+            p {
+                margin-top: 30px;
+            }
+        }
+    }
+    //======================== Responsive scss ====================== 
+    @media (max-width: 1799px){
+        &__inner {
+            .rightSide {
+                .ratingStar{
+                    margin: 38px auto 0;
+                }
+            }
+        }
+    }  
+    @media (max-width: 1599px){
+       &__inner {
+           .leftSide {
+               &-searchBox {
+                    h5 {
+                        max-width: 130px;
+                    }
+                }
+           }
+       }
+    }  
+    @media (max-width: 1399px){
+        &__inner {
+            .leftSide {
+                &-searchBox {
+                    h5 {
+                        font-size: 14px;
+                    }
+                }
+                a {
+                    font-size: 14px;
+                }
+            }
+            .rightSide {
+                &-txt {
+                    textarea {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }   
+    @include media-breakpoint-down(lg){
+        // max-width 1199 (<=)  
+        &__inner {
+            padding-bottom: 20px;
+            .leftSide {
+                height: 550px;
+                form {
+                    padding: 15px 15px 0;
+                    .form-group {
+                        .searchIcon {
+                            top: 32px;
+                            left: 40px;
+                            font-size: 18px;
+                        }
+                        .form-control {
+                            font-size: 14px;
+                        }
+                    }
+                }
+                &-Box {
+                    padding: 0px 15px 10px;
+                    height: calc(100% - 80px);
+                }
+                &-searchBox {
+                    h5 {
+                        padding-left: 10px;
+                    }
+                    .userInfo {
+                        &-userImg {
+                            width: 40px;
+                            height: 40px;
+                        }
+                    }
+                }
+            }
+            .rightSide {
+                padding: 15px 15px 20px;
+                height: 550px;
+                .userInfo{
+                    width: 80px;
+                    height: 80px;
+                }
+                h5 {
+                    font-size: 16px;
+                }
+                .ratingStar{
+                    margin: 20px auto 0;
+                    svg {
+                        width: 36px;
+                        height: 36px;
+                    }
+                }
+                &-txt {
+                    margin: 30px 0 40px 0;
+                }
+            }
+        }  
+    }   
+    @include media-breakpoint-down(md){
+        // max-width 991 (<=)
+        &__inner {
+            .leftSide {
+                form {
+                    padding: 15px 15px 0;
+                    .form-group {
+                        .searchIcon {
+                            top: 30px;
+                            left: 38px;
+                        }
+                        .form-control {
+                            padding: 10px 15px 10px 30px;
+                        }
+                    }
+                }
+                &-searchBox {
+                    text-align: center;
+                    h5 {
+                        max-width: 55px;
+                    }
+                }
+            }
+        }
+    }     
+    @include media-breakpoint-down(sm){
+        // max-width 767 (<=)
+        &__inner {
+            padding: 0;
+            .leftSide {
+                height: auto;
+                form {
+                    .form-group {
+                        .searchIcon {
+                            top: 27px;
+                            left: 40px;
+                        }
+                        .form-control {
+                            padding: 10px 15px 10px 40px;
+                        }
+                    }
+                }
+                &-Box {
+                    // height: calc(100vh - 350px);
+                    height: auto;
+                    padding: 0px 15px;
+                }
+                &-searchBox {
+                    display: flex;
+                    padding: 15px 0;
+                    h5 {
+                        font-size: 14px;
+                        padding-left: 10px;
+                        max-width: 130px;
+                    }
+                    .userInfo {
+                        padding-left: 0;
+                        &-userImg {
+                            width: 45px;
+                            height: 45px;
+                        }
+                    }
+                    a {
+                        font-size: 14px;
+                    }
+                }
+            }
+            .rightSide {
+                padding: 15px;
+                height: auto;
+                .userInfo{
+                    width: 60px;
+                    height: 60px;
+                }
+                h5 {
+                    margin-top: 15px;
+                    font-size: 14px;
+                }
+                .ratingStar{
+                    margin: 10px auto 0;
+                    svg {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+                &-txt {
+                    margin: 15px 0 20px 0;
+                }
+                p {
+                    margin-top: 15px;
+                    font-size: 14px;
+                }
+                a {
+                    font-size: 14px;
+                }
+            }
+        }
+    } 
+    @media (max-width: 320px) {
+        &__inner {
+            .leftSide {
+                &-searchBox {
+                    h5 {
+                        font-size: 12px;
+                    }
+                    .userInfo {
+                        &-userImg {
+                            width: 35px;
+                            height: 35px;
+                        }
+                    }
+                    a {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}

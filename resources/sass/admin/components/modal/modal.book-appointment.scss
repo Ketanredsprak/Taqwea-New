@@ -1,0 +1,16 @@
+.bookAppointment{
+	ul{
+		margin:20px 0;
+		li{
+			font-size: 14px; line-height: 20px;
+			&:not(:last-child){margin-bottom:5px;}
+			i{
+				font-size: 16px; padding-right: 5px;
+				&.icon-stethoscope{font-weight: 600;}
+			}
+		}
+	}
+	@include media-breakpoint-down(sm) {
+		ul{margin: 10px 0;}
+	}
+}

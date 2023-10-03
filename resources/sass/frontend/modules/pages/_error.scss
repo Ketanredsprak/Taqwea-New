@@ -1,0 +1,49 @@
+.errorPage {
+    &__inner {
+        padding: 50px 0;
+        h1 {
+            font-size: 160px;
+            font-family: font(eb);
+            background: -webkit-linear-gradient(#05C6AA, #057d6c);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            opacity: .9;
+        }
+        h3 {
+            color: #364a63;
+            padding-bottom: 15px;
+            font-size: 32px;
+            font-family: font(eb);
+        }
+        p {
+            color: #526484;
+            font-size: 18px;
+            font-family: font(sm);
+        }
+    }
+    //========================= Responsive scss ========================
+    @include media-breakpoint-down(lg){
+        // max-width 1199 (<=)    
+        &__inner {
+            padding: 20px 0;
+            h1 {
+                font-size: 100px;
+            }
+            h3 {
+                padding-bottom: 0px;
+                font-size: 22px;
+            }
+            p {
+                font-size: 16px;
+            }
+        }
+    }     
+    @include media-breakpoint-down(sm){
+        // max-width 767 (<=)    
+        &__inner {
+            h1 {
+                font-size: 84px;
+            }
+        }
+    } 
+}

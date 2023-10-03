@@ -1,0 +1,38 @@
+
+body {
+    &.language-arabic {
+        text-align: initial;
+        ul {
+            padding-right: 0;
+        }
+        .swal2-confirm {
+            margin-left: 10px;
+            margin-right: 0 !important;
+        } 
+        @import 'common';
+        @import 'auth'; 
+        @import 'modules/pages/home';
+        @import 'modules/pages/booking';
+        @import 'modules/pages/blog-detail';
+        @import 'modules/pages/detail-page';
+        @import 'modules/pages/schedule'; 
+        @import 'modules/pages/side-bar'; 
+        @import 'modules/pages/notification';
+        @import 'modules/pages/payment-method';
+        @import 'modules/pages/chat';
+        @import 'modules/pages/refer'; 
+        @import 'modules/pages/wallet'; 
+        @import 'modules/pages/edit-profile'; 
+        @import 'modules/pages/add-class';
+        @import 'modules/pages/tutor-feedback';
+        @import 'modules/pages/video-call'; 
+        @import 'modules/pages/booking-request';
+        @import 'modules/pages/dashboard';
+        @import 'modules/pages/subscription';
+        @import 'modules/pages/card-payment'; 
+    }
+
+    
+}
+
+ 

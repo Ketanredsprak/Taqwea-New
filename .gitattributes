@@ -1,0 +1,7 @@
+* text=auto
+*.css linguist-vendored
+*.scss linguist-vendored
+*.js linguist-vendored
+CHANGELOG.md export-ignore
+# Declares that files will always have CRLF line ends
+*.sh text eol=lf

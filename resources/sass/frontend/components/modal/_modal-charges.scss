@@ -1,0 +1,104 @@
+&--charges {
+    .modal-content {
+        max-width: 448px;
+        margin: 0 auto;
+    }
+    .modal-header {
+        h5 {
+            font-size: 24px;
+            line-height: 32px;
+            font-family: font(eb);
+        }
+    }
+    .modal-body {
+        padding: 20px 30px;
+        h5 {
+            font-size: 18px;
+            line-height: 24px;
+        }
+        .chargesBox {
+            &-txt {
+                background-color: color(300);
+                padding: 20px 30px;
+                p {
+                    font-size: 24px;
+                    line-height: 32px;
+                    color: color(820);
+                }
+            }
+        }
+    }
+    .modal-footer {
+        padding: 20px 30px;
+        .btn {
+            min-width: 186px;
+        }
+    }
+    //==================== Responsive scss =====================   
+    @include media-breakpoint-down(xs){
+        // max-width 575 (<=)
+        .modal-content {
+            .close {
+                width: 30px;
+                height: 30px;
+                right: 25px;
+                padding: 1px;
+            }
+        }
+        .modal-header {
+            padding: 15px;
+            h5 {
+                font-size: 18px;
+            }
+        }
+        .modal-body {
+            padding: 15px;
+            .chargesBox {
+                &-txt {
+                    padding: 10px;
+                    h5 {
+                        font-size: 18px;
+                    }
+                    p {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+        .modal-footer {
+            padding: 15px;
+            .btn {
+                min-width: 200px;
+                font-size: 16px;
+            }
+        }
+    }
+    @media (max-width: 480px) {
+        .modal-footer {
+            .btn {
+                min-width: 139px;
+            }
+        }
+    }
+    @media (max-width: 414px) {
+        .modal-footer {
+            .btn {
+                min-width: 170px;
+            }
+        }
+    }
+    @media (max-width: 375px) {
+        .modal-footer {
+            .btn {
+                min-width: 145px;
+            }
+        }
+    }
+    @media (max-width: 320px) {
+        .modal-footer {
+            .btn {
+                min-width: 125px;
+            }
+        }
+    } 
+}

@@ -1,0 +1,62 @@
+// color variables
+$colors:(
+    50:  #ffffff,
+    60:  #F6F8F9,
+    70:  #E8E8ED,  
+    80:  #F3F3F3,
+    90:  #626262, 
+    100: #E2E2E2,  
+    120: #B5B5B5,
+    130: #FBFBFF,
+    140: #747474,
+    150: #888888, 
+    160: #828282,
+    200: #707070, 
+    220: #FF9000, 
+    250: #E1E1E1, 
+    300: #F5F8F7,
+    500: #3C5D4B, 
+    600: #FFC100, 
+    700: #FFEBDC,
+    800: #22BFAD,  
+    820: #14C148,  
+    850: #FF0000, 
+    900: #000000,  
+);
+
+ 
+@function color($color) {
+    // checking to see if our $theme-colors map has that $color key
+    @if map-has-key($colors, $color) {
+    // and if so, it will get that color for us in the map-get syntax
+    @return map-get($colors, $color);
+  }
+    // if not, it will give us a helpful error when we compile
+  @error "Unknown `#{$color}` in $colors.";
+  @return null;
+}
+
+// fonts
+$fonts : (
+    rg   : 'NunitoSans-Regular',
+    sm   : 'NunitoSans-SemiBold',
+    bd   : 'NunitoSans-Bold',
+    eb   : 'NunitoSans-ExtraBold',
+    bl   : 'NunitoSans-Black',
+    cr   : 'comic_sans_msregular'
+);
+
+@function font($font) {
+    // checking to see if our $theme-fonts map has that $font key
+    @if map-has-key($fonts, $font) {
+    // and if so, it will get that font for us in the map-get syntax
+    @return map-get($fonts, $font);
+  }
+    // if not, it will give us a helpful error when we compile
+  @error "Unknown `#{$font}` in $fonts.";
+  @return null;
+}
+
+
+$imageurl       :    "../../images";
+$fonturl        :    "../../fonts/frontend";

@@ -1,0 +1,62 @@
+&--message{
+    .modal-content {
+        max-width: 448px;
+        margin: 0 auto;
+    }
+    .modal-header {
+        h5 {
+            font-size: 24px;
+            line-height: 32px;
+            font-family: font(eb);
+        }
+    }
+    .modal-body{
+        border-radius: 5px;
+        label {
+            font-size: 16px;
+            font-family: font(sm);
+            color: color(140);
+        }
+        span {
+            font-size: 16px;
+            font-family: font(sm);
+            line-height: 22px;
+            color: color(140);
+        }
+        textarea {
+            border: 1px solid #DFDFDF;
+            border-radius: 3px;
+            padding: 10px;
+            font-size: 14px;
+            line-height: 20px;
+            font-family: font(sm);
+            resize: none;
+            overflow: auto;
+            width: 100%;
+            height: 85px !important;
+        }
+    }
+    //=================== Responsive scss =====================
+    @media (max-width: 480px) {
+        .modal-content {
+            .close {
+                width: 30px;
+                height: 30px;
+                right: 25px;
+                padding: 1px;
+            }
+        }
+        .modal-header {
+            padding: 15px;
+            h5 {
+                font-size: 18px;
+            }
+        }
+        .modal-body {
+            padding: 15px;
+            label {
+                font-size: 14px;
+            }
+        }
+    } 
+}

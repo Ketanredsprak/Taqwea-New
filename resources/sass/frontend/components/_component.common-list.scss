@@ -1,0 +1,95 @@
+.commonList{
+    &-item{
+        padding: 15px;
+        border-radius: 5px;
+        &:not(:last-child){
+            margin-bottom: 20px; 
+        }
+        &_img{ 
+            border-radius: 5px;
+            overflow: hidden;
+            width: 282px;
+            height: 162px;
+            margin-right: 20px;
+            @include media-breakpoint-up(md){
+                &--sm{
+                    width: 170px;
+                    height: 110px;
+                }
+            }
+            img{
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                vertical-align: unset;
+            }
+            .commonTag{
+                position: absolute;
+                top: 8px;
+                left: 8px;
+                background-color: color(220);
+                border-radius: 3px;
+                font: 12px font(bd);
+                color: color(50);
+                padding: 4px 10px;
+            }
+            .userInfo{
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                padding: 5px 10px;
+                display: flex;
+                align-items: center;
+                background: color(900);
+                span{
+                    color: color(50);
+                    font-size: 14px;
+                }
+            }
+        }
+        &_info{
+            flex: 1;
+            font-family: font(sm);
+            h5{font-size: 18px;padding-right: 15px;line-height: 24px;@include text-clamp(2)}
+            .price{white-space: nowrap;}
+            .dot{
+                padding: 0 5px;
+            }
+            .btnRow{
+                .btn { 
+                    margin-bottom: 8px;
+                    margin-right: 8px;
+                }
+            } 
+        }
+    }
+    @include media-breakpoint-down(sm){
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        &-item{
+            flex: 0 0 48.6%;
+            max-width: 48.6%;
+            &_img{
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 15px;
+            } 
+            &_info{
+                flex: 1;
+                font-family: font(sm);
+                h5{font-size: 16px;line-height: 22px;}
+                .btnRow{
+                    p{font-size: 14px;}  
+                }
+            }
+        }
+    }
+    @include media-breakpoint-down(xs){
+        &-item{
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+}

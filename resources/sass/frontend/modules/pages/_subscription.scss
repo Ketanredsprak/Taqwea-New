@@ -1,0 +1,210 @@
+.subscriptionPage {
+    &__rightSideBox {
+        padding: 30px;
+        min-height: 769px;
+    }
+    &__PlansBox {
+        border: 1px solid #DFDFDF;
+        max-width: 469px;
+        min-height: 366px;
+        padding: 20px 20px 80px;
+        height: 100%;
+        .activeTxt {
+            position: relative;
+            span {
+                position: absolute; 
+                top: 0;
+                right: 0;
+                padding: 4px 10px;
+                // border: 1px solid #707070;
+                background-color: #14c14826;
+                border-radius: 14px;
+                line-height: 19px;
+                font-size: 14px;
+                font-family: font(bd);
+                &.textYellow{
+                    background-color: #FFF3CC; 
+                }
+            }
+        }
+        h4 {
+            font-size: 20px;
+            font-family: font(eb);
+            padding-bottom: 10px;
+            max-width: 250px;
+            margin: auto; 
+        }
+        h5 {
+            font-size: 24px;
+            font-family: font(rg);
+            margin-bottom: 10px;
+        }
+        .hoursTxt {
+            text-align: center;
+            span {
+                font-size: 14px;
+                font-family: font(bd);
+            }
+        }
+        .warningBorder {
+            border-top: 1px solid color(60);
+            max-width: 429px;
+            height: 1px;
+            position: relative;
+            top: 15px;
+        }
+        .warningBox {
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            h6 {
+                max-width: 210px;
+                background-color: color(60);
+                height: 27px;
+                padding: 4px 15px;
+                margin: 0 auto;
+                font-size: 14px;
+                font-family: font(bd); 
+                border-radius: 14px;
+                line-height: 19px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+            }
+        }
+        .planList {
+            margin-top: 15px;
+            ul {
+                li {
+                    padding-left: 30px;
+                    position: relative;
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        width: 10px;
+                        height: 10px;
+                        left: 0;
+                        border: 1px solid color(500);
+                        background-color: color(500);
+                        transform: rotate(-45deg);
+                        -webkit-transform: rotate(-45deg);
+                        margin-top: 7px;
+                    } 
+                    &:not(:last-child) {
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+        }
+        @media (min-width: 768px) { 
+            .buyBtn {
+                margin-top: 20px;
+                margin-top: 20px;
+                position: absolute;
+                left: 0; 
+                width: 100%;
+                bottom: 20px;
+            }
+        }
+    }
+    //======================= Responsive scss ==============================
+    @media (max-width: 1599px) {
+        &__PlansBox {
+            h4 {
+                max-width: 200px;
+            }
+        }
+    }
+    @media (max-width: 1399px) {
+        &__PlansBox {
+            h4 {
+                max-width: 150px;
+            }
+        }
+    }
+    @include media-breakpoint-down(sm){
+        // max-width 767 (<=)
+        &__PlansBox {
+            h4 {
+                max-width: 95px; 
+            }
+            padding: 15px;
+            min-height: auto;
+            .activeTxt {
+                span {
+                    width: 55px;
+                    font-size: 12px;
+                }
+            }
+            h4 {
+                font-size: 14px;
+            }
+            h5 {
+                font-size: 16px;
+            }
+            .hoursTxt {
+                span {
+                    font-size: 12px;
+                }
+            }
+            .warningBox {
+                h6 {
+                    max-width: 180px;
+                    font-size: 12px;
+                }
+            }
+            .planList {
+                ul {
+                    li {
+                        font-size: 13px;
+                        &:before {
+                            width: 8px;
+                            height: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }    
+    @include media-breakpoint-down(xs){
+        // max-width 575 (<=)   
+        .boxSpace {
+            margin-top: 25px;
+        } 
+        &__PlansBox {
+            padding: 10px;
+            .planList {
+                ul { 
+                    li {
+                        padding-left: 20px; 
+                    }
+                }
+            }
+        }
+    }      
+    @media (max-width: 320px) {
+        &__PlansBox {
+            padding: 10px;
+            .activeTxt {
+                span {
+                    width: 50px;
+                    font-size: 10px;
+                    height: 23px;
+                    line-height: 14px;
+                }
+            }
+            h4 {
+                font-size: 12px;
+            }
+            h5 {
+                font-size: 14px;
+            }
+            .buyBtn {
+                .btn-lg {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}

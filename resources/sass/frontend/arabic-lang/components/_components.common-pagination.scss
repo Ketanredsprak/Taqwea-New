@@ -1,0 +1,37 @@
+.pagination{
+    .page-item{
+        + .page-item{
+            margin-right: 20px;
+            margin-left: 0;
+        }
+        &:first-child{
+            .page-link{
+                &:before {
+                    content: "\e903";
+                 }
+            }
+        } 
+        &:last-child{
+            .page-link{ 
+                &:before {
+                    content: "\e902";
+                 }
+            }
+        }
+        .page-link{
+            &.next {
+                transform: rotate(180deg);
+            }
+            &.prev{
+                transform: rotate(180deg);
+            }
+        }
+    }
+    @include media-breakpoint-down(sm){
+        .page-item{
+            + .page-item{
+                margin-right: 10px;
+            }
+        }
+    }
+}

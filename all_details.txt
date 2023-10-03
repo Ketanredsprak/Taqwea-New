@@ -1,0 +1,34 @@
+Users   
+student@mailinator.com
+Test@123
+
+tutor@mailinator.com
+Test@123
+
+
+URL: https://stage.taqwea.com/admin
+User ID: taqwea@mailinator.com
+Password: Test@123
+Email for OTP code: taqwea@mailinator.com (this is a public account in mailinator with no password)
+Accountant
+URL: https://stage.taqwea.com/accountant
+User ID: taqwea.accountant@mailinator.com
+Password: Test@123
+
+
+
+tuter
+LoginController.php
+  106 - 110
+  
+UserRepository
+  511 - 523
+
+helper
+  UtilityHelper.php
+ 
+        function sendMail($to, $template)
+        {
+            Mail::to($to)->locale('ar')->send($template);
+        }
+

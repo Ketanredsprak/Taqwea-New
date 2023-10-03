@@ -1,0 +1,156 @@
+.sideMenu{
+    position: sticky;
+    top: 95px;
+    .closeMenu{
+        float: right;
+        padding: 10px;
+        line-height: 1;
+        font-size: 24px;
+    }
+    &-box{
+        padding: 20px;
+        border-radius: 5px;
+        clear: both;
+        &_head{
+            padding-bottom: 20px;
+            ul{
+                li{
+                    padding: 5px 10px;
+                    border-radius: 3px;
+                    color: color(200);
+                    border: 1px solid color(200);
+                    font-size: 14px;
+                    margin-top: .5rem;
+                    a{
+                        color: color(200);
+                        padding-left: 12px;
+                    }
+                }
+            }
+        }
+        &_list{
+            .listItem{
+                padding: 20px 0;
+                border-top: 1px solid color(60);
+                &:last-child{padding-bottom: 0;}
+                > a{
+                    color: color(900);
+                    display: block;
+                    position: relative;
+                    font-size: 18px;
+                    &:after{
+                        font-family: 'icomoon';
+                        content: '\e90c';
+                        position: absolute;
+                        right: 0;
+                        font-size: 9px;
+                        color: color(200);
+                        transition: .5s ease;
+                    }
+                    &[aria-expanded="true"]{
+                        &:after{
+                            transform: rotate(180deg);
+                        }
+                    }
+                }
+                ul{
+                    margin-top: 15px;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    li{
+                        + li{margin-top: 20px;}
+                        .custom-control-label{
+                            font: 18px font(sm);
+                            color: color(200);
+                        }
+                    }
+                }
+                .linkPrimary{
+                    font-size: 14px;
+                    display: inline-block;
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+    @media (max-width: 1599px){
+        &-box{
+            padding: 15px;
+            &_head{
+                padding-bottom: 15px;
+            }
+            &_list{
+                .listItem{
+                    padding: 15px 0;
+                    > a{
+                        font-size: 17px;
+                    }
+                    ul{
+                        li{
+                            + li{margin-top: 15px;}
+                            .custom-control-label{
+                                font-size: 17px;
+                            }
+                        }
+                    }
+                    .linkPrimary{
+                        margin-top: 15px;
+                    }
+                }
+            }
+        }
+    }
+    @include media-breakpoint-down(lg){
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 332px;
+        height: calc(100vh - 60px);
+        overflow: auto;
+        transition: .5s right linear;
+        z-index: 12;
+        &.show{ 
+            right: 0;border-radius: 0;
+        }
+        &-box{
+            padding-top: 0;
+            &_head{
+                h4{font-size: 22px;}
+            }
+        }
+    }
+    @include media-breakpoint-down(md){
+        &-box{
+            &_head{
+                h4{font-size: 20px;}
+            }
+        }
+    }
+    @include media-breakpoint-down(xs){
+        width: 280px;
+        &-box{
+            &_head{
+                h4{font-size: 18px;}
+            }
+            &_list{
+                .listItem{
+                    padding: 12px 0;
+                    > a{
+                        font-size: 16px;
+                    }
+                    ul{
+                        li{
+                            + li{margin-top: 12px;}
+                            .custom-control-label{
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                    .linkPrimary{
+                        margin-top: 12px;
+                    }
+                }
+            }
+        }
+    }
+}

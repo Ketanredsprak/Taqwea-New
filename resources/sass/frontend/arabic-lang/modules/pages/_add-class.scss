@@ -1,0 +1,27 @@
+.addClassPage{
+    .edit-link{
+        right: auto;  
+        left: 30px;
+    }
+    .fees{
+        margin-left: 0!important;
+        margin-right: 16px;
+    }
+    .custom-radio{
+        .custom-control-label{
+            &:before{
+                right: 0; 
+                left: auto;
+            }
+            &:after { 
+                left: auto;
+                right: 5px;
+            }
+        }
+    }  
+    .customAccordion{
+        .accordion-icon{ 
+            padding-left: 55px;
+        }
+    } 
+}

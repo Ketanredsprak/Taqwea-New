@@ -1,0 +1,70 @@
+.font-rg{font-family:font(rg) !important}
+.font-sm{font-family:font(sm) !important}
+.font-bd{font-family:font(bd) !important}
+.font-eb{font-family:font(eb) !important}
+.font-bl{font-family:font(bl) !important}
+
+.bgBlack{background: color(900) !important;}
+.bgwhite{background: color(50) !important;}
+
+.linkPrimary{
+    color: color(500);
+    &:hover{
+        color: rgba($color: color(500), $alpha: 0.9);
+    }
+}
+
+.linkBlack{ 
+    color: color(900);
+    &:hover{
+        color: color(500);
+    }
+}
+.linkDark{
+    color: color(900);
+    &:hover{
+        color: color(220);
+    }
+}
+.textPrimary{
+    color: color(500) !important;
+}
+.textSecondary{
+    color: rgba($color: color(900), $alpha: .6);
+}
+.textSuccess{
+    color: color(820) !important;
+}
+.textDanger{
+    color: color(850) !important;
+}
+.textGray{
+    color: color(200);
+}
+.textYellow{
+    color: color(600);
+}
+.common-shadow{
+    @include box-shadow(0, 2px, 15px, rgba(0, 0, 0, 0.06));
+}
+.mw-300{max-width: 300px;} 
+.mw-448{max-width: 448px;}
+.p-30{ 
+    padding: 30px;
+    @include media-breakpoint-down(lg){
+        padding: 20px;   
+    }
+}
+@include media-breakpoint-down(lg){
+    .mw-448{max-width: 300px;}
+}
+
+.icon-input{
+    font-family: font(rg) !important;
+}
+
+.paymentLoader {
+    width: 30px;
+    height: 30px;
+    margin: auto;
+} 

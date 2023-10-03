@@ -1,0 +1,168 @@
+.fc.fc-media-screen{
+    .fc-button-primary{
+        background: transparent;
+        border: 0;
+        color: color(200);
+        padding: 0;
+        &:hover{
+            background: color(500);
+        }
+        &:focus, &:not(:disabled).fc-button-active:focus, &:not(:disabled):active:focus{
+            box-shadow: unset;
+        }
+    }
+    .fc-header-toolbar{
+        padding: 0 15px;
+        .fc-toolbar-title{
+            font: 24px font(eb);
+        }
+    }
+    .fc-bg-event, .fc-highlight, .fc-non-business, .fc-view-harness-active>.fc-view{
+        background: rgba(color(500), .6);
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    a{color: color(900);}
+    .fc-view-harness{
+        table{
+            border: 0;
+            th,td{
+                border-width: 0;
+                padding: 5px 0;
+            }
+            th{
+                font: 14px font(rg);
+                padding: 5px 0;
+                text-transform: uppercase;
+            }
+            td{
+                &.fc-day{
+                    font: 20px font(bd);
+                    &-sun{
+                        a{color: color(850);}
+                    }
+                    &-other{
+                        a{color: color(900);}
+                    }
+                    .fc-daygrid-day-frame{min-height: 50px;}
+                    .fc-daygrid-day{
+                        &-top{
+                            display: block;
+                            text-align: center;
+                        }
+                        &-number{
+                            display: inline-flex;
+                            height: 50px;
+                            width: 50px;
+                            border-radius: 50%;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                        &-events{
+                            margin-bottom: 0;
+                            min-height: unset;
+                            font-size: 0;
+                            text-align: center;
+                            margin-top: -13px;
+                            .fc-daygrid-block-event{
+                                height: 8px;
+                                width: 8px;
+                                margin: 0;
+                                display: inline-block;
+                                border-radius: 50%;
+                                background-color: color(220);
+                                border-color: color(220);
+                            }
+                        }
+                    }
+                    &-today{
+                        background: transparent;
+                        .fc-daygrid-day{
+                            &-number{
+                                background: color(500);
+                                color: color(50);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media (max-width: 1599px){
+        .fc-header-toolbar{
+            padding: 0 10px;
+            .fc-toolbar-title{
+                font-size: 22px;
+            }
+        }
+        .fc-bg-event, .fc-highlight, .fc-non-business, .fc-view-harness-active>.fc-view{
+            height: 45px;
+            width: 45px;
+        }
+        .fc-view-harness{
+            table{
+                td{
+                    &.fc-day{
+                        font-size: 18px;
+                        .fc-daygrid-day-frame{min-height: 45px;}
+                        .fc-daygrid-day{
+                            &-number{
+                                height: 45px;
+                                width: 45px;
+                            }
+                            &-events{
+                                margin-top: -12px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @include media-breakpoint-down(md){
+        .fc-header-toolbar{
+            padding: 0 25px;
+            margin-bottom: 15px !important;
+            .fc-toolbar-title{
+                font-size: 20px;
+            }
+        }
+    }
+    @include media-breakpoint-down(xs){
+        .fc-header-toolbar{
+            padding: 0;
+            .fc-toolbar-title{
+                font-size: 18px;
+            }
+        }
+        .fc-bg-event, .fc-highlight, .fc-non-business, .fc-view-harness-active>.fc-view{
+            height: 35px;
+            width: 35px;
+        }
+        .fc-view-harness{
+            table{
+                td{
+                    &.fc-day{
+                        font-size: 14px;
+                        .fc-daygrid-day-frame{min-height: 35px;}
+                        .fc-daygrid-day{
+                            &-number{
+                                height: 35px;
+                                width: 35px;
+                            }
+                            &-events{
+                                margin-top: -10px;
+                                .fc-daygrid-block-event{
+                                    height: 6px;width: 6px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

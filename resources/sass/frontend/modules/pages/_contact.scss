@@ -1,0 +1,35 @@
+.contactPage{
+    .contactForm{
+        &-inner{
+            max-width: 620px;
+            margin: 0 auto;
+        }
+        background-color: color(50);
+        border-radius: 5px;
+        padding: 60px 40px 45px;
+        max-width: 912px;
+        margin: 0 auto;
+        .submit{margin-top: 250px;}
+        @media (max-width: 1599px) {
+            .submit{margin-top: 150px;}
+        }
+        @include media-breakpoint-down(md){
+            padding: 40px;
+            @media (max-width: 1599px) {
+                .submit{margin-top: 80px;}
+            }
+        }
+        @include media-breakpoint-down(sm){
+            padding: 30px;
+            @media (max-width: 1599px) {
+                .submit{margin-top: 40px;}
+            }
+        }
+        @include media-breakpoint-down(sm){
+            padding: 20px;
+            @media (max-width: 1599px) {
+                .submit{margin-top: 20px;}
+            }
+        }
+    }
+}

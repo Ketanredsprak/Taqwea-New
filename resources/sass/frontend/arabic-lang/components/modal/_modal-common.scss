@@ -1,0 +1,23 @@
+
+.commonModal{
+    .close {
+        right: auto;
+        left: 30px; 
+    }
+    .modal-footer { 
+        .btn {
+            + .btn {
+                margin-left: 0;
+                margin-right: 15px;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(xs){
+        .close { 
+            left: 15px; 
+        } 
+    }
+    // @import 'modal-feedback';
+    @import 'modal-refer-now';
+} 

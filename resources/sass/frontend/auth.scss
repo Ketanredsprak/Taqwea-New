@@ -1,0 +1,270 @@
+@import "tools/tools.mixin";
+@import "settings/settings.breakpoints";
+@import "settings/settings.variables";
+
+.authPage{
+    &-content{
+        height: calc(100vh - 83px);
+        overflow: hidden;
+        &_left{
+            background: linear-gradient(color(500), #22372C 100%);
+            flex: 0 0 736px;
+            max-width: 736px;
+            padding: 0 0 50px;
+            .authSlider{
+                &-slides{
+                    &_content{
+                        padding: 40px 20px 0;
+                        h2{
+                            font-size: 40px;
+                            margin-bottom: 20px;
+                        }
+                        p{
+                            font-size: 24px;
+                            line-height: 32px;
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+                .slick-dots{
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 100px;
+                    position: initial;
+                    width: auto;
+                    li{
+                        width: auto;
+                        button{
+                            font-size: 0;
+                            background: rgba(color(50), 0.4);
+                            border: 0;
+                            padding: 0;
+                            height: 6px;
+                            width: 10px;
+                            border-radius: 3px;
+                            transition: .5s linear;
+                            &:before{
+                                display: none;
+                            }
+                        }
+                        + li{margin-left: 8px;}
+                        &.slick-active{
+                            button{
+                                background: color(50);
+                                width: 40px;
+                            }
+                        }
+                    }
+                }
+            }
+        }        
+        &_right{            
+            flex: 0 0 calc(100% - 736px);
+            max-width: calc(100% - 736px);
+            padding: 30px 25px;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            .backLink{
+                span{font-size: 12px;}
+            }
+            .boxContent{
+                &-inner{
+                    max-width: 680px;
+                }
+                &--img{
+                    width: 216px;
+                    height: 220px;
+                    padding: 30px 40px;
+                    text-align: center;
+                    margin-bottom: 40px;
+                    img{
+                        height: 100%;
+                        object-fit: cover;
+                        width: 100%;
+                    }
+                }
+                &-text {
+                    max-width: 303px;
+                    margin: auto;
+                    h3 {
+                        font-size: 24px;
+                        line-height: 32px;
+                    }
+                    p {
+                        color: color(200);
+                        margin-bottom: 40px;
+                        line-height: 22px;
+                    }
+                } 
+                &-reasonBox {
+                    max-width: 500px;
+                    .des{
+                        width: calc(100% - 160px);
+                    }
+                    .error-msg{
+                        margin-bottom:15px;
+                        p {
+                            margin-bottom: 0;
+                            margin-left: 10px;
+                            word-break: break-all; 
+                            text-align: left;
+                        }
+                    }
+                }
+                 
+            }
+        }
+    }
+    @media (max-width: 1799px){
+        &-content{ 
+            &_left{
+                padding: 0 0 30px;
+                .authSlider{
+                    &-slides{
+                        &_content{
+                            h2{
+                                font-size: 34px;
+                            }
+                            p{
+                                font-size: 22px;
+                                line-height: 30px;
+                            }
+                        }
+                    }
+                    .slick-dots{
+                        margin-top: 60px;
+                    }
+                }
+            } 
+        }
+    }
+    @media (max-width: 1599px){
+        &-content{
+            &_left{
+                padding: 0 0 20px;
+                .authSlider{
+                    &-slides{
+                        &_content{
+                            h2{
+                                font-size: 30px;
+                            }
+                            p{
+                                font-size: 20px;
+                                line-height: 26px;
+                            }
+                        }
+                    }
+                    .slick-dots{
+                        margin-top: 40px;
+                    }
+                }
+            } 
+            &_right{
+                padding: 25px 20px;
+            }
+        }
+    }
+    @media (max-width: 1399px){
+        &-content{
+            &_left{
+                flex: 0 0 600px;
+                max-width: 600px;
+                .authSlider{
+                    &-slides{
+                        &_content{
+                            padding: 30px 20px 0;
+                            h2{
+                                font-size: 28px;
+                                margin-bottom: 15px;
+                            }
+                        }
+                    }
+                    .slick-dots{
+                        margin-top: 30px;
+                    }
+                }
+            } 
+            &_right{
+                flex: 0 0 calc(100% - 600px);
+                max-width: calc(100% - 600px);
+                .boxContent{
+                    &-inner{
+                        max-width: 580px;
+                    }
+                }
+            }
+        }
+    }
+    @include media-breakpoint-down(lg){
+        &-content{
+            height: calc(100vh - 60px);
+            &_left{
+                flex: 0 0 450px;
+                max-width: 450px;
+                .authSlider{
+                    &-slides{
+                        &_content{
+                            padding: 20px 15px 0;
+                            h2{
+                                font-size: 24px;
+                            }
+                            p{
+                                font-size: 17px;
+                                line-height: 24px;
+                            }
+                        }
+                    }
+                    .slick-dots{
+                        margin-top: 25px;
+                    }
+                }
+            } 
+            &_right{
+                flex: 0 0 calc(100% - 450px);
+                max-width: calc(100% - 450px);
+            }
+        }
+    }
+    @include media-breakpoint-down(md){
+        &-content{
+            &_left{
+                display: none !important;
+            }
+            &_right{
+                flex: 0 0 100%;
+                max-width: 100%;
+                .socialLogin{
+                    li{
+                        img{max-width: 50px;}
+                    }
+                }
+            }
+        }
+    }
+    @include media-breakpoint-down(xs){
+        &-content{
+            &_right{
+                padding: 20px 15px;
+                .boxContent{ 
+                    &--img{
+                        margin-bottom: 20px;
+                    }
+                    &-text {
+                        h3 {
+                            font-size: 20px;
+                            line-height: 26px;
+                        }
+                        p {
+                            margin-bottom: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

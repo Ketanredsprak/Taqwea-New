@@ -1,0 +1,14 @@
+.gridList{
+    &__info{
+        &:not(:last-child) {
+            padding-right: 0;
+            padding-left: 15px;
+        }
+        &:not(:last-child){
+            &:after { 
+                right: auto; 
+                left: 0; 
+            }
+        }
+    }
+}

@@ -1,0 +1,115 @@
+.referPage{
+    .referralWraper{
+        background-color: color(50);
+        min-height: 100%;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    .referralBanner{
+        background-image: url('#{$imageurl}/yellow-bg.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 400px;
+    }
+    .referralCode{
+        padding-top: 15px;
+        &__title{
+            font-size: 14px;
+            font-family: font(sm);
+            display: block;
+            margin-top: 10px;
+        }
+        &__points{
+            font-size: 22px;
+            font-family: font(eb);
+        }
+        &__wrapper{
+            background-image: url('#{$imageurl}/reeferral-code-bg.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            max-width: 161px;
+            max-height: 58px;
+            margin: 20px auto 50px;
+
+        }
+        &__label{
+           margin-bottom: 0px;
+           line-height: normal;
+        }
+        &__number{
+            display: block;
+            font-size: 20px;
+            line-height: normal;
+            font-family: font(eb);
+        }
+    }
+
+    .howitWork{
+        padding: 100px 0px 0px;
+        h4{
+            font-size: 18px;
+            font-family: font(eb);
+            margin-bottom: 35px;
+        }
+        .btn{
+            max-width: 388px;
+            margin-top: 50px;
+        }
+    }
+    .howitWorkBox{
+        background-color: color(60);
+        padding: 15px;
+        border-radius: 5px;
+        min-height: 100%;
+        &__icon{
+            margin-right: 15px;
+        }
+        &__txt{
+            font-size: 16px;
+            font-family: font(sm);
+        }
+    }
+    //========================= Responsive scss ======================
+    @include media-breakpoint-down(lg){
+        // max-width 1199 (<=)         
+        .howitWork{
+            padding: 60px 0px 0px;
+            .btn{
+                margin-bottom: 20px;
+            }
+        }
+    }
+    @include media-breakpoint-down(sm){
+        // max-width 767 (<=)
+        .referralCode{
+            padding-top: 15px;
+            &__title{
+                font-size: 14px;
+            }
+            &__points{
+                font-size: 16px;
+            }
+            &__wrapper{
+                max-width: 140px;
+            }
+            &__label{
+               font-size: 14px;
+            }
+            &__number{
+                font-size: 16px;
+            }
+        }
+        .howitWork{
+            padding: 40px 0px 0px;
+            h4{
+                margin-bottom: 20px;
+            }
+            .col-md-4 {
+                &:not(:last-child) {
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }     
+}

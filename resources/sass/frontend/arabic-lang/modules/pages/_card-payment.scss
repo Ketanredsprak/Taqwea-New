@@ -1,0 +1,61 @@
+.cardPaymentPage {
+    .cardPayment {
+        .wpwl-form {
+            .wpwl-brand-card-logo{
+                right: auto;
+                left: 0;  
+                &.wpwl-brand-svg-MADA{
+                    left: 12px;
+                }
+            }
+        }
+        .wpwl-wrapper-registration-cvv {
+            width: 25%;
+        } 
+        .wpwl-wrapper-registration-details {
+            width: 49.03%;
+        }
+    }
+    @include media-breakpoint-down(xs) {
+        .cardPayment {
+            .wpwl-wrapper-registration-cvv {
+                width: 100%;
+                margin-top: 10px; 
+            } 
+            .wpwl-wrapper-registration-details {
+                width: 50%;
+            }
+            .wpwl-wrapper-registration-brand {
+                width: 26%;
+                padding-left: 0;
+            }
+            .wpwl-label-brand, 
+            .wpwl-wrapper-brand, .wpwl-wrapper-registration-registrationId, 
+            .wpwl-wrapper-registration-brand, 
+            .wpwl-wrapper-registration-number, 
+            .wpwl-wrapper-registration-expiry {
+                padding-left: 15px;
+            }
+            
+            .cardPayment {
+                .wpwl-button-pay {
+                    font-size: 14px;
+                    padding: 5px 8px;
+                } 
+            }
+        }
+    
+    }
+    @media (max-width: 480px) {
+        .cardPayment {
+            .wpwl-form {
+                .wpwl-brand-card-logo{
+                    top: 38px; 
+                    &.wpwl-brand-svg-MADA{ 
+                        top: 45px;
+                    }
+                }
+            }
+        }  
+    }
+} 

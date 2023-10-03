@@ -1,0 +1,62 @@
+.bookingRequestPage{ 
+    .accordion-body { 
+        .accordion-inner{ 
+            margin-top: 0;padding-bottom: 15px; 
+        }
+    } 
+    .accordion-head{
+        .title{
+            padding-left: 0;margin-bottom: 5px;
+        }
+        p {
+            font-size: 20px;color: color(200); margin-top: 5px;
+            span {
+                margin-right: 5px;
+            }
+        }
+        
+    } 
+    .table{
+        tr{
+           td{
+               border-color: #DFDFDF; 
+           }
+        }
+        .dateTime{
+            font-size: 14px; 
+        }
+    }   
+    .userInfo{
+        &_img {
+            height: 40px;width: 40px;margin-right: 10px; 
+        }
+        &_name {
+            font-size: 16px;
+            margin-bottom: 2px; 
+        } 
+    } 
+    @media (max-width: 1399px){
+        .accordion-body { 
+            padding: 0 20px;
+        }
+        .accordion-head{
+            p {
+                font-size: 16px;margin-top: 0;
+            }
+            
+        } 
+    }
+    @include media-breakpoint-down(lg){ 
+        .accordion-head{
+            p {
+                font-size: 15px; 
+            }
+            
+        } 
+    }
+    @include media-breakpoint-down(md){
+        .accordion-body { 
+            padding: 0 15px;
+        }
+    }
+} 

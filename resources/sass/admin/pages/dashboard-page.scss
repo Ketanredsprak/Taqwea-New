@@ -1,0 +1,68 @@
+.dashboardPage{
+	.infoCard{ margin-bottom: 30px;
+		.bg-primary-gradient {
+		  background-image: linear-gradient(to left, #0db2de 0%, #005bea 100%) !important;
+		}
+		.bg-danger-gradient {
+		  background-image: linear-gradient(45deg, #f93a5a, #f7778c) !important;
+		}
+
+		.bg-success-gradient {
+		  background-image: linear-gradient(to left, #48d6a8 0%, #029666 100%) !important;
+		}
+
+		.bg-warning-gradient {
+		  background-image: linear-gradient(to left, #efa65f, #f76a2d) !important;
+		}
+		.card{
+			border:0; border-radius:7px;
+			&__body{
+				padding:20px;
+				h6{font-size:14px; font-weight:500; text-transform: uppercase;}
+				h4{font-size:20px;}
+				p{font-size:12px; margin: 0;}
+			}
+		}
+		.data{
+			margin-top: 20px;
+			.amount {
+			    font-size: 24px;
+			    font-weight: 500;
+			    color: #364a63;
+			}
+		}
+	}
+	.revenueGraph{ margin-bottom: 30px;
+		.card-header{padding: 25px 25px 0;}
+		h4{font-size:14px; text-transform: uppercase;}
+	}
+	.card{
+		&.card-full{margin-bottom: 20px; border: 0;}
+	}
+	@media (max-width:1399px){
+		.infoCard{ margin-bottom: 25px;
+			.row{margin-left: -10px; margin-right: -10px;
+				[class*="col-"]{
+					padding-left: 10px; padding-right: 10px;
+				}
+			}
+		}
+		.revenueGraph{ margin-bottom: 25px;}
+	}
+	@include media-breakpoint-down(md) {
+		.infoCard{ margin-bottom: 20px;
+			.card{margin-bottom: 20px;}
+		}
+		.revenueGraph{ margin-bottom: 20px;
+			.card-body,.card-header{padding: 20px 15px;}
+		}
+		.card{
+			&.card-full{margin-bottom: 15px;}
+		}
+	}
+	@include media-breakpoint-down(xs) {
+		.infoCard{ margin-bottom: 10px;
+			.card{margin-bottom: 15px;}
+		}	
+	}
+}

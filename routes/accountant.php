@@ -1,0 +1,161 @@
+<?php
+/*
+|--------------------------------------------------------------------------
+| Accountant Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register accountant routes for your application.
+|
+*/
+
+use Illuminate\Support\Facades\Route;
+
+Route::group(
+    ['middleware' => 'CheckLogin:web'],
+    function () {
+        Route::get(
+            '/',
+            'Auth\Accountant\LoginController@showLoginForm'
+        )->name('accountant.index');
+        Route::get(
+            'login',
+            'Auth\Accountant\LoginController@showLoginForm'
+        )->name('accountant.index');
+        Route::post(
+            'submit-login',
+            'Auth\Accountant\LoginController@login'
+        )->name('accountant.submit-login');
+        Route::get(
+            '/forgot-password',
+            'Auth\Accountant\ForgotPasswordController@showForgotPasswordForm'
+        );
+        Route::post(
+            '/post-forgot-password',
+            'Auth\Accountant\ForgotPasswordController@submitForgotPassword'
+        )->name('forgot-password');
+        Route::get(
+            '/reset-password',
+            'Auth\Accountant\ForgotPasswordController@resetPassword'
+        );
+        Route::post(
+            '/resend-otp',
+            'Auth\Accountant\ForgotPasswordController@resendOtp'
+        );
+        Route::post(
+            '/post-reset-password',
+            'Auth\Accountant\ForgotPasswordController@postResetPassword'
+        );
+    }
+);
+Route::group(
+    ['middleware' => 'accountant:web'],
+    function () {
+        Route::post(
+            '/logout',
+            'Auth\Accountant\LoginController@logout'
+        )->name('logout');
+        Route::get(
+            '/dashboard',
+            'Web\Accountant\DashboardController@index'
+        )->name('accountantDashboard');
+        Route::get(
+            '/profile',
+            'Web\Accountant\ProfileController@index'
+        );
+        Route::post(
+            '/update-profile',
+            'Web\Accountant\ProfileController@updateProfile'
+        );
+        Route::get(
+            '/change-password',
+            'Web\Accountant\ProfileController@getChangePassword'
+        );
+        Route::post(
+            '/changePassword',
+            'Web\Accountant\ProfileController@changePassword'
+        );
+        Route::post(
+            '/upload-profile',
+            'Web\Accountant\ProfileController@uploadProfile'
+        );
+        Route::get(
+            '/tutors',
+            'Web\Accountant\TutorController@index'
+        )->name('accountant.tutor.index');
+        Route::get(
+            '/tutor/list',
+            'Web\Accountant\TutorController@tutorList'
+        );
+        Route::get(
+            '/tutor/pay-now-load/{id}',
+            'Web\Accountant\TutorController@payNowLoad'
+        );
+        Route::post(
+            '/tutor/pay-now',
+            'Web\Accountant\TutorController@payNow'
+        );
+        Route::get(
+            '/tutor-show/{id}',
+            'Web\Accountant\TutorController@show'
+        );
+        Route::get(
+            '/pay-detail-list/{id}',
+            'Web\Accountant\TutorController@payDetailsList'
+        );
+        Route::get(
+            'notifications',
+            'Web\Accountant\NotificationController@index'
+        );
+        Route::post(
+            'mark-all-as-read',
+            'Web\Accountant\NotificationController@markAllAsRead'
+        );
+        Route::get('supports', 'Web\Accountant\SupportController@index')
+            ->name('accountant.support.index');
+
+        Route::get(
+            'supports/list',
+            'Web\Accountant\SupportController@supportList'
+        );
+        Route::post(
+            'support-email-reply',
+            'Web\Accountant\SupportController@emailReply'
+        );
+        Route::get(
+            'dashboard-chart',
+            'Web\Accountant\DashboardController@dashboardChart'
+        );
+        Route::resource(
+            '/refund-request',
+            'Web\Accountant\RefundRequestController'
+        );
+        Route::get(
+            '/refunds/list',
+            'Web\Accountant\RefundRequestController@refundRequestList'
+        );
+        Route::get(
+            'revenue-report',
+            'Web\Accountant\ReportController@revenueReport'
+        )->name('accountant.revenue.report');
+        Route::get(
+            'revenue-report/list',
+            'Web\Accountant\ReportController@revenueReportList'
+        );
+        Route::post(
+            'revenue/report/export',
+            'Web\Accountant\ReportController@revenueExportCsv'
+        )->name('revenue.accountant.export');
+        Route::get(
+            '/earning-history-list/{id}',
+            'Web\Accountant\TutorController@earningHistoryList'
+        );
+        Route::get(
+            '/tutor/get-point/{id}',
+            'Web\Accountant\TutorController@getPoint'
+        );
+        Route::post(
+            '/tutor/manage-points',
+            'Web\Accountant\TutorController@managePoint'
+        );
+    }
+);

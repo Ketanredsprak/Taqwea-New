@@ -1,0 +1,97 @@
+.commonSideBar{
+    border-radius: 5px;
+    position: sticky;
+    top: 95px;
+    .closeMenu{
+        float: right;
+        padding: 10px;
+        line-height: 1;
+        font-size: 24px;
+    }
+    &__inner{
+        ul{
+            li{
+                a {
+                    padding: 20px; display: block;font-size: 16px;position: relative;
+                    font-family: font(bd); vertical-align: middle; color: color(200);  
+                    &.active {
+                        color: color(500);
+                        em {
+                            color: color(500);
+                        }
+                        &:before {
+                            position:absolute;content:"";left:0; 
+                            top: 50%; background-color: color(500); width:5px;
+                            height: 40px;transform: translateY(-50%);    
+                        }
+                    }
+                    &:not(last-child):after {
+                        position: absolute;height: 1px;width: calc(100% - 38px);
+                        left: 50%; bottom: 0;background-color: color(60);
+                        content: "";right: auto;text-align: center;transform: translateX(-50%);   
+                    }
+                }
+                em {
+                    height: 36px;width: 36px; border-radius: 50%;line-height: 36px;
+                    background-color: color(300);display: inline-block; text-align: center;
+                    margin-right: 15px;font-size: 18px;color: color(200);vertical-align: middle;   
+                }
+            } 
+        } 
+    } 
+    @include media-breakpoint-down(lg){
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 332px;
+        height: calc(100vh - 60px);
+        overflow: auto;
+        transition: .5s right linear;
+        z-index: 12;
+        &.show{ 
+            right: 0;border-radius: 0;
+        }
+        &__inner{
+            margin-top: 35px;
+            ul{
+                li{
+                    a { 
+                        padding: 15px;
+                        &.active {
+                            &:before {
+                                height: 30px;    
+                            }
+                        }
+                    }
+                } 
+            } 
+        } 
+    }
+    @include media-breakpoint-down(sm){
+        &__inner{
+            ul{
+                li{
+                    a { 
+                        padding:10px  15px; 
+                    }
+                } 
+            } 
+        }
+    }
+    @include media-breakpoint-down(xs){
+        width: 280px;
+        &__inner{
+            ul{
+                li{
+                    a {
+                        font-size: 15px;
+                        em{
+                            font-size: 16px;
+                        }
+                    }
+                } 
+            } 
+        } 
+    }
+} 
+ 
