@@ -2,12 +2,16 @@
 
 namespace App\Repositories;
 
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
+use Exception;
+use Carbon\Carbon;
 use App\Models\ClassQuotes;
+use App\Models\ClassRequest;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Exception;
+use Illuminate\Support\Facades\Auth;
+use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Illuminate\Container\Container as Application;
 
 /**
  * Interface Repository.
@@ -16,6 +20,24 @@ use Exception;
  */
 class TutorClassRequestRepository extends BaseRepository
 {
+    protected $notificationRepository;
+
+    /**
+     * Method __construct
+     *
+     * @param Application                    $app
+     * @param NotificationRepository         $notificationRepository
+     *
+     * @return void
+     */
+    public function __construct(
+        Application $app,
+        NotificationRepository $notificationRepository
+    ) {
+        parent::__construct($app);
+        $this->notificationRepository = $notificationRepository;
+    }
+
     /**
      * Specify Model class name
      *
@@ -38,9 +60,9 @@ class TutorClassRequestRepository extends BaseRepository
 
     /**
      * Function getClassQuotes
-     * 
+     *
      * @param int $id [explicite description]
-     * 
+     *
      * @return void
      */
     public function getClassQuotes($id)
@@ -48,16 +70,16 @@ class TutorClassRequestRepository extends BaseRepository
         return $this->where('id', $id)->first();
     }
 
-      /**
+    /**
      * Function createClassQuotes
      *
      * @param $post [explicite description]
-     * 
+     *
      * @return void
      */
     public function createClassQuotes($post)
     {
-        
+
         try {
             DB::beginTransaction();
             $result = $this->create($post);
@@ -71,7 +93,7 @@ class TutorClassRequestRepository extends BaseRepository
 
     /**
      * Function updateFaq
-     * 
+     *
      * @param $post [explicite description]
      * @param int $id   [explicite description]
      *
@@ -90,11 +112,11 @@ class TutorClassRequestRepository extends BaseRepository
         }
     }
 
-    /** 
+    /**
      * Get details of ClassQuotes
      *
-     * @param array $where  
-     * 
+     * @param array $where
+     *
      * @return Collection
      */
     public function getClassQuotesDetails(array $where)
@@ -102,11 +124,11 @@ class TutorClassRequestRepository extends BaseRepository
         return $this->withTranslation()->where($where)->first();
     }
 
-     /** 
+    /**
      * Get  ClassQuotes  all
      *
-     * @param array $where  
-     * 
+     * @param array $where
+     *
      * @return Collection
      */
     // public function getClassQuotes(array $params = [])
@@ -118,7 +140,7 @@ class TutorClassRequestRepository extends BaseRepository
     //     if (!empty($params['search'])) {
     //         $query->whereTranslationLike('question', "%".$params['search']."%");
     //     }
-         
+
     //     return $query->paginate($limit);
 
     // }
@@ -136,7 +158,7 @@ class TutorClassRequestRepository extends BaseRepository
         return $this->delete($id);
     }
 
-    
+
     /**
      * Method getAll
      *
@@ -144,23 +166,34 @@ class TutorClassRequestRepository extends BaseRepository
      *
      * @return int
      */
-    public function getAll(int $id){
-        return $this->with('tutor')->where('class_request_id',$id)->where('status',1)->paginate(10);
+    public function getAll(int $id)
+    {
+        return $this->with('tutor')->where('class_request_id', $id)->where('status', 1)->paginate(10);
     }
 
 
 
-     /**
+    /**
      * Method getAll
      *
      * @param int $id [explicite description]
      *
      * @return int
      */
-    public function tutorrequestreject($post, $id){
+    public function tutorrequestreject($post, $id)
+    {
         try {
             DB::beginTransaction();
+            $quoteData = $this->find($id);
             $result = $this->update($post, $id);
+
+            $data1['type'] = 'Quote rejected by student';
+            $data1['extra_data'] = [];
+            $data1['from_id'] = Auth::id();
+            $data1['to_id'] = $quoteData->tutor_id;
+            $data1['notification_message'] = "Your quote is rejected by student";
+            $this->notificationRepository
+                ->sendNotification($data1, true);
             DB::commit();
             return $result;
         } catch (Exception $e) {
@@ -168,10 +201,49 @@ class TutorClassRequestRepository extends BaseRepository
             throw ($e);
         }
     }
+    public function tutorRequestAccept($post, $id)
+    {
+        try {
+            DB::beginTransaction();
+            $quoteData = $this->find($id);
+            $result = $this->update($post, $id);
 
-    
+            $data['type'] = 'Quote accepted by student';
+            $data['extra_data'] = [];
+            $data['from_id'] = Auth::id();
+            $data['to_id'] = $quoteData->tutor_id;
+            $data['notification_message'] = "Your quote is accepted by student";
+            $this->notificationRepository
+                ->sendNotification($data, true);
 
+            $classRequestData = ClassRequest::find($quoteData->class_request_id);
+            $classRequestData->update([
+                'won_quote_id' => $id,
+            ]);
 
+            $classRequests = $this->where('class_request_id', $quoteData->class_request_id)->where('status', 1)->get();
 
+            if (count($classRequests) > 0) {
+                foreach ($classRequests as $key => $classRequest) {
+                    $classRequest->status = '3';
+                    $classRequest->reject_time = Carbon::now();
+                    $classRequest->update();
 
+                    $data1['type'] = 'Quote rejected by student';
+                    $data1['extra_data'] = [];
+                    $data1['from_id'] = Auth::id();
+                    $data1['to_id'] = $classRequest->tutor_id;
+                    $data1['notification_message'] = "Your quote is rejected by student";
+                    $this->notificationRepository
+                        ->sendNotification($data1, true);
+                }
+            }
+
+            DB::commit();
+            return $result;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw ($e);
+        }
+    }
 }
