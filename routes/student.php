@@ -168,12 +168,12 @@ Route::group(
             'Web\Student\ClassRequestController@classRequestList'
         )->name('student.classrequest.list');
 
-
         Route::get('getrequest/{id}', 'Web\Student\ClassRequestController@gettutorrequestget')->name('student.classrequest.getrequest');
         Route::get('acceptrequest/{id}', 'Web\Student\ClassRequestController@acceptrequest')->name('student.classrequest.acceptrequest');
         Route::get('rejectrequest/{id}', 'Web\Student\ClassRequestController@rejectrequest')->name('student.classrequest.rejectrequest');
         Route::get('showtutordetail/{id}', 'Web\Student\ClassRequestController@showtutordetail')->name('student.classrequest.showtutordetail');
         
+
 
         Route::resource(
             'classrequest',

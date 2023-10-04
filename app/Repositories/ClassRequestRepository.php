@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 
+
 /**
  * Interface Repository.
  *
@@ -204,4 +205,12 @@ class ClassRequestRepository extends BaseRepository
             }
         }
     }
+
+
+
+    public function approvedTutorQuotePrice()
+    {
+        dd("hello  from  approved tutor quote price");
+    }
+
 }

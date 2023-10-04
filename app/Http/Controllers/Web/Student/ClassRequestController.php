@@ -275,6 +275,28 @@ class ClassRequestController extends Controller
     }
 
 
+    public function acceptrequest($id)
+    {
+            try {
+                $post['status'] = 2;
+                $result = $this->tutorClassRequestRepository->tutorrequestaccept($post, $id);
+                if (!empty($result)) {
+                    return response()->json(
+                        [
+                            'success' => true,
+                            'message' => trans('message.tutor_reject')
+                        ]
+                    );
+                    return $this->apiSuccessResponse([], trans('message.update_profile'));
+                 }
+            } catch (Exception $ex) {
+                return response()->json(
+                    ['success' => false, 'message' => $ex->getMessage()]
+                );
+            }
+    }
+
+
     public function showtutordetail($id)
     {
         //    return $id;

@@ -110,21 +110,21 @@ class TutorClassRequestController extends Controller
     // }
 
 
-    public function tutorClassRequestList(Request $request)
-    {
-        try {
-            $userId = Auth::user()->id;
-            $datas = $this->tutorClassRequestRepository->getAll($userId);
-            $html = view(
-                'frontend.student.tutor-class-request.list',
-                ['datas' => $datas]
-            )->render();
-            return $this->apiSuccessResponse($html, trans('labels.classrequest_list'));
-        } catch (Exception $e) {
-            return $this->apiErrorResponse($e->getMessage(), 400);
-        }
+    // public function tutorClassRequestList(Request $request)
+    // {
+    //     try {
+    //         $userId = Auth::user()->id;
+    //         $datas = $this->tutorClassRequestRepository->getAll($userId);
+    //         $html = view(
+    //             'frontend.student.tutor-class-request.list',
+    //             ['datas' => $datas]
+    //         )->render();
+    //         return $this->apiSuccessResponse($html, trans('labels.classrequest_list'));
+    //     } catch (Exception $e) {
+    //         return $this->apiErrorResponse($e->getMessage(), 400);
+    //     }
 
-    }
+    // }
 
 
   
