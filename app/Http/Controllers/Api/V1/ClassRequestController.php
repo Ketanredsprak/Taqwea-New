@@ -4,38 +4,44 @@ namespace App\Http\Controllers\Api\V1;
 
 use Exception;
 use Carbon\Carbon;
+use App\Models\ClassRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\V1\QuoteResource;
 use App\Repositories\ClassRequestRepository;
 use App\Repositories\TutorRequestRepositoty;
 use App\Http\Resources\V1\ClassRequestResource;
+use App\Repositories\TutorClassRequestRepository;
 use App\Http\Requests\Student\ClassRequestRequest;
-use App\Models\ClassRequest;
 
 class ClassRequestController extends Controller
 {
     protected $classRequestRepository;
     protected $userRepository;
     protected $tutorRequestRepositoty;
+    protected $tutorClassRequestRepository;
     /**
      * Function __construct
      *
      * @param ClassRequestRepository $classRequestRepository [explicite description]
      * @param UserRepository     $userRepository
      * @param TutorRequestRepositoty     $tutorRequestRepositoty
+     * @param TutorClassRequestRepository $tutorClassRequestRepository [explicite description]
      *
      * @return void
      */
     public function __construct(
         ClassRequestRepository $classRequestRepository,
         UserRepository $userRepository,
-        TutorRequestRepositoty $tutorRequestRepositoty
+        TutorRequestRepositoty $tutorRequestRepositoty,
+        TutorClassRequestRepository $tutorClassRequestRepository
     ) {
         $this->classRequestRepository = $classRequestRepository;
         $this->userRepository = $userRepository;
         $this->tutorRequestRepositoty = $tutorRequestRepositoty;
+        $this->tutorClassRequestRepository = $tutorClassRequestRepository;
     }
 
     /**
@@ -63,7 +69,7 @@ class ClassRequestController extends Controller
      */
     public function store(ClassRequestRequest $request)
     {
-       
+
         try {
             $post = $request->all();
             $post['class'] = $post['class'] ?? null;
@@ -75,7 +81,7 @@ class ClassRequestController extends Controller
             $post['user_id'] =  Auth::id();
             $post['class_duration'] = $post['class_duration'] * 60;
 
-            $this->classRequestRepository->startTimeCheck($post,$timezone);
+            $this->classRequestRepository->startTimeCheck($post, $timezone);
 
             // get tutor list
             $tutors = $this->userRepository
@@ -136,5 +142,38 @@ class ClassRequestController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function classQuote($id)
+    {
+        try {
+            $data = $this->tutorClassRequestRepository->getAll($id);
+            return QuoteResource::collection($data);
+        } catch (Exception $e) {
+            return $this->apiErrorResponse($e->getMessage(), 400);
+        }
+    }
+
+    public function rejectClassQuote($id)
+    {
+        try {
+            $post['status'] = 3;
+            $post['reject_time'] = Carbon::now();
+            $data = $this->tutorClassRequestRepository->tutorrequestreject($post, $id);
+            return new QuoteResource($data);
+        } catch (Exception $e) {
+            return $this->apiErrorResponse($e->getMessage(), 400);
+        }
+    }
+
+    public function acceptClassQuote($id)
+    {
+        try {
+            $post['status'] = 2;
+            $data = $this->tutorClassRequestRepository->tutorRequestAccept($post, $id);
+            return new QuoteResource($data);
+        } catch (Exception $e) {
+            return $this->apiErrorResponse($e->getMessage(), 400);
+        }
     }
 }
