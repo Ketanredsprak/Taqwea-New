@@ -91,6 +91,20 @@ Route::group(
                 );
                 Route::apiResource('users', UserController::class);
 
+                Route::get(
+                    'class-quote/{id}',
+                    'ClassRequestController@classQuote'
+                )->name('class.quote');
+
+                Route::get(
+                    'reject-class-quote/{id}',
+                    'ClassRequestController@rejectClassQuote'
+                )->name('reject.class.quote');
+                Route::get(
+                    'accept-class-quote/{id}',
+                    'ClassRequestController@acceptClassQuote'
+                )->name('accept.class.quote');
+
                 Route::apiResource(
                     'student-class-request',
                     ClassRequestController::class
