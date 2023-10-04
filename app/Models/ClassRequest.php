@@ -25,7 +25,8 @@ class ClassRequest extends Model
         'start_time',
         'end_time',
         'name',
-        'note'
+        'note',
+        'won_quote_id'
     ];
 
     public function classRequestDetails()
