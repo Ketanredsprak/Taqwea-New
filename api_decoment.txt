@@ -50,6 +50,55 @@ class[1][date]:2023-09-06
 note:thsi is description
 ]
 
+get all student request list
+method = get
+url = {{base_url}}student-class-request
+header = token
+params = []
+
+get all student request list
+method = get
+url = {{base_url}}student-class-request
+header = token
+params = []
+
+get student request detail
+url = {{base_url}}student-class-request/{id}      like(111)
+method = get
+header = token
+params = []
+
+
+
+get  all tutor request list 
+url = {{base_url}}tutor-class-request
+method = get
+params = []
+header = token
+
+get tutor request detail(show)
+url = {{base_url}}tutor-class-request/{id} like {182}
+method = get
+params = []
+header = token
+
+cancel class request from student
+url = {{base_url}}cancel-class-request/{id}  pass class_request_id like 79
+method = get
+params = []
+header = token
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

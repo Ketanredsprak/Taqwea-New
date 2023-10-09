@@ -14,6 +14,7 @@ use App\Repositories\ClassRequestRepository;
 use App\Repositories\TutorRequestRepositoty;
 use App\Http\Resources\V1\ClassRequestResource;
 use App\Repositories\TutorClassRequestRepository;
+use App\Repositories\ClassRequestDetailRepository;
 use App\Http\Requests\Student\ClassRequestRequest;
 
 class ClassRequestController extends Controller
@@ -22,6 +23,7 @@ class ClassRequestController extends Controller
     protected $userRepository;
     protected $tutorRequestRepositoty;
     protected $tutorClassRequestRepository;
+    protected $classRequestDetailRepository;
     /**
      * Function __construct
      *
@@ -29,6 +31,7 @@ class ClassRequestController extends Controller
      * @param UserRepository     $userRepository
      * @param TutorRequestRepositoty     $tutorRequestRepositoty
      * @param TutorClassRequestRepository $tutorClassRequestRepository [explicite description]
+     * @param ClassRequestDetailRepository $classRequestDetailRepository [explicite description]
      *
      * @return void
      */
@@ -36,12 +39,14 @@ class ClassRequestController extends Controller
         ClassRequestRepository $classRequestRepository,
         UserRepository $userRepository,
         TutorRequestRepositoty $tutorRequestRepositoty,
-        TutorClassRequestRepository $tutorClassRequestRepository
+        TutorClassRequestRepository $tutorClassRequestRepository,
+        ClassRequestDetailRepository $classRequestDetailRepository
     ) {
         $this->classRequestRepository = $classRequestRepository;
         $this->userRepository = $userRepository;
         $this->tutorRequestRepositoty = $tutorRequestRepositoty;
         $this->tutorClassRequestRepository = $tutorClassRequestRepository;
+        $this->classRequestDetailRepository = $classRequestDetailRepository;
     }
 
     /**
@@ -91,7 +96,8 @@ class ClassRequestController extends Controller
                 $result = $this->classRequestRepository->createClassRequest($post);
                 if (!empty($result)) {
                     $result1 = $this->tutorRequestRepositoty->createTutorRequest($result, $tutors);
-                    return ClassRequestResource::make($result);
+                    $data =  ClassRequestResource::make($result);
+                    return $this->apiSuccessResponse([$data], '200');
                 }
             } else {
                 return response()->json(
@@ -176,4 +182,18 @@ class ClassRequestController extends Controller
             return $this->apiErrorResponse($e->getMessage(), 400);
         }
     }
+
+    public function cancelrequest($id)
+    {
+        try {
+            $post['status'] = "Cancel";
+            $result = $this->classRequestRepository->cancelrequest($post, $id);
+            return $result;
+        } catch (Exception $e) {
+            return $this->apiErrorResponse($e->getMessage(), 400);
+        }
+    }
+
+    
+
 }

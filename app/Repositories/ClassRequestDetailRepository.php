@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Exception;
 
+
 /**
  * Interface Repository.
  *
@@ -16,6 +17,12 @@ use Exception;
  */
 class ClassRequestDetailRepository extends BaseRepository
 {
+
+
+
+   
+
+
     /**
      * Specify Model class name
      *
@@ -135,6 +142,38 @@ class ClassRequestDetailRepository extends BaseRepository
     {
         return $this->delete($id);
     }
+
+    
+    /**
+     * Method cancelClassRequest
+     *
+     * @param int $id [explicite description]
+     *
+     * @return int
+     */
+    public function cancelClassRequest($post=[],$id)
+    {
+        try {
+            DB::beginTransaction();
+            $datas  = $this->where('class_request_id', $id)->get();
+            $postnew = [];
+            $postnew['status'] = "cancel";
+            foreach($datas as $data)
+                {
+                                $updateclassrequestdetails = ClassRequestDetail::find($data->id);
+                                $updateclassrequestdetails->status = "Cancel";
+                                $updateclassrequestdetails->update();
+                }
+            DB::commit();
+            return $updateclassrequestdetails;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw ($e);
+        }
+
+
+    }
+
 
 
 }

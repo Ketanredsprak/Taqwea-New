@@ -86,7 +86,7 @@ class TutorRequestRepositoty extends BaseRepository
                 $data['status'] = "Active";
                 $result = $this->create($data);
 
-                $data1['type'] = 'Class Request From Student';
+                $data1['type'] = 'class_request_from_student';
                 $data1['extra_data'] = [];
                 $data1['from_id'] = Auth::id();
                 $data1['to_id'] = $post_data->id;
@@ -139,4 +139,40 @@ class TutorRequestRepositoty extends BaseRepository
     {
         return $this->delete($id);
     }
+
+     /**
+     * Method cancelClassRequest
+     *
+     * @param int $id [explicite description]
+     *
+     * @return int
+     */
+    public function cancelClassRequest($id)
+    {
+         try {
+            DB::beginTransaction();
+            $datas  = $this->where('class_request_id', $id)->get();
+            if($datas != null)
+            {
+            foreach($datas as $data)
+                {
+                                $update_tutor_class_request_status = TutorRequest::find($data->id);
+                                $update_tutor_class_request_status->status = "Cancel";
+                                $update_tutor_class_request_status->update();
+                }
+            }
+            else
+            {
+                $update_tutor_class_request_status = "No Entry Found";
+            }
+            DB::commit();
+            return $update_tutor_class_request_status;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw ($e);
+        }
+
+
+    }
+
 }

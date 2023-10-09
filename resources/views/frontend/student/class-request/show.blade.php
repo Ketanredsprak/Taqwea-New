@@ -71,6 +71,19 @@
 
                                     <div class="row">
 
+
+                                        <div class="col-sm-6">
+
+                                            <div class="form-group">
+
+                                                <label class="form-label">{{ __('labels.status') }} :
+
+                                                    @if($result->status) <label class="text-success">{{ __('labels.active') }}</label> @else {{ $result->status }} @endif</label>
+
+                                            </div>
+
+                                        </div>
+                                     
                                         <div class="col-sm-6">
 
                                             <div class="form-group">
@@ -116,8 +129,6 @@
                                         </div>
 
                                         @endif
-
-
 
                                         <div class="col-sm-6">
 
@@ -167,10 +178,7 @@
 
                                         </div>
 
-                                       
-
-
-
+                    
                                         @foreach($class_details as $cd)
 
                                         

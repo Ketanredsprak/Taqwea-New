@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Illuminate\Container\Container as Application;
 
 
 /**
@@ -20,6 +21,35 @@ use Prettus\Repository\Criteria\RequestCriteria;
  */
 class ClassRequestRepository extends BaseRepository
 {
+
+
+    protected $classRequestDetailRepository;
+    protected $tutorQuoteRepository;
+    protected $tutorRequestRepositoty;
+
+    /**
+     * Method __construct
+     *
+     * @param Application                    $app
+     * @param ClassRequestDetailRepository         $classRequestDetailRepository
+     * @param TutorQuoteRepository         $tutorQuoteRepository
+     * @param TutorRequestRepositoty         $tutorRequestRepositoty
+     *
+     * @return void
+     */
+    public function __construct(
+        Application $app,
+        ClassRequestDetailRepository $classRequestDetailRepository,
+        TutorQuoteRepository $tutorQuoteRepository,
+        TutorRequestRepositoty $tutorRequestRepositoty
+    ) {
+        parent::__construct($app);
+        $this->classRequestDetailRepository = $classRequestDetailRepository;
+        $this->tutorQuoteRepository = $tutorQuoteRepository;
+        $this->tutorRequestRepositoty = $tutorRequestRepositoty;
+    }
+
+
     /**
      * Specify Model class name
      *
@@ -178,7 +208,7 @@ class ClassRequestRepository extends BaseRepository
 
     public function getAll(int $id)
     {
-        return $this->where('user_id', $id)->paginate(10);
+        return $this->where('user_id', $id)->orderBy('id','desc')->paginate(10);
     }
 
     public function startTimeCheck($post,$timezone){
@@ -206,11 +236,22 @@ class ClassRequestRepository extends BaseRepository
         }
     }
 
+    public function cancelrequest($post,$id){
 
-
-    public function approvedTutorQuotePrice()
-    {
-        dd("hello  from  approved tutor quote price");
+        try {
+            DB::beginTransaction();
+            $result = $this->update($post, $id);
+            $result1 =  $this->classRequestDetailRepository->cancelClassRequest($post,$id);
+            $result2 =  $this->tutorQuoteRepository->cancelClassRequest($id);
+            $result3 =  $this->tutorRequestRepositoty->cancelClassRequest($id);
+            DB::commit();
+            return $result;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw ($e);
+        }
+       
     }
+
 
 }

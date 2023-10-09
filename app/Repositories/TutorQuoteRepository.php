@@ -2,12 +2,12 @@
 
 namespace App\Repositories;
 
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
 use App\Models\ClassQuotes;
+use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Exception;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Interface Repository.
@@ -38,9 +38,9 @@ class TutorQuoteRepository extends BaseRepository
 
     /**
      * Function getdemo
-     * 
+     *
      * @param int $id [explicite description]
-     * 
+     *
      * @return void
      */
     public function getTutorRequest($id)
@@ -48,31 +48,27 @@ class TutorQuoteRepository extends BaseRepository
         return $this->where('id', $id)->first();
     }
 
-      /**
+    /**
      * Function createTutorRequest
      *
      * @param $post [explicite description]
-     * 
+     *
      * @return void
      */
     public function createTutorRequest($post)
     {
-        
+
         try {
             DB::beginTransaction();
-            
-                    $check_quote_submit = $this->where('class_request_id',$post['class_request_id'])->where('tutor_id',$post['tutor_id'])->count();
-                    if($check_quote_submit == 0)
-                    {
-                            $result = $this->create($post);
-                            DB::commit();
-                            return $result;
-                    }
-                    else
-                    {
-                         throw new Exception(trans('error.quote_already_send'));
-                    }
-             
+
+            $check_quote_submit = $this->where('class_request_id', $post['class_request_id'])->where('tutor_id', $post['tutor_id'])->count();
+            if ($check_quote_submit == 0) {
+                $result = $this->create($post);
+                DB::commit();
+                return $result;
+            } else {
+                throw new Exception(trans('error.quote_already_send'));
+            }
 
         } catch (Exception $e) {
             DB::rollBack();
@@ -82,7 +78,7 @@ class TutorQuoteRepository extends BaseRepository
 
     /**
      * Function updateFaq
-     * 
+     *
      * @param $post [explicite description]
      * @param int $id   [explicite description]
      *
@@ -101,11 +97,11 @@ class TutorQuoteRepository extends BaseRepository
         // }
     }
 
-    /** 
+    /**
      * Get details of TutorRequest
      *
-     * @param array $where  
-     * 
+     * @param array $where
+     *
      * @return Collection
      */
     public function getTutorRequestDetails(array $where)
@@ -113,11 +109,11 @@ class TutorQuoteRepository extends BaseRepository
         return $this->withTranslation()->where($where)->first();
     }
 
-     /** 
+    /**
      * Get  TutorRequests  all
      *
-     * @param array $where  
-     * 
+     * @param array $where
+     *
      * @return Collection
      */
     public function getTutorRequests(array $params = [])
@@ -127,13 +123,12 @@ class TutorQuoteRepository extends BaseRepository
         $query = $this;
 
         if (!empty($params['search'])) {
-            $query->whereTranslationLike('question', "%".$params['search']."%");
+            $query->whereTranslationLike('question', "%" . $params['search'] . "%");
         }
-         
+
         return $query->paginate($limit);
 
     }
-
 
     /**
      * Method deleteTutorRequest
@@ -147,5 +142,32 @@ class TutorQuoteRepository extends BaseRepository
         return $this->delete($id);
     }
 
+    /**
+     * Method cancelClassRequest
+     *
+     * @param int $id [explicite description]
+     *
+     * @return int
+     */
+    public function cancelClassRequest($id)
+    {
+        try {
+            DB::beginTransaction();
+            $datas = $this->where('class_request_id', $id)->get();
+            foreach ($datas as $data) {
+                    $updateclassquotestatus = ClassQuotes::find($data->id);
+                    $updateclassquotestatus->status = 5;
+                    $updateclassquotestatus->update();
+                    }
+            DB::commit();
+            return true;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw ($e);
+        }
+
+    }
 
 }
+
+

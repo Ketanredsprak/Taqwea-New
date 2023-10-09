@@ -24,7 +24,7 @@ class TutorClassRequestResource extends JsonResource
             // 'end_time' => $this->classrequest->end_time,
             // // 'request_time' => $this->request_time,
             // // 'expired_time' => $this->expired_time,
-            // 'status' => $this->status,
+            'status' => $this->status,
             'class_level' => UserLevelResource::make($this->classrequest->levels),
             'class_grade' => UserGradeResource::make($this->classrequest->grades),
             'class_subject' => UserSubjectResource::make($this->classrequest->subjects),
@@ -40,7 +40,7 @@ class TutorClassRequestResource extends JsonResource
             //         'tutor_quote' => $this->tutor_quote,
             //     ]
             // ),
-            // 'user_data' => UserResource::make($this->userdata),
+            'student_data' => UserResource::make($this->userdata),
         ];
     }
 }

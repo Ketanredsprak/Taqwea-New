@@ -105,6 +105,14 @@ Route::group(
                     'ClassRequestController@acceptClassQuote'
                 )->name('accept.class.quote');
 
+                Route::get(
+                    'cancel-class-request/{id}',
+                    'ClassRequestController@cancelrequest'
+                )->name('cancel.class.request');
+
+
+                
+
                 Route::apiResource(
                     'student-class-request',
                     ClassRequestController::class

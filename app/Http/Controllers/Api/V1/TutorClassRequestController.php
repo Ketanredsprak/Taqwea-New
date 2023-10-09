@@ -37,7 +37,6 @@ class TutorClassRequestController extends Controller
      */
     public function index()
     {
-      
         try {
             $userId = Auth::id();
             $tutorclassrequest = $this->tutorRequestRepositoty->gettutorclassrequest($userId);
