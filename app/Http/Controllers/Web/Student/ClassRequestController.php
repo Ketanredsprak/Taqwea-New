@@ -2,28 +2,24 @@
 
 namespace App\Http\Controllers\Web\Student;
 
-use Exception;
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Student\ClassRequestRequest;
+use App\Models\Category;
+use App\Models\ClassRequestDetail;
 use App\Models\Grade;
 use App\Models\Subject;
-use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Models\ClassRequestDetail;
-use App\Http\Controllers\Controller;
-use App\Repositories\UserRepository;
 use App\Repositories\CategoryRepository;
-use App\Repositories\ClassRequestRepository;
-use App\Repositories\TutorRequestRepositoty;
-use App\Http\Requests\Student\ClassRequestRequest;
 use App\Repositories\ClassRequestDetailRepository;
+use App\Repositories\ClassRequestRepository;
 use App\Repositories\TutorClassRequestRepository;
+use App\Repositories\TutorRequestRepositoty;
+use App\Repositories\UserRepository;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-
 
 class ClassRequestController extends Controller
 {
-
 
     protected $classRequestRepository;
     protected $classRequestDetailRepository;
@@ -118,13 +114,11 @@ class ClassRequestController extends Controller
             $post['preferred_gender'] = $post['gender_preference'];
             $post['class_duration'] = $post['class_duration'] * 60;
 
-            $this->classRequestRepository->startTimeCheck($post,$timezone);
+            $this->classRequestRepository->startTimeCheck($post, $timezone);
 
             // get tutor list
             $tutors = $this->userRepository
-            ->getTutors($post);
-
-
+                ->getTutors($post);
 
             if ($tutors) {
                 $result = $this->classRequestRepository->createClassRequest($post);
@@ -135,6 +129,7 @@ class ClassRequestController extends Controller
                             [
                                 'success' => true,
                                 'message' => trans('message.Notification Send'),
+                                '200',
                             ]
                         );
                     }
@@ -166,6 +161,7 @@ class ClassRequestController extends Controller
             $result = $this->classRequestRepository->getClassRequest($id, '', false);
             if (!empty($result)) {
 
+               
                 $subject_data = Subject::withTranslation()->where('id', $result->subject_id)->first();
                 $level = Category::withTranslation()->where('id', $result->level_id)->first();
                 $grade = Grade::withTranslation()->where('id', $result->grade_id)->first();
@@ -250,86 +246,59 @@ class ClassRequestController extends Controller
         $params['datas'] = $datas;
         return view('frontend.student.tutor-class-request.index', $params);
 
-
     }
 
     public function rejectrequest($id)
     {
-            try {
-                $post['status'] = 3;
-                $result = $this->tutorClassRequestRepository->tutorrequestreject($post, $id);
-                if (!empty($result)) {
-                    return response()->json(
-                        [
-                            'success' => true,
-                            'message' => trans('message.tutor_reject')
-                        ]
-                    );
-                    return $this->apiSuccessResponse([], trans('message.update_profile'));
-                 }
-            } catch (Exception $ex) {
+        try {
+            $post['status'] = 3;
+            $result = $this->tutorClassRequestRepository->tutorrequestreject($post, $id);
+            if (!empty($result)) {
                 return response()->json(
-                    ['success' => false, 'message' => $ex->getMessage()]
+                    [
+                        'success' => true,
+                        'message' => trans('message.tutor_reject'),
+                    ]
                 );
+                return $this->apiSuccessResponse([], trans('message.update_profile'));
             }
+        } catch (Exception $ex) {
+            return response()->json(
+                ['success' => false, 'message' => $ex->getMessage()]
+            );
+        }
     }
-
 
     public function acceptrequest($id)
     {
-            try {
-                $post['status'] = 2;
-                $result = $this->tutorClassRequestRepository->tutorrequestaccept($post, $id);
-                if (!empty($result)) {
-                    return response()->json(
-                        [
-                            'success' => true,
-                            'message' => trans('message.tutor_reject')
-                        ]
-                    );
-                    return $this->apiSuccessResponse([], trans('message.update_profile'));
-                 }
-            } catch (Exception $ex) {
+        try {
+            $post['status'] = 2;
+            $result = $this->tutorClassRequestRepository->tutorRequestAccept($post, $id);
+            if (!empty($result)) {
                 return response()->json(
-                    ['success' => false, 'message' => $ex->getMessage()]
+                    [
+                        'success' => true,
+                        'message' => trans('message.tutor_accept'),
+                    ]
                 );
+                return $this->apiSuccessResponse([], trans('message.update_profile'));
             }
+        } catch (Exception $ex) {
+            return response()->json(
+                ['success' => false, 'message' => $ex->getMessage()]
+            );
+        }
     }
-
 
     public function showtutordetail($id)
     {
         //    return $id;
-           $params['currentPage'] = 'classRequest';
-           $params['title'] = trans("labels.class_request");
-           $user = $this->userRepository->findUser($id);
-           $params['user'] = $user;
-        //    $params['id'] = $id;
-        //    $datas = $this->tutorClassRequestRepository->getAll($id);
-        //    $params['datas'] = $datas;
-           return view('frontend.student.tutor-class-request.tutor-detail', $params);
+        $params['currentPage'] = 'classRequest';
+        $params['title'] = trans("labels.class_request");
+        $user = $this->userRepository->findUser($id);
+        $params['user'] = $user;
+
+        return view('frontend.student.tutor-class-request.tutor-detail', $params);
     }
-
-
-    // public function gettutorrequestlist($id)
-    // {
-
-
-
-    //     try {
-    //         $userId = 118;
-    //         // Auth::user()->id
-
-    //         $html = view(
-    //             'frontend.student.tutor-class-request.list',
-    //             ['datas' => $datas]
-    //         )->render();
-    //         return $this->apiSuccessResponse($html, trans('labels.classrequest_list'));
-    //     } catch (Exception $e) {
-    //         return $this->apiErrorResponse($e->getMessage(), 400);
-    //     }
-
-
-    // }
 
 }

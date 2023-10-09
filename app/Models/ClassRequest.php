@@ -55,4 +55,9 @@ class ClassRequest extends Model
     {
         return $this->hasOne(Grade::class, 'id','grade_id');
     }
+
+    public function userdata(){
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+    
 }

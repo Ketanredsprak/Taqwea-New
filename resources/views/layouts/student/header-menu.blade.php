@@ -38,7 +38,7 @@
             <span class="dropdown-txt">{{__('labels.my_ratings') }}</span>
         </a>
         <a class="dropdown-item" href="{{route('student.classrequest.index')}}">
-            <span class="dropdown-icon"><em class="icon-rating"></em></span>
+            <span class="dropdown-icon"><em class="icon-pencil"></em></span>
             <span class="dropdown-txt">{{__('labels.class_request') }}</span>
         </a>
         @if(Auth::user()->userSocialLogin)
