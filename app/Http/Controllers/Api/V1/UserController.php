@@ -162,11 +162,38 @@ class UserController extends Controller
         try {
             if (Auth::check()) {
                 $data['language'] = $request->header('language');
-                $this->userRepository->updateUser($data, Auth::user()->id);
+                $this->userRepository->changeUserStaus($data, Auth::user()->id);
             }
             return $this->apiSuccessResponse([], trans('message.language_changed'));
         } catch (Exception $ex) {
             return $this->apiErrorResponse($ex->getMessage(), 400);
         }
     }
+
+
+     /**
+     * Set is availble status
+     *
+     * @param \Illuminate\Http\Request $request [explicite description]
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function changeIsAvailbleStatus()
+    {
+        try {
+            if (Auth::check()) {
+                 $this->userRepository->changeUserStaus();
+            }
+            return $this->apiSuccessResponse([], trans('message.notification_status_updated'));
+        } catch (Exception $ex) {
+            return $this->apiErrorResponse($ex->getMessage(), 400);
+        }
+    }
+
+
+
+
+
+    
+
 }

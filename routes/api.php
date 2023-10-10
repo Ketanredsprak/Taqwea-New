@@ -91,10 +91,15 @@ Route::group(
                 );
                 Route::apiResource('users', UserController::class);
 
-                Route::get(
-                    'class-quote/{id}',
-                    'ClassRequestController@classQuote'
-                )->name('class.quote');
+                // Route::get(
+                //     'class-quote/{id}',
+                //     'ClassRequestController@classQuote'
+                // )->name('class.quote');
+
+                Route::post(
+                    'tutor-quote-send',
+                    'ClassRequestController@sendquote'
+                );
 
                 Route::get(
                     'reject-class-quote/{id}',
@@ -118,6 +123,14 @@ Route::group(
                     ClassRequestController::class
                 );
 
+
+                Route::get(
+                    'tutor-list/{id}',
+                    'ClassRequestController@getTutorListForClassRequest'
+                )->name('tutor.list');
+
+
+                
                 Route::apiResource(
                     'tutor-class-request',
                     TutorClassRequestController::class

@@ -17,8 +17,13 @@ class QuoteResource extends JsonResource
         return [
             'id' => $this->id,
             'price' => $this->price,
-            'tutor_email' => $this->tutor->email,
-            'tutor_email' => $this->tutor->name,
+            'status' => $this->status,
+            'class_request_data' =>  $this->class_request_id,
+            'tutor_data' => [
+                        'tutor_id' => $this->tutor->id,
+                        'tutor_email' => $this->tutor->email,
+                 ],  
+                  
         ];
     }
 }

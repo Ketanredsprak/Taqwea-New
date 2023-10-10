@@ -57,7 +57,7 @@ class TutorQuoteController extends Controller
 
         try {
             $post = $request->all();
-            $post['status'] = "1";
+            $post['status'] = "0";
             $result = $this->tutorQuoteRepository->createTutorRequest($post);
             if (!empty($result)) {
                 return response()->json(

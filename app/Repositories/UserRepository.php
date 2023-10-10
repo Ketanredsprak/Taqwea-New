@@ -1191,52 +1191,82 @@ class UserRepository extends BaseRepository
 
     public function getTutors(array $params)
     {
+//  dd($params);
         $query = $this->withTranslation();
         $query->select(
             'users.*'
             );
-            $query->leftjoin(
-                'user_levels',
-                'users.id',
-                'user_levels.user_id'
-            );
-            $query->leftjoin(
-                'user_subjects',
-                'users.id',
-                'user_subjects.user_id'
-            );
-            $query->leftjoin(
-                'user_grades',
-                'users.id',
-                'user_grades.user_id'
-            );
-            $query->leftjoin(
-                'user_general_knowledges',
-                'users.id',
-                'user_general_knowledges.user_id'
-            );
-            $query->leftjoin(
-                'user_languages',
-                'users.id',
-                'user_languages.user_id'
-            );
-        $query->where('users.user_type', 'tutor')->where('users.is_available', '1');
 
+            if(!empty($params['category_id']) && $params['category_id'] == '1'){
+                if (!empty($params['level_id'])) {
+                   $query->leftjoin(
+                        'user_levels',
+                        'users.id',
+                        'user_levels.user_id'
+                    );
+                }
+            }
+
+            if(!empty($params['category_id']) && $params['category_id'] == '1'){
+                if (!empty($params['subject_id'])) {
+                    $query->leftjoin(
+                        'user_subjects',
+                        'users.id',
+                        'user_subjects.user_id'
+                    );
+                }
+            }
+          
+
+            // if (!empty($params['grade_id'])) {
+            //     // $query->rightjoin(
+            //     //     'user_grades',
+            //     //     'users.id',
+            //     //     'user_grades.user_id'
+            //     // );
+            // }
+
+            if(!empty($params['category_id']) && $params['category_id'] == '2'){
+               if (!empty($params['level_id'])) {
+                        $query->leftjoin(
+                        'user_general_knowledges',
+                        'users.id',
+                        'user_general_knowledges.user_id'
+                    );
+                }
+            }
+
+            if(!empty($params['category_id']) && $params['category_id'] == '3'){
+                if (!empty($params['level_id'])) {
+                    $query->leftjoin(
+                        'user_languages',
+                        'users.id',
+                        'user_languages.user_id'
+                    );
+                    
+                }
+            }
+
+        $query->where('users.user_type', 'tutor')->where('users.is_available', '1');
+       
         if(!empty($params['preferred_gender']) && $params['preferred_gender'] != "both"){
                 $query->where('users.gender', $params['preferred_gender']);
         }
 
         if(!empty($params['category_id']) && $params['category_id'] == '1'){
             if (!empty($params['level_id'])) {
-                $query->where('user_levels.category_id', $params['level_id']);
+               $query->where('user_levels.category_id', $params['level_id']);
             }
             if (!empty($params['subject_id'])) {
-                $query->where('user_subjects.subject_id', $params['subject_id']);
+               $query->where('user_subjects.subject_id', $params['subject_id']);
             }
-            if (!empty($params['grade_id'])) {
-                $query->where('user_grades.grade_id', $params['grade_id']);
-            }
+            // if (!empty($params['grade_id'])) {
+            //     $query->where('user_grades.grade_id', $params['grade_id']);
+            // }
         }
+
+
+
         if(!empty($params['category_id']) && $params['category_id'] == '2'){
             if (!empty($params['level_id'])) {
                 $query->where('user_general_knowledges.category_id', $params['level_id']);
@@ -1255,21 +1285,48 @@ class UserRepository extends BaseRepository
         //     $query->where('users.status', $params['status']);
         // }
         $tutors = $query->get();
-        if(count($tutors) > 0){
 
-            // foreach($tutors as $tutor){
-            //     $data['type'] = 'Class Request From Student';
-            //     $data['extra_data'] = [];
-            //     $data['from_id'] = Auth::id();
-            //     $data['to_id'] = $tutor->id;
-            //     $data['notification_message'] = "Student has requested a class";
-            //     $this->notificationRepository
-            //     ->sendNotification($data, true);
-            // }
+        if(count($tutors) > 0){
             return $tutors;
         }else{
             return false;
         }
     }
+
+
+
+    
+     /**
+     * Method updateUser
+     *
+     * @param array $data [explicite description]
+     * @param int   $id   [explicite description]
+     *
+     * @return User
+     */
+    public function changeUserStaus()
+    {
+        
+        try {
+            DB::beginTransaction();
+                if(Auth::user()->is_available == 1)
+                {
+                   $is_available = 0;
+                }
+                else
+                {
+                    $is_available = 1;
+                }
+            DB::commit();
+            $data = User::find($id);
+            $data->is_available = $is_available;
+            $data->update();
+            return $data;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
 
 }

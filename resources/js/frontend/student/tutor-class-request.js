@@ -35,7 +35,7 @@ window.Approverequest = function Approverequest(id, class_request_id) {
                 type: "GET",
                 success: function (response) {
                     successToaster(response.message);
-                    window.location.href = process.env.MIX_APP_URL + '/student/getrequest/' + class_request_id;
+                     window.location.href = process.env.MIX_APP_URL + '/student/classrequest/';
                 },
                 error: function (data) {
                     handleError(data);

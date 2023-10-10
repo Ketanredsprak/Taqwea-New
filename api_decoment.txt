@@ -89,6 +89,46 @@ params = []
 header = token
 
 
+change is_available status
+url = {{base_url}}is-available-status
+method = get
+params = []
+header = token
+
+send student request quote by tutor 
+url = {{base_url}}tutor-quote-send
+method = post
+params = [
+     class_request_id:228
+     price:5000
+]
+header = token
+
+
+
+reject class quote by student 
+url = {{base_url}}reject-class-quote/{id}
+method = get
+params = []
+header = token
+
+
+accept class quote by student 
+url = {{base_url}}accept-class-quote/{id}
+method = get
+params = []
+header = token
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -266,6 +266,19 @@
 
                                         @endforeach
 
+                                        <div class="col-sm-6">
+
+                                    <div class="form-group">
+
+                                        <label class="form-label">{{ __('labels.note') }} :
+
+                                            {{ $result->note }}</label>
+
+                                    </div>
+
+                                    </div>
+
+
                                     </div>
 
 

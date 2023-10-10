@@ -12,7 +12,7 @@
 
             <th>{{ __('labels.status')}}</th>
 
-            <th>{{ __('labels.class_type') }}</th>
+            {{-- <th>{{ __('labels.class_type') }}</th> --}}
 
             <th>{{ __('labels.class_duration') }}</th>
 
@@ -46,9 +46,9 @@
 
             <td> @if($data->status) <label class="text-success">{{ __('labels.active') }}</label> @else {{ $data->status }} @endif</td>
 
-            <td>{{$data->classrequest->class_type}}</td>
+            {{-- <td>{{$data->classrequest->class_type}}</td> --}}
 
-            <td>{{$data->classrequest->class_duration}} {{ __('labels.hours') }}</td>
+            <td>@if($data->classrequest){{$data->classrequest->class_duration}} {{ __('labels.hours') }}@endif</td>
 
             {{-- <td>{{  date('g:i a', strtotime($data->classrequest->request_time))  }}</td>
 
@@ -114,7 +114,7 @@
 
         var url = $(this).attr('href');
 
-        classRequestList(url);
+        tutorClassRequestList(url);
 
     });
 

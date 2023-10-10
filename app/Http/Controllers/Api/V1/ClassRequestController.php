@@ -15,7 +15,9 @@ use App\Repositories\TutorRequestRepositoty;
 use App\Http\Resources\V1\ClassRequestResource;
 use App\Repositories\TutorClassRequestRepository;
 use App\Repositories\ClassRequestDetailRepository;
+use App\Repositories\TutorQuoteRepository;
 use App\Http\Requests\Student\ClassRequestRequest;
+
 
 class ClassRequestController extends Controller
 {
@@ -24,6 +26,7 @@ class ClassRequestController extends Controller
     protected $tutorRequestRepositoty;
     protected $tutorClassRequestRepository;
     protected $classRequestDetailRepository;
+    protected $tutorQuoteRepository;
     /**
      * Function __construct
      *
@@ -32,6 +35,7 @@ class ClassRequestController extends Controller
      * @param TutorRequestRepositoty     $tutorRequestRepositoty
      * @param TutorClassRequestRepository $tutorClassRequestRepository [explicite description]
      * @param ClassRequestDetailRepository $classRequestDetailRepository [explicite description]
+     * @param TutorQuoteRepository $tutorQuoteRepository [explicite description]
      *
      * @return void
      */
@@ -40,13 +44,15 @@ class ClassRequestController extends Controller
         UserRepository $userRepository,
         TutorRequestRepositoty $tutorRequestRepositoty,
         TutorClassRequestRepository $tutorClassRequestRepository,
-        ClassRequestDetailRepository $classRequestDetailRepository
+        ClassRequestDetailRepository $classRequestDetailRepository,
+        TutorQuoteRepository $tutorQuoteRepository
     ) {
         $this->classRequestRepository = $classRequestRepository;
         $this->userRepository = $userRepository;
         $this->tutorRequestRepositoty = $tutorRequestRepositoty;
         $this->tutorClassRequestRepository = $tutorClassRequestRepository;
         $this->classRequestDetailRepository = $classRequestDetailRepository;
+        $this->tutorQuoteRepository = $tutorQuoteRepository;
     }
 
     /**
@@ -160,10 +166,28 @@ class ClassRequestController extends Controller
         }
     }
 
+
+    public function sendquote(QuoteRequest $request)
+    {
+        try {
+            $post = $request->all();
+            $post['tutor_id'] = Auth::id();
+            $post['user_type'] =  Auth::user()->user_type;
+            $post['status'] = "0";
+            $result = $this->tutorQuoteRepository->createTutorRequest($post);
+            if (!empty($result)) {
+                return $this->apiSuccessResponse([], trans('message.price_send'));
+            }
+        } catch (Exception $ex) {
+            return $this->apiErrorResponse($ex->getMessage(), 422);
+        }
+    }
+    
+
     public function rejectClassQuote($id)
     {
         try {
-            $post['status'] = 3;
+            $post['status'] = 2;
             $post['reject_time'] = Carbon::now();
             $data = $this->tutorClassRequestRepository->tutorrequestreject($post, $id);
             return new QuoteResource($data);
@@ -175,7 +199,7 @@ class ClassRequestController extends Controller
     public function acceptClassQuote($id)
     {
         try {
-            $post['status'] = 2;
+            $post['status'] = 1;
             $data = $this->tutorClassRequestRepository->tutorRequestAccept($post, $id);
             return new QuoteResource($data);
         } catch (Exception $e) {
@@ -193,6 +217,22 @@ class ClassRequestController extends Controller
             return $this->apiErrorResponse($e->getMessage(), 400);
         }
     }
+
+    
+    public function getTutorListForClassRequest($id)
+    {
+      
+        //  
+        try {
+            $result = $this->classRequestRepository->getClassRequest($id);
+            $result1 = $this->tutorQuoteRepository->getTutorListWithQuote($id);
+            // return ClassRequestResource::make($result);
+        } catch (Exception $e) {
+            return $this->apiErrorResponse($e->getMessage(), 400);
+        }
+
+    }
+
 
     
 

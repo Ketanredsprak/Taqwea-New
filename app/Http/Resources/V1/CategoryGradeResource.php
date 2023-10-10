@@ -19,6 +19,7 @@ class CategoryGradeResource extends JsonResource
         return [
             'id' => $this->grade->id,
             'text' => $this->grade->translateOrDefault()->grade_name,
+            'name' => $this->grade->translateOrDefault()->grade_name,
             "class_count" => $this->class_count ?? 0,
             "webinar_count" => $this->webinar_count ?? 0,
             "tutor_count" => $this->tutor_count ?? 0,

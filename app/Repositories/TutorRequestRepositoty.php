@@ -79,21 +79,31 @@ class TutorRequestRepositoty extends BaseRepository
 
         try {
             DB::beginTransaction();
-            foreach ($post as $post_data) {
+          
+            foreach ($post as $tutor_data) {
+               
                 $data['class_request_id'] = $result_data->id;
                 $data['user_id'] = $result_data->user_id;
-                $data['tutor_id'] = $post_data->id;
+                $data['tutor_id'] = $tutor_data->id;
                 $data['status'] = "Active";
                 $result = $this->create($data);
+                $extra_data = [
+                    'type' => 'class_request_from_student',
+                    'from_id' => Auth::id(),
+                    'to_id' =>  $tutor_data->id,
+                    'notification_message' => "Student has requested a class",
+                ];
 
                 $data1['type'] = 'class_request_from_student';
-                $data1['extra_data'] = [];
+                $data1['extra_data'] = $extra_data;
                 $data1['from_id'] = Auth::id();
-                $data1['to_id'] = $post_data->id;
+                $data1['to_id'] = $tutor_data->id;
                 $data1['notification_message'] = "Student has requested a class";
                 $this->notificationRepository
                     ->sendNotification($data1, true);
+          
             }
+           
             DB::commit();
             return true;
         } catch (Exception $e) {
