@@ -109,26 +109,26 @@ class TutorQuoteRepository extends BaseRepository
         return $this->withTranslation()->where($where)->first();
     }
 
-    /**
-     * Get  TutorRequests  all
-     *
-     * @param array $where
-     *
-     * @return Collection
-     */
-    public function getTutorRequests(array $params = [])
-    {
+    // /**
+    //  * Get  TutorRequests  all
+    //  *
+    //  * @param array $where
+    //  *
+    //  * @return Collection
+    //  */
+    // public function getTutorRequests(array $params = [])
+    // {
 
-        $limit = 10;
-        $query = $this;
+    //     $limit = 10;
+    //     $query = $this;
 
-        if (!empty($params['search'])) {
-            $query->whereTranslationLike('question', "%" . $params['search'] . "%");
-        }
+    //     if (!empty($params['search'])) {
+    //         $query->whereTranslationLike('question', "%" . $params['search'] . "%");
+    //     }
 
-        return $query->paginate($limit);
+    //     return $query->paginate($limit);
 
-    }
+    // }
 
     /**
      * Method deleteTutorRequest
@@ -156,7 +156,7 @@ class TutorQuoteRepository extends BaseRepository
             $datas = $this->where('class_request_id', $id)->get();
             foreach ($datas as $data) {
                     $updateclassquotestatus = ClassQuotes::find($data->id);
-                    $updateclassquotestatus->status = 5;
+                    $updateclassquotestatus->status = 4;
                     $updateclassquotestatus->update();
                     }
             DB::commit();
@@ -168,6 +168,29 @@ class TutorQuoteRepository extends BaseRepository
 
     }
 
+
+      /**
+     * Method getTutorListWithQuote
+     *
+     * @param int $id [explicite description]
+     *
+     * @return int
+     */
+    public function getTutorListWithQuote($id)
+    {
+      
+        try {
+            DB::beginTransaction();
+            $result = $this->where('class_request_id', $id)->where('status',0)->get();
+            dd($result);
+            DB::commit();
+            return true;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw ($e);
+        }
+
+    }
+
+
 }
-
-

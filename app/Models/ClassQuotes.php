@@ -11,7 +11,6 @@ class ClassQuotes extends Model
 
     protected $fillable = [
         'class_request_id',
-        'student_id',
         'tutor_id',
         'status',
         'reject_time',

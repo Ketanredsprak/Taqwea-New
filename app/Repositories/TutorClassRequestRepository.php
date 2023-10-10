@@ -2,16 +2,16 @@
 
 namespace App\Repositories;
 
-use Exception;
-use Carbon\Carbon;
 use App\Models\ClassQuotes;
 use App\Models\ClassRequest;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Container\Container as Application;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Interface Repository.
@@ -145,7 +145,6 @@ class TutorClassRequestRepository extends BaseRepository
 
     // }
 
-
     /**
      * Method deleteClassQuotes
      *
@@ -158,7 +157,6 @@ class TutorClassRequestRepository extends BaseRepository
         return $this->delete($id);
     }
 
-
     /**
      * Method getAll
      *
@@ -168,10 +166,8 @@ class TutorClassRequestRepository extends BaseRepository
      */
     public function getAll(int $id)
     {
-        return $this->with('tutor')->where('class_request_id', $id)->where('status', 1)->paginate(10);
+        return $this->with('tutor')->where('class_request_id', $id)->where('status', 0)->paginate(10);
     }
-
-
 
     /**
      * Method getAll
@@ -203,29 +199,18 @@ class TutorClassRequestRepository extends BaseRepository
     }
     public function tutorRequestAccept($post, $id)
     {
+
         try {
+
             DB::beginTransaction();
             $quoteData = $this->find($id);
-            $result = $this->update($post, $id);
 
-            $data['type'] = 'Quote accepted by student';
-            $data['extra_data'] = [];
-            $data['from_id'] = Auth::id();
-            $data['to_id'] = $quoteData->tutor_id;
-            $data['notification_message'] = "Your quote is accepted by student";
-            $this->notificationRepository
-                ->sendNotification($data, true);
-
-            $classRequestData = ClassRequest::find($quoteData->class_request_id);
-            $classRequestData->update([
-                'won_quote_id' => $id,
-            ]);
-
-            $classRequests = $this->where('class_request_id', $quoteData->class_request_id)->where('status', 1)->get();
+            $classRequests = $this->select("*")->where('status',0)->whereNotIn('id',$quote_id)->get();
+            // $classRequests = $this->where('class_request_id', $quoteData->class_request_id)->get();
 
             if (count($classRequests) > 0) {
                 foreach ($classRequests as $key => $classRequest) {
-                    $classRequest->status = '3';
+                    $classRequest->status = '2';
                     $classRequest->reject_time = Carbon::now();
                     $classRequest->update();
 
@@ -238,6 +223,20 @@ class TutorClassRequestRepository extends BaseRepository
                         ->sendNotification($data1, true);
                 }
             }
+
+            $result = $this->update($post, $id);
+            $data['type'] = 'Quote accepted by student';
+            $data['extra_data'] = [];
+            $data['from_id'] = Auth::id();
+            $data['to_id'] = $quoteData->tutor_id;
+            $data['notification_message'] = "Your quote is accepted by student";
+            $this->notificationRepository
+                ->sendNotification($data, true);
+
+            $classRequestData = ClassRequest::find($quoteData->class_request_id);
+            $classRequestData->update([
+                'won_quote_id' => $id,
+            ]);
 
             DB::commit();
             return $result;

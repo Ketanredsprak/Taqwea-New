@@ -80,7 +80,7 @@
 
                             <div class="walletPage__content common-shadow bg-white p-30">
 
-                               
+                            
                                 <a href="#"  onclick="backPage()"  type="button" class="btn btn-primary btn-sm"
                                         title="Accept"><em class="icon-arrow-back"></em></a>
 

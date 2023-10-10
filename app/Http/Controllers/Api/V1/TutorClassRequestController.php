@@ -57,20 +57,7 @@ class TutorClassRequestController extends Controller
      */
     public function store(QuoteRequest $request)
     {
-        
-        // return $post = $request->all();
-        try {
-            $post = $request->all();
-            $post['tutor_id'] = Auth::id();
-            $post['user_type'] =  Auth::user()->user_type;
-            $post['status'] = "1";
-            $result = $this->tutorQuoteRepository->createTutorRequest($post);
-            if (!empty($result)) {
-                return $this->apiSuccessResponse([], trans('message.price_send'));
-            }
-        } catch (Exception $ex) {
-            return $this->apiErrorResponse($ex->getMessage(), 422);
-        }
+      return "hello from store funstion";
     }
 
     /**
@@ -114,4 +101,8 @@ class TutorClassRequestController extends Controller
     {
         //
     }
+
+
+
+    
 }

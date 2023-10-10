@@ -251,7 +251,7 @@ class ClassRequestController extends Controller
     public function rejectrequest($id)
     {
         try {
-            $post['status'] = 3;
+            $post['status'] = 2;
             $result = $this->tutorClassRequestRepository->tutorrequestreject($post, $id);
             if (!empty($result)) {
                 return response()->json(
@@ -272,7 +272,7 @@ class ClassRequestController extends Controller
     public function acceptrequest($id)
     {
         try {
-            $post['status'] = 2;
+            $post['status'] = 1;
             $result = $this->tutorClassRequestRepository->tutorRequestAccept($post, $id);
             if (!empty($result)) {
                 return response()->json(

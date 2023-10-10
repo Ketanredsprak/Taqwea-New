@@ -25,6 +25,7 @@ class SubjectResource extends JsonResource
        return  [
             'id' => $this->id ?? $this->subject_id,
             'subjects' => $this->subject_name,
+            'name' => $this->subject_name,
             'subject_icon' => $this->id ? $this->subject_icon_url : $this->subject->subject_icon_url,
             "class_count" => $this->class_count !== null ? $this->class_count : 0,
             "webinar_count" => $this->webinar_count !== null ?
