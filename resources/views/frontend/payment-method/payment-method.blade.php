@@ -66,20 +66,20 @@ $layout = 'layouts.student.app';
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="form-label">{{ __('labels.beneficiary_name') }}</label>
-                                                    <input type="text" name="beneficiary_name" id="beneficiary_name" dir="rtl" class="form-control" placeholder="{{ __('labels.enter_beneficiary_name') }}" value="{{$tutor->beneficiary_name}}">
+                                                    <input type="text" name="beneficiary_name" dir="rtl" id="beneficiary_name" class="form-control" placeholder="{{ __('labels.enter_beneficiary_name') }}" value="{{$tutor->beneficiary_name}}">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="form-label">{{ __('labels.iban_number') }}</label>
-                                                    <input type="text" name="account_number"  id="account_number"  dir="rtl" class="form-control" placeholder="{{ __('labels.enter_iban_name') }}" value="{{$tutor->account_number}}">
+                                                    <input type="text" name="account_number" dir="rtl"  id="account_number" class="form-control" placeholder="{{ __('labels.enter_iban_name') }}" value="{{$tutor->account_number}}">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="form-label">{{ __('labels.bank_name') }}</label>
                                                     <select name="bank_code" class="form-select select-bank-code" dir="rtl" 
-                                                        data-placeholder="{{ __('labels.enter_bank_name') }}"  onchange="getCode()" aria-describedby="bank_code-error">
+                                                        data-placeholder="{{ __('labels.enter_bank_name') }}" onchange="getCode()" aria-describedby="bank_code-error">
                                                         <option value=""></option>
                                                         @foreach($banks as $bank)
                                                         <option value="{{$bank->bank_code}}" {{$bank->bank_code == $tutor->bank_code ? "selected": ''}}>
@@ -93,7 +93,7 @@ $layout = 'layouts.student.app';
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="form-label">{{ __('labels.bank_code') }}</label>
-                                                    <input type="text" name="code"  dir="rtl" id="code" class="form-control" placeholder="{{ __('labels.enter_bank_code') }}" value="{{$tutor->bank_code}}" readonly>
+                                                    <input type="text" name="code"  dir="rtl"  id="code" class="form-control" placeholder="{{ __('labels.enter_bank_code') }}" value="{{$tutor->bank_code}}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
@@ -102,7 +102,7 @@ $layout = 'layouts.student.app';
                                                     <input maxlength='7' type="text" name="address" id="address"
                                                         class="form-control"
                                                         placeholder="{{ __('labels.enter_address_name') }}"
-                                                        value="{{$tutor->address}}" dir="rtl">
+                                                        value="{{$tutor->address}}" dir="rtl" >
                                                 </div>
                                             </div>
                                             

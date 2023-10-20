@@ -417,6 +417,16 @@ mix.js([
     ], 'public/assets/js/frontend/student/tutor-class-request.js');
 
 
+    mix.js([
+        'resources/js/frontend/student/student-class-request.js'
+    ], 'public/assets/js/frontend/student/student-class-request.js');
+
+
+
+    
+
+
+
     
 
 

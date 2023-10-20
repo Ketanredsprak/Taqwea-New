@@ -91,15 +91,15 @@ Route::group(
                 );
                 Route::apiResource('users', UserController::class);
 
-                // Route::get(
-                //     'class-quote/{id}',
-                //     'ClassRequestController@classQuote'
-                // )->name('class.quote');
-
-                Route::post(
-                    'tutor-quote-send',
-                    'ClassRequestController@sendquote'
-                );
+                Route::get(
+                    'is-available-status',
+                    'UserController@changeIsAvailbleStatus'
+                )->name('is.available.status');
+                
+                Route::get(
+                    'class-quote/{id}',
+                    'ClassRequestController@classQuote'
+                )->name('class.quote');
 
                 Route::get(
                     'reject-class-quote/{id}',
@@ -115,25 +115,27 @@ Route::group(
                     'ClassRequestController@cancelrequest'
                 )->name('cancel.class.request');
 
-
-                
-
-                Route::apiResource(
-                    'student-class-request',
-                    ClassRequestController::class
-                );
-
-
                 Route::get(
                     'tutor-list/{id}',
                     'ClassRequestController@getTutorListForClassRequest'
                 )->name('tutor.list');
 
 
+
                 
+                Route::apiResource(
+                    'student-class-request',
+                    ClassRequestController::class
+                );
+
                 Route::apiResource(
                     'tutor-class-request',
                     TutorClassRequestController::class
+                );
+
+                Route::post(
+                    'tutor-quote-send',
+                    'TutorClassRequestController@sendquote'
                 );
 
                 Route::apiResource(

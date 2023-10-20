@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <div class="upload_photo mb-2 mb-md-3 mx-auto text-center">
                             <div class="img-box">
-                                <img src="{{ $subject ? $subject->subject_icon_url : null }}" alt="Tutor-Profile"
+                                <img src="{{ $subject ? $subject->subject_icon_url : null }}" alt="subject-icon - subject image"
                                     class="img-fluid" id="imagePreview">
                             </div>
                             <label class="mb-0 ripple-effect" for="uploadImage">

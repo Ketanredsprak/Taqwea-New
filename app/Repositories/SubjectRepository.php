@@ -143,16 +143,15 @@ class SubjectRepository extends BaseRepository
     public function updateSubject(array $data, int $id): Subject
     {
         $subject_data = $this->getSubject($id);
-            if (!empty($data['subject_icon'])) {
-                $data['subject_icon'] = uploadFile(
-                    $data['subject_icon'],
-                    'subject_icon'
-                );
-                deleteFile($subject_data->subject_icon);
-            } else {
-                unset($data['subject_icon']);
-            }
-
+        if (!empty($data['subject_icon'])) {
+            $data['subject_icon'] = uploadFile(
+                $data['subject_icon'],
+                'subject_icon'
+            );
+            deleteFile($subject_data->subject_icon);
+        } else {
+            unset($data['subject_icon']);
+        }
         return $this->update($data, $id);
     }
 

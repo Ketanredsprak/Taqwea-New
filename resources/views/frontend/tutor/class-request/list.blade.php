@@ -48,7 +48,7 @@
 
             {{-- <td>{{$data->classrequest->class_type}}</td> --}}
 
-            <td>@if($data->classrequest){{$data->classrequest->class_duration}} {{ __('labels.hours') }}@endif</td>
+            <td>{{$data->classrequest->class_duration}} {{ __('labels.hours') }}</td>
 
             {{-- <td>{{  date('g:i a', strtotime($data->classrequest->request_time))  }}</td>
 

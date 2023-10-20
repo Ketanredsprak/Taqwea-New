@@ -625,6 +625,7 @@ return [
     'generate_class_request' => 'Generate Class Request',
     'single' => 'Single',
     'multiple' => 'Multiple',
-
+    'note' => 'Note',
+    'cancel_request' => 'Cancel Request',
 
 ];

@@ -78,7 +78,7 @@
 
                                                 <label class="form-label">{{ __('labels.status') }} :
 
-                                                    @if($result->status) <label class="text-success">{{ __('labels.active') }}</label> @else {{ $result->status }} @endif</label>
+                                                    @if($result->status == "Active") <label class="text-success">{{ __('labels.active') }}</label> @else {{ $result->status }} @endif</label>
 
                                             </div>
 
@@ -231,13 +231,13 @@
 
 
 
-                                    {{-- <div class="btn-row">
+                                    <div class="btn-row">
 
-                                        <a href="{{ Route('student.classrequest.index') }}"
+                                            @if($result->status == 'Active')
+                                            <a href="#" onclick="Cancelrequest('{{ $result->id }}')"   type="button" class="btn btn-primary btn-block btn-lg mw-300 m-auto ripple-effect" title="Cancel">{{ __('labels.cancel_request') }}</a>
+                                            @endif
 
-                                            class="btn btn-primary btn-block btn-lg mw-300 m-auto ripple-effect"><em class="icon-left-arrow"></em></a>
-
-                                    </div> --}}
+                                    </div>
 
 
 
@@ -266,6 +266,8 @@
     <script type="text/javascript" src="{{ asset('assets/js/frontend/image-cropper.js') }}"></script>
 
     <script type="text/javascript" src="{{ asset('assets/js/frontend/student/profile.js') }}"></script>
+
+    <script type="text/javascript" src="{{asset('assets/js/frontend/student/student-class-request.js')}}"></script>
 
 @endpush
 

@@ -55,6 +55,7 @@ class SubjectController extends Controller
      */
     public function store(AddSubjectRequest $request)
     {
+        // dd($request->all());
         try {
             $data = $request->all();
             $result = $this->subjectRepository->addSubject($data);
@@ -113,7 +114,6 @@ class SubjectController extends Controller
      */
     public function update(AddSubjectRequest $request, int $subject)
     {
-
         try {
             $data = $request->all();
             $result = $this->subjectRepository->updateSubject($data, $subject);

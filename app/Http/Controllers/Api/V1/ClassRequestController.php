@@ -17,6 +17,7 @@ use App\Repositories\TutorClassRequestRepository;
 use App\Repositories\ClassRequestDetailRepository;
 use App\Repositories\TutorQuoteRepository;
 use App\Http\Requests\Student\ClassRequestRequest;
+use App\Http\Resources\V1\ClassQuoteListResource;
 
 
 class ClassRequestController extends Controller
@@ -221,12 +222,10 @@ class ClassRequestController extends Controller
     
     public function getTutorListForClassRequest($id)
     {
-      
         //  
         try {
-            $result = $this->classRequestRepository->getClassRequest($id);
-            $result1 = $this->tutorQuoteRepository->getTutorListWithQuote($id);
-            // return ClassRequestResource::make($result);
+            $result = $this->tutorQuoteRepository->getTutorListWithQuote($id);
+            return classQuoteListResource::collection($result);  
         } catch (Exception $e) {
             return $this->apiErrorResponse($e->getMessage(), 400);
         }

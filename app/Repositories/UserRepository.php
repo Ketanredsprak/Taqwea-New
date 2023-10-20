@@ -1318,7 +1318,7 @@ class UserRepository extends BaseRepository
                     $is_available = 1;
                 }
             DB::commit();
-            $data = User::find($id);
+            $data = User::find(Auth::user()->id);
             $data->is_available = $is_available;
             $data->update();
             return $data;

@@ -120,6 +120,13 @@ params = []
 header = token
 
 
+get tutor list for class request by student 
+url = {{base_url}}tutor-list/{id}  233
+method = get
+params = []
+header = token
+
+
 
 
 

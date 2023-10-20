@@ -57,7 +57,6 @@ class TutorQuoteRepository extends BaseRepository
      */
     public function createTutorRequest($post)
     {
-
         try {
             DB::beginTransaction();
 
@@ -67,7 +66,7 @@ class TutorQuoteRepository extends BaseRepository
                 DB::commit();
                 return $result;
             } else {
-                throw new Exception(trans('error.quote_already_send'));
+                return false;
             }
 
         } catch (Exception $e) {
@@ -109,26 +108,26 @@ class TutorQuoteRepository extends BaseRepository
         return $this->withTranslation()->where($where)->first();
     }
 
-    // /**
-    //  * Get  TutorRequests  all
-    //  *
-    //  * @param array $where
-    //  *
-    //  * @return Collection
-    //  */
-    // public function getTutorRequests(array $params = [])
-    // {
+    /**
+     * Get  TutorRequests  all
+     *
+     * @param array $where
+     *
+     * @return Collection
+     */
+    public function getTutorRequests(array $params = [])
+    {
 
-    //     $limit = 10;
-    //     $query = $this;
+        $limit = 10;
+        $query = $this;
 
-    //     if (!empty($params['search'])) {
-    //         $query->whereTranslationLike('question', "%" . $params['search'] . "%");
-    //     }
+        if (!empty($params['search'])) {
+            $query->whereTranslationLike('question', "%" . $params['search'] . "%");
+        }
 
-    //     return $query->paginate($limit);
+        return $query->paginate($limit);
 
-    // }
+    }
 
     /**
      * Method deleteTutorRequest
@@ -169,7 +168,7 @@ class TutorQuoteRepository extends BaseRepository
     }
 
 
-      /**
+    /**
      * Method getTutorListWithQuote
      *
      * @param int $id [explicite description]
@@ -178,11 +177,10 @@ class TutorQuoteRepository extends BaseRepository
      */
     public function getTutorListWithQuote($id)
     {
-      
         try {
             DB::beginTransaction();
-            $result = $this->where('class_request_id', $id)->where('status',0)->get();
-            dd($result);
+            $result = $this->where('class_request_id', $id)->where('status',0)->paginate('10');
+            return $result;
             DB::commit();
             return true;
         } catch (Exception $e) {

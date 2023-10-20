@@ -629,5 +629,6 @@ return [
     'generate_class_request' => 'إنشاء طلب فئة',
     'single' => 'أعزب',
     'multiple' => 'عديد',
-    
+    'note' => 'ملحوظة',
+    'cancel_request' => 'إلغاء الطلب',
 ];

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Student;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use App\Http\Requests\Student\ClassRequestRequest;
 use App\Models\Category;
 use App\Models\ClassRequestDetail;
@@ -17,6 +18,7 @@ use App\Repositories\UserRepository;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Redirect;
 
 class ClassRequestController extends Controller
 {
@@ -251,6 +253,7 @@ class ClassRequestController extends Controller
     public function rejectrequest($id)
     {
         try {
+            $post['reject_time'] = Carbon::now();
             $post['status'] = 2;
             $result = $this->tutorClassRequestRepository->tutorrequestreject($post, $id);
             if (!empty($result)) {
@@ -300,5 +303,30 @@ class ClassRequestController extends Controller
 
         return view('frontend.student.tutor-class-request.tutor-detail', $params);
     }
+
+
+    
+    public function cancelrequest($id)
+    {
+        try {
+            $post['status'] = "Cancel";
+            $post['reject_time'] = Carbon::now();
+            $result = $this->classRequestRepository->cancelrequest($post, $id);
+            if (!empty($result)) {
+                return response()->json(
+                    [
+                        'success' => true,
+                        'message' => trans('message.cancel_request'),
+                    ]
+                );
+            }
+        } catch (Exception $ex) {
+            return response()->json(
+                ['success' => false, 'message' => $ex->getMessage()]
+            );
+        }
+
+    }
+
 
 }

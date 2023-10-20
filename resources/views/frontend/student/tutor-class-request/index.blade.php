@@ -105,7 +105,9 @@
 
                                                         <th>{{ __('labels.tutor_email') }}</th>
 
-                                                        <th>{{ __('labels.price') }}</th>
+                                                        <th>{{ __('labels.price') }}</th> 
+
+                                                        <th>{{ __('labels.note') }}</th> 
 
                                                         <th>{{ __('labels.action') }}</th>
 
@@ -129,6 +131,8 @@
                                                             <td>{{ $data->tutor->email }}</td>
 
                                                             <td>{{ $data->price }}</td>
+
+                                                            <td>{{ $data->note }}</td>
 
                                                             <td>
 

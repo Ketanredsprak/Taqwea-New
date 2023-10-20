@@ -135,7 +135,7 @@ class TutorRequestRepositoty extends BaseRepository
      */
     public function gettutorclassrequest(int $id)
     {
-        return $this->with('classrequest', 'userdata')->where('tutor_id', $id)->paginate(10);
+        return $this->with('classrequest','userdata')->where('tutor_id', $id)->paginate(10);
     }
 
     /**

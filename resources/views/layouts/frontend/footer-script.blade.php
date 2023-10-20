@@ -12,7 +12,7 @@
                 <form action="">
                     <div class="form-group mb-0 messageInfo">
                         <label>Write Your Message</label>
-                        <textarea dir="rtl" class="form-control">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam dad voluptua.</textarea>
+                        <textarea class="form-control">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam dad voluptua.</textarea>
                     </div>
                 </form>
             </div>
@@ -48,7 +48,7 @@
         niceScroll();
     })
 
-    // select2
+    // select2   
     $(document).ready(function() {
         $(".form-select").select2({
             minimumResultsForSearch: -1
@@ -149,5 +149,5 @@ $('#sideMenuToggle').on('click', function(){
 
 $('#closeMenu').on('click', function(){
     $('.commonSideBar').removeClass('show');
-})
+}) 
 </script>

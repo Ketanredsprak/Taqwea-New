@@ -28,6 +28,7 @@ class AddQuoteRequest extends FormRequest
     {
         return [
             'price' => 'required|numeric',
+            'note' => 'required',
         ];
     }
 
@@ -40,6 +41,7 @@ class AddQuoteRequest extends FormRequest
     {
         return [
             'price.required' => __('validation.required'),
+            'note.required' => __('validation.required'),
         ];
     }
 }

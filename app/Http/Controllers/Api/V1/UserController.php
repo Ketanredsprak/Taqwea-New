@@ -162,14 +162,13 @@ class UserController extends Controller
         try {
             if (Auth::check()) {
                 $data['language'] = $request->header('language');
-                $this->userRepository->changeUserStaus($data, Auth::user()->id);
+                $this->userRepository->updateUser($data, Auth::user()->id);
             }
             return $this->apiSuccessResponse([], trans('message.language_changed'));
         } catch (Exception $ex) {
             return $this->apiErrorResponse($ex->getMessage(), 400);
         }
     }
-
 
      /**
      * Set is availble status
@@ -189,11 +188,5 @@ class UserController extends Controller
             return $this->apiErrorResponse($ex->getMessage(), 400);
         }
     }
-
-
-
-
-
-    
 
 }
