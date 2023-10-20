@@ -14,7 +14,3 @@ window.tutorClassRequestList = function tutorClassRequestList(url = '') {
     });
 };
 tutorClassRequestList();
-
-// $(document).ready(function() {
-//     alert("heloo");
-// });

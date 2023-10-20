@@ -10,6 +10,7 @@ use App\Models\ClassRequestDetail;
 use App\Models\Grade;
 use App\Models\Subject;
 use App\Models\ClassQuotes;
+use App\Models\ClassRequest;
 use Auth;
 
 class TutorClassRequestController extends Controller
@@ -138,7 +139,7 @@ class TutorClassRequestController extends Controller
 
     public function tutorClassRequestList(Request $request)
     {
-       
+    
         try {
             $userId = Auth::user()->id;
             $tutorclassrequest = $this->tutorRequestRepositoty->gettutorclassrequest($userId);

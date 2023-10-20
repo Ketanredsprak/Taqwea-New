@@ -87,7 +87,7 @@
 
                                                     <div class="form-group">
                                                         <label class="form-label">{{ ($classType=='class')? __('labels.class_name'):__('labels.webinar_name') }}</label>
-                                                        <input type="text" name="en[class_name]" class="form-control" dir="rtl" placeholder="{{__('labels.enter_name')}}" value="{{ @$class->class_name }}" id="class_name_en" onkeyup="return setinputvalue('class_name_ar',this.value)";>
+                                                        <input type="text" name="en[class_name]" class="form-control" dir="rtl" placeholder="{{__('labels.enter_name')}}" value="{{ @$class->class_name }}" id="class_name_en">
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-6">

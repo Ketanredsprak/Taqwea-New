@@ -39,10 +39,15 @@
             <td>
                  
                 <a href="{{ route('student.classrequest.show', $data->id) }}" type="button" class="btn btn-primary btn-sm btn-lg text-right"><em class="icon-eye"></em></a>
+                 
+                @if($data->status == 'Active' &&  $data->won_quote_id == null)
+                <a href="{{ route('student.classrequest.getrequest',$data->id) }}" type="button" class="btn btn-primary btn-sm btn-lg text-right"><em class="icon-notsicon2"></em></a>
+                @endif
                 
                 @if($data->status == 'Active')
-                     <a href="{{ route('student.classrequest.getrequest',$data->id) }}" type="button" class="btn btn-primary btn-sm btn-lg text-right"><em class="icon-notsicon2"></em></a>
+                <a href="#" onclick="Cancelrequest('{{ $data->id }}')"   type="button" class="btn btn-primary btn-sm" title="Cancel Request"><em class="icon-delete"></em></a>
                 @endif
+
 
             </td>
 
@@ -86,6 +91,6 @@
     });
 </script>
 
-
+<script type="text/javascript" src="{{asset('assets/js/frontend/student/student-class-request.js')}}"></script>
 
 

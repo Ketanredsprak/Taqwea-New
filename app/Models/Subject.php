@@ -29,11 +29,13 @@ class Subject extends Model implements TranslatableContract
         // $url = Storage::url($this->subject_icon);
         if($this->subject_icon != null)
         {
-            return $url = Storage::url($this->subject_icon);
+            $url = Storage::url($this->subject_icon);
         }
         else {
-            return $url = getImageUrl($this->subject_icon);
+            $url = getImageUrl($this->subject_icon);
         }
+
+        return $url;
     }
 
 

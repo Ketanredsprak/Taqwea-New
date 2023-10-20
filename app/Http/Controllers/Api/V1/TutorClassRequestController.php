@@ -57,7 +57,10 @@ class TutorClassRequestController extends Controller
      */
     public function store(QuoteRequest $request)
     {
-      return "hello from store funstion";
+        
+        
+
+        return "hello store funstion";
     }
 
     /**
@@ -71,6 +74,15 @@ class TutorClassRequestController extends Controller
        
         try {
             $result = $this->tutorRequestRepositoty->gettutorRequest($id);
+            $check_tutor_send_quote_1 = ClassQuotes::where('class_request_id', $result->class_request_id)->where('tutor_id', $result->tutor_id)->get();
+            if(count($check_tutor_send_quote_1) == 1)
+            {
+                    $result['is_quote_sent'] = 1;
+                    // $result['tutot_quote_data'] = $check_tutor_send_quote_1;
+            }
+            else {
+                    $result['is_quote_sent'] = 0;
+            }
             return TutorClassRequestResource::make($result);
         } catch (Exception $e) {
             return response()->json(
@@ -102,7 +114,26 @@ class TutorClassRequestController extends Controller
         //
     }
 
+    public function sendquote(QuoteRequest $request)
+    {
+      
+        // $post = $request->all();
+        try {
+            $post = $request->all();
+            $post['tutor_id'] = Auth::id();
+            $post['user_type'] =  Auth::user()->user_type;
+            $post['status'] = "0";
+            $result = $this->tutorQuoteRepository->createTutorRequest($post);
+            if (!empty($result)) {
+                return $this->apiSuccessResponse([], trans('message.price_send'));
+            }
+            else
+            {
+                return $this->apiSuccessResponse([], trans('error.quote_already_send'));
+            }
+        } catch (Exception $ex) {
+            return $this->apiErrorResponse($ex->getMessage(), 422);
+        }
+    }
 
-
-    
 }

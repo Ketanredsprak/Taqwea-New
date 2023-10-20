@@ -156,8 +156,6 @@ class ClassRequestDetailRepository extends BaseRepository
         try {
             DB::beginTransaction();
             $datas  = $this->where('class_request_id', $id)->get();
-            $postnew = [];
-            $postnew['status'] = "cancel";
             foreach($datas as $data)
                 {
                                 $updateclassrequestdetails = ClassRequestDetail::find($data->id);

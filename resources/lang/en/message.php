@@ -244,5 +244,7 @@ return [
     'taqwea_password_change_successful' => 'Taqwea - Password Change Successful!',
     'class_webinar' => 'Class/Webinar',
     'tutor_reject' => 'Tutor Reject',
+    'notification_send' => 'Notification Send',
     'price_send' => 'Price Send',
+    'cancel_request' => 'Class Request Cancel Successfully',
 ];

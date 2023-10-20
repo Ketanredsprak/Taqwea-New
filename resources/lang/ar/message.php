@@ -239,6 +239,5 @@ return [
     'tutor_reject' => 'رفض المعلم',
     'notification_send' => 'إرسال الإخطار',
     'price_send' => 'إرسال السعر',
-    
- 
+    'cancel_request' => 'تم إلغاء طلب الفصل بنجاح',
 ];

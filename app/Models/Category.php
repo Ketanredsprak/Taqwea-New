@@ -52,7 +52,7 @@ class Category extends Model implements TranslatableContract
         );
     }
 
-      /**
+     /**
      * Method getIconUrlAttribute
      *
      * @return string

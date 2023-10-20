@@ -15,6 +15,7 @@ class ClassQuotes extends Model
         'status',
         'reject_time',
         'price',
+        'note',
         'created_at',
         'updated_at',    
     ];
@@ -23,9 +24,16 @@ class ClassQuotes extends Model
     // {
     //     return $this->hasMany(User::class,'tutor_id');
     // }
+
+
     public function tutor(){
         return $this->hasOne(User::class, 'id', 'tutor_id');
     }
+
+    public function class_request(){
+        return $this->hasOne(ClassRequest::class, 'id', 'class_request_id');
+    }
+
 
 
 }

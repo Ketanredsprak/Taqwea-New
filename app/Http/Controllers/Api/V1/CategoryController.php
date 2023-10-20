@@ -127,7 +127,6 @@ class CategoryController extends Controller
      */
     public function languages(Request $request, Category $category)
     {
-       
         try {
             $params['parent_id'] = $category->id;
             $results = $this->categoryRepository->getCategories($params);
@@ -165,11 +164,9 @@ class CategoryController extends Controller
      */
     public function subjects(Request $request)
     {
-       
         try {
             $params = $request->all();
             $params['count'] = true;
-            $params['subject_icon'] = true;
             $results = $this->categorySubjectRepository->getUniqueSubjects($params);
             return SubjectResource::collection($results);
         } catch(Exception $e) {

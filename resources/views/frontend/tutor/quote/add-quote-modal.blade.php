@@ -19,6 +19,10 @@
                                 <input name="student_id" type="hidden" class="form-control" id="student_id">
                                 <input name="price" type="number" dir="rtl" class="form-control" placeholder="{{ __('labels.price') }}" id="price">
                             </div>
+                            <div class="form-group md-0">
+                                <label class="form-label">{{ __('labels.note') }}</label>
+                                <textarea name="note" rows="3" dir="rtl"  class="form-control" placeholder="{{ __('labels.note') }}" id="note"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>

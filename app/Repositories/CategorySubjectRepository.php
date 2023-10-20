@@ -172,16 +172,13 @@ class CategorySubjectRepository extends BaseRepository
         $size = $params['size'] ?? config('repository.pagination.limit');
         $query = $this->select(
             'category_subjects.subject_id',
-            'subject_translations.subject_name',
-            
+            'subject_translations.subject_name'
         )
             ->leftjoin(
                 'subject_translations',
                 'subject_translations.subject_id',
                 'category_subjects.subject_id'
             )
-          
-            
             ->where('subject_translations.language', $language)
             ->groupBy(
                 [
@@ -244,7 +241,6 @@ class CategorySubjectRepository extends BaseRepository
                     as tutor_count
                 "
             );
-
             $query->addSelect($dbRaw);
         }
         if ($paginate) {

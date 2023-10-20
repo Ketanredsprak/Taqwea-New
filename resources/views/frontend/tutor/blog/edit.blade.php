@@ -60,7 +60,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">{{ __('labels.title') }}</label>
-                                                <input type="text" id="title_en" name="blog_title" class="form-control" placeholder="{{ __('labels.title') }}" value="{{ $blog->translateOrDefault()->blog_title }}">
+                                                <input type="text" name="blog_title" class="form-control" placeholder="{{ __('labels.title') }}" value="{{ $blog->translateOrDefault()->blog_title }}">
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">{{ __('labels.description') }}</label>

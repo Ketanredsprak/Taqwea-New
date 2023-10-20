@@ -92,16 +92,16 @@ $(document).on('click', '.deleteSubTopic', function() {
 window.addMoreSubTopic = function addMoreSubTopic(lang) {
     if (lang === "en") {
         var html = `<div class="form-group form-group-icon mb-2 closeOption">
-                <input type="text" name="sub_topics[]" dir="rtl" class="form-control" placeholder="`+ Lang.get('labels.enter_option') + `" value="">
-                <a href="javascript:void(0);" class="icon remove-btn deleteSubTopic"><span class="icon-close"></span></a>
-            </div>`;
+        <input type="text" name="sub_topics[]" dir="rtl" class="form-control" placeholder="`+ Lang.get('labels.enter_option') + `" value="">
+        <a href="javascript:void(0);" class="icon remove-btn deleteSubTopic"><span class="icon-close"></span></a>
+        </div>`;
     } else {
         var html = `<div class="form-group form-group-icon mb-2 closeOption">
                 <input type="text" name="sub_topics_ar[]" dir="rtl" class="form-control" placeholder="`+ Lang.get('labels.enter_option') + `" value="">
                 <a href="javascript:void(0);" class="icon remove-btn deleteSubTopic"><span class="icon-close"></span></a>
             </div>`;
     }
-    $("#more-option-" + lang).append(html);
+   $("#more-option-" + lang).append(html);
 };
 
 

@@ -21,6 +21,7 @@ class CreateClassQuotesTable extends Migration
             $table->integer('status')->default(0);
             $table->dateTime('reject_time')->nullable();
             $table->string('price')->nullable(); 
+            $table->string('note')->nullable(); 
             $table->timestamps();
         });
     }
