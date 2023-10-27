@@ -79,7 +79,7 @@ class ClassRequestRepository extends BaseRepository
      */
     public function getClassRequest($id)
     {
-        return $this->where('id', $id)->first();
+        return $this->with('classRequestDetails')->where('id', $id)->first();
     }
 
     /**
@@ -208,7 +208,7 @@ class ClassRequestRepository extends BaseRepository
 
     public function getAll(int $id)
     {
-        return $this->where('user_id', $id)->orderBy('id','desc')->paginate(10);
+        return $this->with('subjects')->where('user_id', $id)->orderBy('id','desc')->paginate(10);
     }
 
     public function startTimeCheck($post,$timezone){

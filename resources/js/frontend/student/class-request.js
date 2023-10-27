@@ -20,6 +20,7 @@ classRequestList();
 $(document).ready(function() {
     var i =1;
     var j =2;
+    var k = 10;
 
     $(document).on('click', '.click_multiple', function() {
         $("#multiple_date").addClass('required');
@@ -35,10 +36,16 @@ $(document).ready(function() {
                         placeholder="Number Of Class" readonly="" />
                 </div>
                 <div class="col-sm-6">
-                    <div class="form-group">
+                <div class="form-group form-group-icon" id="datepicker`+k+`"
+                dir="{{ config('constants.date_format_direction') }}"
+                data-target-input="nearest">
                         <label class="form-label">Class Date ` + i + `</label>
-                        <input name="class[` + i +`][date]" id="multiple_date" type="date"
-                            class="form-control" placeholder="" value="">
+                        <input name="class[` + i +`][date]" data-target="#datepicker`+k+`" id="multiple_date" type="text"
+                        class="form-control datetimepicker-input disbeldateTime" placeholder="Date" value="">
+                        <div class="input-group-append" data-target="#datepicker`+k+`"
+                                                            data-toggle="datetimepicker">
+                                                            <i class="icon-calendar-2 icon"></i>
+                                                        </div>
                     </div>
                 </div>
                     <div class="col-sm-2">
@@ -46,9 +53,21 @@ $(document).ready(function() {
                             class="btn btn-danger btn-sm btn-lg remove-class" style="margin-top:35px;">Delete  </button>
                     </div>
             </div>`);
+            $("#datepicker"+k+"").datetimepicker({
+                format: 'DD-MM-YYYY',
+                autoclose: true,
+                minDate: truncateDateCustom(new Date()),
+                showTimezone: true,
+                ignoreReadonly: true
+            });
             i++;
             j++;
+            k++;
+
     })
+    function truncateDateCustom(date) {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    }
 
     $(document).on('click', '.remove-class', function() {
         $(this).closest('div#jquery_remove').remove();
@@ -247,5 +266,3 @@ window.getSubjects = function getSubjects(category_id, grade_id = '', subject_id
         },
     });
 };
-
-

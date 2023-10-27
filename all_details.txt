@@ -32,6 +32,3 @@ helper
             Mail::to($to)->locale('ar')->send($template);
         }
 
-hello 
-
-

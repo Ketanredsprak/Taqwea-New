@@ -631,4 +631,5 @@ return [
     'multiple' => 'عديد',
     'note' => 'ملحوظة',
     'cancel_request' => 'إلغاء الطلب',
+    'pay_and_confirm_class' => 'الدفع وتأكيد الدرجة'
 ];

@@ -247,4 +247,7 @@ return [
     'notification_send' => 'Notification Send',
     'price_send' => 'Price Send',
     'cancel_request' => 'Class Request Cancel Successfully',
+    'tutor_request_accept' => 'tutor request accept successfully',
+    'tutor_request_reject' => 'tutor request reject successfully',
+    'tutor_not_found' => 'Tutor No Found',
 ];

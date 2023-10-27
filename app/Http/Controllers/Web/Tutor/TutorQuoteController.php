@@ -63,7 +63,7 @@ class TutorQuoteController extends Controller
                 return response()->json(
                     [
                         'success' => true,
-                        'message' => trans('message.price_send')
+                        'message' => trans('message.Price Send')
                     ]
                 );
             }

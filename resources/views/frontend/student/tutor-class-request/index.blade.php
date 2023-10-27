@@ -102,8 +102,10 @@
                                                         <th>{{ __('labels.id') }}</th>
 
                                                         <th>{{ __('labels.tutor_name') }}</th>
-
-                                                        <th>{{ __('labels.tutor_email') }}</th>
+                                                        
+                                                        {{-- <th>{{ __('labels.subjects') }}</th> --}}
+                                                       
+                                                        <th>{{ __('labels.tutor_rating') }}</th>
 
                                                         <th>{{ __('labels.price') }}</th> 
 
@@ -120,15 +122,25 @@
                                                 <tbody>
 
                                                     <?php $i = 1; ?>
-
                                                     @forelse($datas as $key=>$data)
                                                         <tr>
 
                                                             <td>{{ $key + 1 }}</td>
 
-                                                            <td>{{ $data->tutor->name }}</td>
+                                                            <td><img src="{{ $data->tutor->profile_image_url }}" alt="user" class="userImg img-fluid" width="40px"> {{ $data->tutor->name }}</td>
 
-                                                            <td>{{ $data->tutor->email }}</td>
+                                                          
+                                                              {{-- <td>hello</td> --}}
+                                                            <td>
+                                                                        @php
+                                                                        $rating = isset($data->rating) ? $data->rating : '';
+                                                                        @endphp
+                                                                        @for($i = 1;$i<=5;$i++) @if($i <=$rating) <em class="icon-star-fill"></em>
+                                                                            @else
+                                                                            <em class="icon-rating"></em>
+                                                                            @endif
+                                                                        @endfor
+                                                            </td>
 
                                                             <td>{{ $data->price }}</td>
 
@@ -136,10 +148,10 @@
 
                                                             <td>
 
-                                                                <a href="#"
+                                                                {{-- <a href="#"
                                                                     onclick="Approverequest('{{ $data->id }}','{{ $data->class_request_id }}')"
                                                                     type="button" class="btn btn-primary btn-sm"
-                                                                    title="Accept"><em class="icon-right"></em></a>
+                                                                    title="Accept"><em class="icon-right"></em></a> --}}
 
                                                                 <a href="#"
                                                                     onclick="RejectTutorRequest('{{ $data->id }}','{{ $data->class_request_id }}')"
@@ -151,6 +163,11 @@
                                                                     title="View Tutor Profile"><em
                                                                         class="icon-eye"></em></a>
 
+                                                              
+                                                                <a class="btn btn-primary btn-sm"
+                                                                    href="{{ route('student.checkout.index') . '?tutor_class_request_id=' . Crypt::encryptString($data->id) }}"
+                                                                    tabindex="0">{{ __('labels.pay_and_confirm_class') }}</a>
+                                  
                                                             </td>
 
                                                         </tr>

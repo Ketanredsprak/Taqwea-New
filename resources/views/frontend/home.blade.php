@@ -19,10 +19,10 @@
 
                     <a class="btn btn-primary ripple-effect btn-tutor" href="{{route('show/signup',['role' =>'tutor'])}}">{{ __('labels.become_tutor') }}</a>
                     <a class="btn btn-secondary ripple-effect" href="{{route('show/signup')}}">{{ __('labels.start_learning') }}</a>
+                    <br><br><a class="btn btn-info btn-sm ripple-effect  btn-tutor" href="{{ route('student.classrequest.create') }}">Create Class Request</a>
                 </div>
             </div>
         </section>
-
         <section class="learningPrograms">
             <div class="container-fluid">
                 <div class="learningPrograms__inner">

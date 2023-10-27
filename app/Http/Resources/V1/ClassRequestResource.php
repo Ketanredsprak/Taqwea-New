@@ -66,14 +66,23 @@ class ClassRequestResource extends JsonResource
             $class_duration_hour = $this->class_duration;
         }
 
-
-    
+         //for get request valide time 
+         $start_time = \Carbon\Carbon::now(); 
+         $end_time = \Carbon\Carbon::parse($this->created_at)->addMinutes(11);
+         $diff = $start_time->diffInMinutes($end_time,false);
+         if ($diff < 0){
+             $timer = "Expired";
+         }
+         else
+         {
+             $timer = $diff;
+         }
+         
 
         return [
 
             'id' => $this->id,
 
-            // 'user' => $this->user_id,
             'note' => $this->note,
 
             'class_type' => $this->class_type,
@@ -104,7 +113,9 @@ class ClassRequestResource extends JsonResource
             
             'number_of_classes' => count(ClassRequestDetailResource::collection($this->classRequestDetails)),
             
-            'request_valide_timer' => $this->timer,
+            'request_valide_timer' => $timer,
+
+            'create_date_time' => $this->created_at,
 
         ];
 

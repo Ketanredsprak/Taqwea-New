@@ -711,7 +711,7 @@ window.submitEducationDetail = function submitEducationDetail(obj) {
 $(document).ready(function () {
 
     $("#name_en").on('keyup',function () {
-        alert("sdfsdf");
+       
 
         var val = $(this).val();
 

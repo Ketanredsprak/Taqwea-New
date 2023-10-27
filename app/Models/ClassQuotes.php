@@ -34,6 +34,11 @@ class ClassQuotes extends Model
         return $this->hasOne(ClassRequest::class, 'id', 'class_request_id');
     }
 
+    public function class_request_detail(){
+        return $this->hasOne(ClassRequestDetail::class, 'id', 'class_request_id');
+    }
+
+
 
 
 }

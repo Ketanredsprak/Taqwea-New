@@ -8,17 +8,15 @@
 
             <th>{{ __('labels.student_name')}}</th>
 
-            <th>{{ __('labels.student_email_id')}}</th>
+            {{-- <th>{{ __('labels.status')}}</th> --}}
 
-            <th>{{ __('labels.status')}}</th>
-
-            {{-- <th>{{ __('labels.class_type') }}</th> --}}
+             <th>{{ __('labels.subjects')}}</th> 
 
             <th>{{ __('labels.class_duration') }}</th>
 
-            {{-- <th>{{ __('labels.request_time') }}</th>
-
-            <th>{{ __('labels.expired_time') }}</th> --}}
+            <th>{{ __('labels.note') }}</th>
+            
+            <th>{{ __('labels.time') }} </th>
 
             <th>{{ __('labels.action') }}</th>
 
@@ -32,27 +30,76 @@
 
     <?php $i = 1; ?>
 
-    {{-- @dd($datas); --}}
+        @forelse($datas as $key=>$data)
 
-        @forelse($datas as $data)
 
         <tr>
 
             <td>{{$i}}</td>
 
-            <td>{{ $data->userdata->name }}</td>
+            <td><img src="@if($data->userdata) @if($data->userdata->profile_image_url){{ $data->userdata->profile_image_url }} @endif @endif" alt="user" class="userImg img-fluid" width="40px">
+            <span class="name"> @if($data->userdata != null){{ $data->userdata->name }} @else Not Added @endif</span></td>
 
-            <td>{{ $data->userdata->email }}</td>
+            <td>test</td> 
 
-            <td> @if($data->status) <label class="text-success">{{ __('labels.active') }}</label> @else {{ $data->status }} @endif</td>
+            <td>{{$data->classrequest->class_duration}} {{ __('labels.minutes') }}</td>
 
-            {{-- <td>{{$data->classrequest->class_type}}</td> --}}
+            <td>{{ $data->classrequest->note }}</td>
 
-            <td>{{$data->classrequest->class_duration}} {{ __('labels.hours') }}</td>
+            <td>  @php
+                        $start_time = \Carbon\Carbon::now();
+                        $end_time = \Carbon\Carbon::parse($data->created_at)->addMinutes(11);
+                        $diff = $start_time->diffInMinutes($end_time, false);
+                    @endphp
 
-            {{-- <td>{{  date('g:i a', strtotime($data->classrequest->request_time))  }}</td>
 
-            <td>{{ date('g:i a', strtotime($data->classrequest->expired_time))}}</td> --}}
+                    @if ($data->status == 'Active')
+                        @if ($diff < 0)
+                            <p id="clockdiv">Expired</p>
+                        @else
+                            <p id="clockdiv{{ $key }}"></p>
+                            <script>
+                                // 10 minutes from now
+                                var time_in_minutes{{ $key }} = "{{ @$diff }}";
+                                var current_time{{ $key }} = Date.parse(new Date());
+                                var deadline{{ $key }} = new Date(current_time{{ $key }} + time_in_minutes{{ $key }} *
+                                    60 * 1000);
+
+
+                                function time_remaining(endtime) {
+                                    var t{{ $key }} = Date.parse(endtime) - Date.parse(new Date());
+                                    var seconds{{ $key }} = Math.floor((t{{ $key }} / 1000) % 60);
+                                    var minutes{{ $key }} = Math.floor((t{{ $key }} / 1000 / 60) % 60);
+                                    var hours{{ $key }} = Math.floor((t{{ $key }} / (1000 * 60 * 60)) % 24);
+                                    var days{{ $key }} = Math.floor(t{{ $key }} / (1000 * 60 * 60 * 24));
+                                    return {
+                                        'total': t{{ $key }},
+                                        'days': days{{ $key }},
+                                        'hours': hours{{ $key }},
+                                        'minutes': minutes{{ $key }},
+                                        'seconds': seconds{{ $key }}
+                                    };
+                                }
+
+                                function run_clock(id, endtime) {
+                                    var clock = document.getElementById(id);
+
+                                    function update_clock() {
+                                        var t = time_remaining(endtime);
+                                        clock.innerHTML = '<p style="color:red;">' + t.minutes + ': ' + t.seconds + '</p>';
+                                        if (t.total <= 0) {
+                                            clearInterval(timeinterval);
+                                        }
+                                    }
+                                    update_clock(); // run function once at first to avoid delay
+                                    var timeinterval = setInterval(update_clock, 1000);
+                                }
+                                run_clock('clockdiv{{ $key }}', deadline{{ $key }});
+                            </script>
+                        @endif
+                    @else
+                              <p id="clockdiv">Cancel</p>
+                    @endif</td>
 
             <td><a href="{{ route('tutor.classrequest.show', $data->id) }}" type="button" class="btn btn-primary btn-sm btn-lg text-right"><em class="icon-eye"></em></a>
 
@@ -63,12 +110,6 @@
                 @endif     
 
             </td>
-
-            {{-- <a href="#" class="linkPrimary text-uppercase font-eb" onclick="quoteModal()">{{ __('labels.send_price') }}</a> --}}
-
-
-
-       
 
         </tr>
 

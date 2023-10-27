@@ -2,36 +2,36 @@
 
 namespace App\Repositories;
 
-use App\Models\RewardPoint;
-use App\Models\Transaction;
+use App\Events\BookingEvent;
 use App\Models\ClassBooking;
 use App\Models\ClassWebinar;
-use Illuminate\Support\Collection;
+use App\Models\RewardPoint;
+use App\Models\Transaction;
+use App\Models\TransactionItem;
+use App\Models\TutorSubscription;
+use app\Models\User;
+use App\Models\Wallet;
+use App\Repositories\BlogRepository;
+use App\Repositories\CartRepository;
+use App\Repositories\ClassBookingRepository;
+use App\Repositories\ClassRepository;
+use App\Repositories\ClassRequestRepository;
+use App\Repositories\PaymentMethodRepository;
+use App\Repositories\TopupTutorRepository;
+use App\Repositories\TransactionItemRepository;
+use App\Repositories\TutorClassRequestRepository;
+use App\Repositories\WalletRepository;
+use App\Services\PaymentService;
+use App\Services\SubscriptionService;
+use App\Services\TopUpService;
+use Carbon\Carbon;
+use Exception;
+use Illuminate\Container\Container as Application;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Log;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
-use Illuminate\Container\Container as Application;
-use Illuminate\Support\Facades\DB;
-use Exception;
-use App\Models\Wallet;
-use App\Models\TutorSubscription;
-use App\Models\TransactionItem;
-use App\Repositories\WalletRepository;
-use App\Repositories\ClassRepository;
-use App\Repositories\BlogRepository;
-use App\Repositories\ClassBookingRepository;
-use App\Repositories\TransactionItemRepository;
-use App\Repositories\CartRepository;
-use App\Repositories\PaymentMethodRepository;
-use App\Repositories\SubscriptionRepository;
-use App\Services\PaymentService;
-use App\Services\TopUpService;
-use App\Services\SubscriptionService;
-use App\Repositories\TopupTutorRepository;
-use Log;
-use app\Models\User;
-use Carbon\Carbon;
-use App\Events\BookingEvent;
 
 /**
  * TransactionRepository
@@ -62,6 +62,10 @@ class TransactionRepository extends BaseRepository
 
     protected $subscriptionService;
 
+    protected $classRequestRepository;
+
+    protected $tutorClassRequestRepository;
+
     protected $commission = 0;
 
     /**
@@ -79,6 +83,8 @@ class TransactionRepository extends BaseRepository
      * @param TopUpService              $topUpService
      * @param TopupTutorRepository      $topupTutorRepository
      * @param SubscriptionService       $subscriptionService
+     * @param ClassRequestRepository       $classRequestRepository
+     * @param TutorClassRequestRepository       $tutorClassRequestRepository
      *
      * @return void
      */
@@ -94,7 +100,9 @@ class TransactionRepository extends BaseRepository
         PaymentMethodRepository $paymentMethodRepository,
         TopUpService $topUpService,
         TopupTutorRepository $topupTutorRepository,
-        SubscriptionService $subscriptionService
+        SubscriptionService $subscriptionService,
+        ClassRequestRepository $classRequestRepository,
+        TutorClassRequestRepository $tutorClassRequestRepository
     ) {
         parent::__construct($app);
         $this->walletRepository = $walletRepository;
@@ -108,6 +116,8 @@ class TransactionRepository extends BaseRepository
         $this->topUpService = $topUpService;
         $this->topupTutorRepository = $topupTutorRepository;
         $this->subscriptionService = $subscriptionService;
+        $this->classRequestRepository = $classRequestRepository;
+        $this->tutorClassRequestRepository = $tutorClassRequestRepository;
     }
 
     /**
@@ -148,15 +158,15 @@ class TransactionRepository extends BaseRepository
                 "amount" => $data['amount'],
                 "total_amount" => $data['amount'],
                 "payment_mode" => isset($data['payment_mode'])
-                    ? $data['payment_mode'] : Transaction::STATUS_DIRECT_PAYMENT,
+                ? $data['payment_mode'] : Transaction::STATUS_DIRECT_PAYMENT,
                 "status" => isset($data['status'])
-                    ? $data['status'] : Transaction::STATUS_SUCCESS,
+                ? $data['status'] : Transaction::STATUS_SUCCESS,
 
                 "transaction_type" => isset($data['transaction_type'])
-                    ? $data['transaction_type'] : Transaction::STATUS_ADD_TO_WALLET,
+                ? $data['transaction_type'] : Transaction::STATUS_ADD_TO_WALLET,
 
                 "response_data" => isset($data['response_data'])
-                    ? $data['response_data'] : ''
+                ? $data['response_data'] : '',
             ];
 
             if (!empty($data["vat"])) {
@@ -173,7 +183,6 @@ class TransactionRepository extends BaseRepository
             if (!empty($data["total_amount"])) {
                 $dataArray["total_amount"] = $data["total_amount"];
             }
-
 
             if (isset($data['type']) && $data['type'] == "wallet") {
                 $dataArray['total_amount'] = $data['amount'];
@@ -204,12 +213,13 @@ class TransactionRepository extends BaseRepository
      */
     public function checkout($data, $checkWalletBalance = true)
     {
+       
         $user = Auth::user();
         $success = Transaction::STATUS_PENDING;
         $successStatusItem = TransactionItem::STATUS_PENDING;
         $transactionType = Transaction::STATUS_BOOKING;
         if ($user->user_type == User::TYPE_STUDENT) {
-            $available =  Wallet::availableBalance($user->id);
+            $available = Wallet::availableBalance($user->id);
 
             /**
              * Check wallet negative balance
@@ -217,27 +227,33 @@ class TransactionRepository extends BaseRepository
              * @var int available
              */
             if ($available < 0) {
+
                 throw new Exception(trans('error.wallet_negative_balance'));
             }
         }
 
         $data['walletAmount'] = 0;
         $bookingFrom = 'cart';
+
         if (@$data['item_id']) {
+
             $bookingFrom = 'direct';
             // If booking with book now (single item)
             $this->checkBookingItems($data, !$checkWalletBalance);
         } else {
+
             // If booking with cart
             $this->getCartItems();
         }
 
         $this->getBookingTotal();
         if ($data['payment_method'] == Transaction::STATUS_WALLET) {
+
             $walletCheck = $this->checkWalletAmount(
                 $this->shoppingCart['bookingTotal']
             );
             if ($checkWalletBalance && $walletCheck === false) {
+
                 throw new Exception(trans('error.wallet_insufficient_balance'));
             }
             $paymentMode = Transaction::STATUS_WALLET;
@@ -245,8 +261,9 @@ class TransactionRepository extends BaseRepository
             $data['walletAmount'] = $this->shoppingCart['bookingTotal'];
             $success = Transaction::STATUS_SUCCESS;
             $successStatusItem = TransactionItem::STATUS_CONFIRMED;
+            
         }
-        
+
         if (!$checkWalletBalance) {
             $transactionType = Transaction::STATUS_EXTRA_HOURS;
         }
@@ -261,20 +278,30 @@ class TransactionRepository extends BaseRepository
         ];
 
         if (!empty($externalId)) {
+
             $transactionData['external_id'] = $externalId;
         }
 
         if (!empty($externalId)) {
+
             $transactionData['payment_mode'] = $paymentMode;
         }
 
         if (!empty($data['card_type'])) {
+
             $transactionData['card_type'] = $data['card_type'];
         }
         // Empty cart If booking from cart
         if ($bookingFrom == 'cart') {
+
             $transactionData['booking_by'] = Transaction::BOOKING_BY_CART;
         }
+        if($data['item_type'] = "class_request")
+        {
+            $transactionData['class_request_id'] = $data['item_id'];
+        }
+      
+
 
         $transactionData['status'] = $success;
 
@@ -282,6 +309,7 @@ class TransactionRepository extends BaseRepository
         // End add transaction
 
         if (!empty($transaction)) {
+            
             $this->addTransactionItems(
                 $transaction->id,
                 $this->shoppingCart['items'],
@@ -291,6 +319,7 @@ class TransactionRepository extends BaseRepository
 
         // Check payment by wallet
         if ($data['walletAmount'] > 0) {
+
             $walletData = [
                 'user_id' => $user->id,
                 'amount' => '-' . $data['walletAmount'],
@@ -300,12 +329,12 @@ class TransactionRepository extends BaseRepository
                 ->createWallet($walletData);
             $this->update(['wallet_id' => $wallet->id], $transaction->id);
         }
-       
 
         // Payment getaways
         if ($data['payment_method'] == Transaction::STATUS_DIRECT_PAYMENT
             || $data['payment_method'] == Transaction::NEW_CARD
         ) {
+
             $checkoutId = $this->generateCheckoutId($transaction);
             $transaction->checkout_id = $checkoutId;
             $transaction->save();
@@ -313,8 +342,10 @@ class TransactionRepository extends BaseRepository
         }
         // Empty cart If booking from cart
         if ($bookingFrom == 'cart') {
+
             $this->cartRepository->deleteCart($user->id);
         }
+
         BookingEvent::dispatch($transaction->id);
         return $transaction;
     }
@@ -414,10 +445,27 @@ class TransactionRepository extends BaseRepository
                 $item->item_id = $item->id;
                 $item->item_amount = $item->total_fees;
             }
+
+            //add by ketan
+            if (@$data['item_type'] == 'class_request') {
+                $is_purchase = $this->transactionItemRepository
+                    ->checkPurchased($user->id, $data['item_id']);
+                if ($is_purchase) {
+                    throw new Exception(trans('error.Class_book'));
+                }
+                $item = $this->tutorClassRequestRepository->getClassQuotes($data['item_id']);
+                if (empty($item)) {
+                    throw new Exception(trans('error.class_booking_not_done'));
+                }
+                $item->item_type = 'class_request';
+                $item->item_id = $item->id;
+                $item->item_amount = $item->price;
+            }
+
             $this->shoppingCart['cartTotal'] = (@$this->shoppingCart['cartTotal'])
-                ? @$this->shoppingCart['cartTotal']
-                + $item->item_amount
-                : $item->item_amount;
+            ? @$this->shoppingCart['cartTotal']
+             + $item->item_amount
+            : $item->item_amount;
             $this->shoppingCart['items'][] = $item;
         }
     }
@@ -448,7 +496,7 @@ class TransactionRepository extends BaseRepository
                         'student_id' => $user->id,
                         'status' => $status,
                         'is_extra_hour' => $item->is_extra_hour ? '1' : '0',
-                        'parent_id' => $item->parent_id
+                        'parent_id' => $item->parent_id,
                     ];
                     $this->classBookingRepository->firstOrCreate($classBookingData);
 
@@ -456,19 +504,25 @@ class TransactionRepository extends BaseRepository
                     // commission calculate
                     $tutorPlan = TutorSubscription::tutorActivePlan($item->tutor_id);
                     $commission = isset($tutorPlan->commission) ?
-                        $tutorPlan->commission : 0;
+                    $tutorPlan->commission : 0;
                 }
                 if ($item->item_type == 'blog') {
                     $transactionItemData['blog_id'] = $item->item_id;
                     // commission calculate
                     $tutorPlan = TutorSubscription::tutorActivePlan($item->tutor_id);
                     $commission = isset($tutorPlan->blog_commission) ?
-                        $tutorPlan->blog_commission : 0;
+                    $tutorPlan->blog_commission : 0;
+                }
+
+                if ($item->item_type == 'class_request') {
+                    $transactionItemData['class_request_id'] = $item->item_id;
+                    $tutorPlan = TutorSubscription::tutorActivePlan($item->tutor_id);
+                    $commission = isset($tutorPlan->blog_commission) ?
+                    $tutorPlan->blog_commission : 0;
                 }
 
 
                 $commission = ($item->item_amount * ($commission / 100));
-
 
                 $transactionItemData['total_amount'] = $item->item_amount;
                 $transactionItemData['commission'] = $commission;
@@ -538,6 +592,36 @@ class TransactionRepository extends BaseRepository
     public function getBlog($id)
     {
         return $this->blogRepository->getBlog($id);
+    }
+
+    //added by ketan 13-10-2023
+    /**
+     * Get blog details
+     *
+     * @param $id
+     *
+     * @return Object
+     */
+    public function getClassRequest($id)
+    {
+        $data =  $this->classRequestRepository->getClassRequest($id);
+       
+    }
+
+    //added by ketan 13-10-2023
+    /**
+     * Get blog details
+     *
+     * @param $id
+     *
+     * @return Object
+     */
+    public function getTutorClassRequest($id)
+    {
+
+       return $this->tutorClassRequestRepository->getClassQuotes($id);
+       
+
     }
 
     /**
@@ -784,7 +868,7 @@ class TransactionRepository extends BaseRepository
             $plan = TutorSubscription::getPlanByTransactionId($transaction->id);
 
             //Get the active plan
-            $activePlan =  TutorSubscription::tutorActivePlan($transaction->user_id);
+            $activePlan = TutorSubscription::tutorActivePlan($transaction->user_id);
 
             // Update status inactive old plan
             if (!empty($activePlan)) {
@@ -806,21 +890,21 @@ class TransactionRepository extends BaseRepository
         if ($transaction->transaction_type == Transaction::STATUS_BOOKING) {
             if ($result["status"] == Transaction::STATUS_SUCCESS) {
                 $transactionUpdateData = [
-                    "status" => TransactionItem::STATUS_CONFIRMED
+                    "status" => TransactionItem::STATUS_CONFIRMED,
                 ];
                 $bookingUpdateData = [
-                    "status" => ClassBooking::STATUS_CONFIRMED
+                    "status" => ClassBooking::STATUS_CONFIRMED,
                 ];
                 BookingEvent::dispatch($transaction->id);
             } else {
                 $transactionUpdateData = [
-                    "status" => ClassBooking::STATUS_CANCELLED
+                    "status" => ClassBooking::STATUS_CANCELLED,
                 ];
                 if ($transaction->user_id) {
                     $transactionUpdateData['cancelled_by'] = $transaction->user_id;
                 }
                 $bookingUpdateData = [
-                    "status" => ClassBooking::STATUS_FAILED
+                    "status" => ClassBooking::STATUS_FAILED,
                 ];
             }
             $this->classBookingRepository
@@ -851,7 +935,7 @@ class TransactionRepository extends BaseRepository
             DB::raw(
                 "sum(
                     IF(
-                        (transactions.transaction_type='subscription' 
+                        (transactions.transaction_type='subscription'
                         or transactions.transaction_type='top_up'),
                         transactions.amount, 0
                     )
@@ -859,46 +943,46 @@ class TransactionRepository extends BaseRepository
             ),
             DB::raw(
                 " sum(
-                    IF( 
+                    IF(
                         (
-                            transaction_items.class_id 
-                            and 
-                            transaction_items.status 
+                            transaction_items.class_id
+                            and
+                            transaction_items.status
                             = '" . TransactionItem::STATUS_CONFIRMED . "'
-                            and transaction_items.class_id in 
-                                (select id FROM class_webinars 
-                                    where class_type 
+                            and transaction_items.class_id in
+                                (select id FROM class_webinars
+                                    where class_type
                                     = '" . ClassWebinar::TYPE_WEBINAR . "'
                                 )
                         ),
                         transaction_items.commission, 0
                     )
-                ) 
+                )
                   as webinar_sum"
             ),
             DB::raw(
                 " sum(
-                    IF( 
+                    IF(
                         (
-                            transaction_items.class_id 
-                            and transaction_items.status 
+                            transaction_items.class_id
+                            and transaction_items.status
                             = '" . TransactionItem::STATUS_CONFIRMED . "'
-                            and transaction_items.class_id in 
-                            (select id FROM class_webinars 
+                            and transaction_items.class_id in
+                            (select id FROM class_webinars
                                 where class_type = '" . ClassWebinar::TYPE_CLASS . "'
                             )
                         ),
                         transaction_items.commission, 0
                     )
-                ) 
+                )
                   as class_sum"
             ),
             DB::raw(
                 "sum(
-                    IF( 
+                    IF(
                         (
-                            transaction_items.blog_id 
-                            and transaction_items.status 
+                            transaction_items.blog_id
+                            and transaction_items.status
                             = '" . TransactionItem::STATUS_CONFIRMED . "'
                         ),
                         transaction_items.commission, 0
@@ -907,9 +991,9 @@ class TransactionRepository extends BaseRepository
             ),
             DB::raw(
                 "sum(
-                    IF( 
+                    IF(
                         (
-                             transactions.transaction_type 
+                             transactions.transaction_type
                             = '" . Transaction::STATUS_FINE . "'
                         ),
                         transactions.amount, 0
@@ -918,9 +1002,9 @@ class TransactionRepository extends BaseRepository
             ),
             DB::raw(
                 "sum(
-                    IF( 
+                    IF(
                         (
-                             transaction_items.status 
+                             transaction_items.status
                             = '" . TransactionItem::STATUS_REFUND . "'
                         ),
                         transaction_items.commission, 0
@@ -933,7 +1017,7 @@ class TransactionRepository extends BaseRepository
             'transactions.id'
         )->where('transactions.status', Transaction::STATUS_SUCCESS)
             ->whereYear('transactions.created_at', $params['year']);
-        $query =  $query->groupBy(
+        $query = $query->groupBy(
             DB::raw("month")
         )->get();
 

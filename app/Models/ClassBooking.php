@@ -16,7 +16,7 @@ class ClassBooking extends Model
 
     protected $fillable = [
         'class_id', 'student_id', 'status', 'cancelled_by', 'is_joined',
-        'is_extra_hour', 'parent_id', 'transaction_id'
+        'is_extra_hour', 'parent_id', 'transaction_id','class_request_id'
     ];
 
     /**
