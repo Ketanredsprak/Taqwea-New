@@ -41,6 +41,7 @@ window.Approverequest = function Approverequest(id, class_request_id) {
                     handleError(data);
                 },
             });
+            // window.location.href = process.env.MIX_APP_URL + '/checkout?amount='+150;
         };
     });
 }

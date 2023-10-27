@@ -157,7 +157,7 @@ class TutorQuoteRepository extends BaseRepository
                     $updateclassquotestatus = ClassQuotes::find($data->id);
                     $updateclassquotestatus->status = 4;
                     $updateclassquotestatus->update();
-                    }
+            }
             DB::commit();
             return true;
         } catch (Exception $e) {
@@ -179,7 +179,7 @@ class TutorQuoteRepository extends BaseRepository
     {
         try {
             DB::beginTransaction();
-            $result = $this->where('class_request_id', $id)->where('status',0)->paginate('10');
+            $result = $this->with('class_request')->where('class_request_id', $id)->where('status',0)->paginate('10');
             return $result;
             DB::commit();
             return true;

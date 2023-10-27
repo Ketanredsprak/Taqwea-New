@@ -75,9 +75,7 @@
                                         id="addClassRequestForm" novolidate>
 
 
-
                                         <div class="row">
-
 
                                             <div class="col-md-6">
 

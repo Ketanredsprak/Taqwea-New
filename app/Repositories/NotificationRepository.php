@@ -154,13 +154,13 @@ class NotificationRepository extends BaseRepository
             }
         }
        
-        // if (!empty($tokens)) {
-        //     return $this->notificationService->sendNotification(
-        //         $tokens,
-        //         $type,
-        //         $data['notification_message'],
-        //         $data['extra_data']
-        //     );
-        // }
+        if (!empty($tokens)) {
+            return $this->notificationService->sendNotification(
+                $tokens,
+                $type,
+                $data['notification_message'],
+                $data['extra_data']
+            );
+        }
     }
 }

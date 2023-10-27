@@ -43,6 +43,7 @@ class TutorDashboardResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'is_available' => Auth::user()->is_available,
             'counts' => [
                 'classes' => $this->counts['class_count'] ?? 0,
                 'webinars' => $this->counts['webinar_count'] ?? 0,

@@ -26,6 +26,11 @@ class TutorRequest extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
+    public function classrequestdetail(){
+        return $this->hasOne(ClassRequestDetail::class, 'id', 'class_request_id');
+    }
+
+
 
 
 

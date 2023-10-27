@@ -25,7 +25,7 @@ class TutorClassRequestResource extends JsonResource
 
        
         if ($this->classrequest->class_duration / 60 == 0.5) {
-            $class_duration_hour = "1 hr 00 m";
+            $class_duration_hour = "0 hr 30 m";
         } else if ($this->classrequest->class_duration / 60 == 1) {
             $class_duration_hour = "1 hr 00 m";
         } else if ($this->classrequest->class_duration / 60 == 1.5) {
@@ -98,6 +98,8 @@ class TutorClassRequestResource extends JsonResource
             'student_data' => UserResource::make($this->userdata), 
 
             'is_quote_sent' => $this->is_quote_sent,
+
+            'create_date_time' => $this->classrequest->created_at,
 
             // 'tutot_quote_data' => $this->when(
             //     $this->is_quote_sent == 1,

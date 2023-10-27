@@ -86,8 +86,6 @@ class ClassRequestController extends Controller
             $post = $request->all();
             $post['class'] = $post['class'] ?? null;
             $post['class_date'] = $post['class_date'] ?? null;
-            // $post['request_time'] = Carbon::now();
-            // $post['expired_time'] = Carbon::now()->addMinute('10');
             $timezone = $request->header('time-zone');
             $post['status'] = "Active";
             $post['user_id'] =  Auth::id();
@@ -108,7 +106,7 @@ class ClassRequestController extends Controller
                 }
             } else {
                 return response()->json(
-                    ['success' => false, 'message' => "No Tutor Found"]
+                    ['success' => false, 'message' => trans('message.notification_send')]
                 );
             }
         } catch (Exception $ex) {
@@ -191,7 +189,8 @@ class ClassRequestController extends Controller
             $post['status'] = 2;
             $post['reject_time'] = Carbon::now();
             $data = $this->tutorClassRequestRepository->tutorrequestreject($post, $id);
-            return new QuoteResource($data);
+            $dataquote =  new QuoteResource($data);
+            return $this->apiSuccessResponse([$dataquote], trans('message.tutor_request_reject'));
         } catch (Exception $e) {
             return $this->apiErrorResponse($e->getMessage(), 400);
         }
@@ -202,7 +201,9 @@ class ClassRequestController extends Controller
         try {
             $post['status'] = 1;
             $data = $this->tutorClassRequestRepository->tutorRequestAccept($post, $id);
-            return new QuoteResource($data);
+            $dataquote =  new QuoteResource($data);
+            return $this->apiSuccessResponse([$dataquote], trans('message.tutor_request_accept'));
+
         } catch (Exception $e) {
             return $this->apiErrorResponse($e->getMessage(), 400);
         }
@@ -213,7 +214,7 @@ class ClassRequestController extends Controller
         try {
             $post['status'] = "Cancel";
             $result = $this->classRequestRepository->cancelrequest($post, $id);
-            return $result;
+            return $this->apiSuccessResponse([$result], trans('message.request_cancel'));
         } catch (Exception $e) {
             return $this->apiErrorResponse($e->getMessage(), 400);
         }
@@ -222,11 +223,12 @@ class ClassRequestController extends Controller
     
     public function getTutorListForClassRequest($id)
     {
+    
         //  
         try {
             $result = $this->tutorQuoteRepository->getTutorListWithQuote($id);
-            return classQuoteListResource::collection($result);  
-        } catch (Exception $e) {
+            return classQuoteListResource::collection($result);
+       } catch (Exception $e) {
             return $this->apiErrorResponse($e->getMessage(), 400);
         }
 

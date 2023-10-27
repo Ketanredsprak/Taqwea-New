@@ -15,10 +15,12 @@ use App\Repositories\ClassRequestRepository;
 use App\Repositories\TutorClassRequestRepository;
 use App\Repositories\TutorRequestRepositoty;
 use App\Repositories\UserRepository;
+use App\Repositories\SubjectRepository;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Redirect;
+use App\Models\RatingReview;
 
 class ClassRequestController extends Controller
 {
@@ -29,6 +31,7 @@ class ClassRequestController extends Controller
     protected $tutorRequestRepositoty;
     protected $categoryRepository;
     protected $tutorClassRequestRepository;
+    protected $subjectRepository;
     /**
      * Function __construct
      *
@@ -37,6 +40,7 @@ class ClassRequestController extends Controller
      * @param UserRepository     $userRepository
      * @param TutorRequestRepositoty     $tutorRequestRepositoty
      * @param TutorClassRequestRepository $tutorClassRequestRepository [explicite description]
+     * @param SubjectRepository $subjectRepository [explicite description]
      *
      * @return void
      */
@@ -46,7 +50,8 @@ class ClassRequestController extends Controller
         UserRepository $userRepository,
         TutorRequestRepositoty $tutorRequestRepositoty,
         CategoryRepository $categoryRepository,
-        TutorClassRequestRepository $tutorClassRequestRepository
+        TutorClassRequestRepository $tutorClassRequestRepository,
+        SubjectRepository $subjectRepository
     ) {
         $this->classRequestRepository = $classRequestRepository;
         $this->classRequestDetailRepository = $classRequestDetailRepository;
@@ -54,6 +59,7 @@ class ClassRequestController extends Controller
         $this->tutorRequestRepositoty = $tutorRequestRepositoty;
         $this->categoryRepository = $categoryRepository;
         $this->tutorClassRequestRepository = $tutorClassRequestRepository;
+        $this->subjectRepository = $subjectRepository;
     }
 
     /**
@@ -130,7 +136,7 @@ class ClassRequestController extends Controller
                         return response()->json(
                             [
                                 'success' => true,
-                                'message' => trans('message.Notification Send'),
+                                'message' => trans('message.notification_send'),
                                 '200',
                             ]
                         );
@@ -240,7 +246,6 @@ class ClassRequestController extends Controller
 
     public function gettutorrequestget($id)
     {
-
         $params['currentPage'] = 'classRequest';
         $params['title'] = trans("labels.class_request");
         $params['id'] = $id;

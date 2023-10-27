@@ -687,6 +687,7 @@ class ClassRepository extends BaseRepository
      */
     public function createClass(array $data): ClassWebinar
     {
+       
         try {
             DB::beginTransaction();
             if (!empty($data['class_image'])) {
@@ -709,6 +710,9 @@ class ClassRepository extends BaseRepository
         }
     }
 
+   
+
+
     /**
      * Method updateClass
      *
@@ -719,6 +723,7 @@ class ClassRepository extends BaseRepository
      */
     public function updateClass(array $data, int $id): ClassWebinar
     {
+      
         if (!empty(@$data['start_time'])) {
             $check = $this->checkClassExist(
                 $data['start_time'],
@@ -739,6 +744,8 @@ class ClassRepository extends BaseRepository
         }
         return $this->update($data, $class->id);
     }
+
+
 
     /**
      * Check already exist class
@@ -1678,5 +1685,29 @@ class ClassRepository extends BaseRepository
 
             throw new Exception(trans('error.server_error'));
         }
-    }     
+    }
+    
+     //create by ketan
+     /**
+     * Method createClass
+     *
+     * @param array $data [explicite description]
+     *
+     * @return ClassWebinar
+     */
+    public function createClassaftercheckout(array $data): ClassWebinar
+    {
+       
+        try {
+            DB::beginTransaction();
+            DB::commit();
+            return $this->create($data);
+        } catch (Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
+    }
+
+
+
 }

@@ -240,4 +240,6 @@ return [
     'notification_send' => 'إرسال الإخطار',
     'price_send' => 'إرسال السعر',
     'cancel_request' => 'تم إلغاء طلب الفصل بنجاح',
+    'tutor_request_accept' => 'تم قبول طلب المعلم بنجاح',
+    'tutor_request_reject' => 'تم رفض طلب المعلم بنجاح',
 ];

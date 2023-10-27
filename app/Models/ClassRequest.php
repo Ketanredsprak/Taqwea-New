@@ -112,15 +112,6 @@ class ClassRequest extends Model
 
     }
 
-    public function classquotes()
-
-    {
-
-        return $this->hasOne(ClassQuotes::class, 'id','won_quote_id');
-
-    }
-
-
 
     // public function userdata(){
     //     return $this->hasOne(User::class, 'id', 'user_id');

@@ -61,15 +61,15 @@
                             
                             <div class="editProfilePage__Form commonBox">
                                 
-                                <a href="{{ route('student.classrequest.index') }}" class="btn btn-primary btn-sm"><em class="icon-arrow-back"></em></a>
+                                <a href="{{ route('student.classrequest.index') }}" class="btn btn-primary btn-sm float-right"><em class="icon-arrow-back"></em></a>
 
                                 <div class="editFormSec">
 
 
 
-                                    <h2 class="text-center">{{ __('labels.class_request') }}</h2> <br>
+                                    <h2 class="mt-2">{{ __('labels.class_request') }}</h2> <br>
 
-                                    <div class="row">
+                                    <div class="row class_info">
 
 
                                         <div class="col-sm-6">
@@ -229,6 +229,14 @@
 
                                     </div>
 
+
+                                   <!---  for calculate timer countdown --->
+                                    @php
+                                                $start_time = \Carbon\Carbon::now();
+                                                $end_time = \Carbon\Carbon::parse($result->created_at)->addMinutes(11);
+                                                $diff = $start_time->diffInMinutes($end_time, false);
+                                   
+                                    @endphp
 
 
                                     <div class="btn-row">

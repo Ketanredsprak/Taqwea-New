@@ -627,5 +627,9 @@ return [
     'multiple' => 'Multiple',
     'note' => 'Note',
     'cancel_request' => 'Cancel Request',
+    'add_class_request' => 'Add Class Request',
+    'view_class_request' => 'View Class Request',
+    'tutor_rating' => 'Tutor Rating',
+    'pay_and_confirm_class' => 'Pay And Confirm Class'
 
 ];

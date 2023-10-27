@@ -106,6 +106,8 @@ class HyperPayPaymentClient implements PaymentGatewayInterface
      */
     public function storeCard($data)
     {
+
+      
         $url = $this->apiUrl."/v1/registrations";
         if ($data['card_type']=='MADA') {
             $requestData['entityId'] = $this->entityIdMada;

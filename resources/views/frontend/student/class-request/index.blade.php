@@ -22,6 +22,16 @@ $layout = 'layouts.student.app';
 
 @endpush
 
+<style>
+    .clock {
+  width: 650px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+</style>
+
 @section('content')
 
 <main class="mainContent">
@@ -86,9 +96,9 @@ $layout = 'layouts.student.app';
 
                         <div class="walletPage__content common-shadow bg-white p-30">
 
-                            <div class="walletPage__table">
+                            <div class="walletPage__table m-0">
 
-                                <div class="row">
+                                <div class="row align-items-center">
 
                                     <div class="col-sm-10">
 

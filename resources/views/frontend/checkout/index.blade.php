@@ -15,6 +15,7 @@ $cardListUrl = route('student.payment-method.list',['type' => 'checkout']);
 @section('title', 'Checkout')
 @section('content')
 
+
 <main class="mainContent">
     <div class="bookingPage commonPad bg-green">
         <section class="pageTitle">
@@ -148,10 +149,13 @@ $cardListUrl = route('student.payment-method.list',['type' => 'checkout']);
                                         @endforeach
                                         @else
                                         @forelse($items as $item)
+                                        
                                         <li class="commonList-item common-shadow d-md-flex bg-white">
                                             <div class="commonList-item_img position-relative">
                                                 @if($item->item_type=='blog')
                                                 <img src="{{$item->media_thumb_url}}" alt="list-image">
+                                                @elseif($item->type == 'class_request')
+                                                <img src="{{ $item->tutor->profile_image_url }}" alt="list-image tutor photo">
                                                 @else
                                                 <img src="{{ $item->class_image_url }}" alt="list-image">
                                                 @endif
@@ -165,7 +169,7 @@ $cardListUrl = route('student.payment-method.list',['type' => 'checkout']);
                                                         @if($item->item_type=='blog')
                                                         {{ $item->translateOrDefault()->blog_title }}
                                                         @else
-                                                        {{ $item->translateOrDefault()->class_name }}
+                                                        {{-- {{ $item->translateOrDefault()->class_name }}  --}} 
                                                         @endif
                                                     </h5>
                                                     <span class="txtName textGray">
@@ -190,6 +194,9 @@ $cardListUrl = route('student.payment-method.list',['type' => 'checkout']);
                                                                 {{ formatAmount($item->total_fees) }}
                                                                 @elseif($item->total_fees)
                                                                 {{ formatAmount($item->total_fees)}}
+                                                                @elseif($item->type=='class_request')
+                                                                {{ formatAmount($item->price)}} <br>
+                                                                <!-- {{ __('labels.subjects') }} : {{ $item->class_request->subject_id }} -->
                                                                 @elseif($item->hourly_fees)
                                                                 {{ formatAmount($item->hourly_fees * ($item->duration/60))}}
                                                                 @endif
@@ -351,6 +358,8 @@ $cardListUrl = route('student.payment-method.list',['type' => 'checkout']);
                     <a href="{{ route('tutor.subscription.index') }}" class="btn btn-primary font-bd ripple-effect">{{ __('labels.back_to_list') }}</a>
                     @elseif($itemType=='wallet')
                     <a href="{{ $wallet }}" class="btn btn-primary font-bd ripple-effect">{{ __('labels.back_to_list') }}</a>
+                    @elseif($itemType=='class_request')
+                    <a href="{{ route('student.classes.index') }}" class="btn btn-primary font-bd ripple-effect">{{ __('labels.classes') }}</a>
                     @else
                     <a href="{{ route('home') }}" class="btn btn-primary font-bd ripple-effect">{{ __('labels.home') }}</a>
                     @endif
@@ -368,20 +377,25 @@ $cardListUrl = route('student.payment-method.list',['type' => 'checkout']);
     var bookingType = "{{ !empty($bookingType) ?  $bookingType : '' }}";
     var walletAmount = parseFloat("{{ $walletAmount }}");
     var totalAmount = parseFloat("{{ $totalAmount }}");
-    @if($itemType != 'subscription' && $itemType != 'wallet' && $itemType != 'topUp')
+    @if($itemType != 'subscription' && $itemType != 'wallet' && $itemType != 'topUp' && $itemType != 'class_request')
     if (bookingType == 'direct_booking') {
+       
         var itemId = "{{ @$item->id }}";
         var itemType = "{{ (@$itemType=='blog')?'blog':'class' }}";
     } else {
+       
         var itemId = '';
         var itemType = '';
     }
     @else
+   
     var itemId = "{{ @$item->id }}";
     var itemType = "{{ @$itemType }}";
     itemTotal = "{{ @$itemTotal }}";
     duration = "{{ @$duration }}";
     @endif
+
+    console.log("{{ @$item->id }}");
     $('#item-id').val(itemId);
     $('#item-type').val(itemType);
     $('#item-amount').val(itemTotal);

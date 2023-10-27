@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
+use App\Models\RatingReview;
 
 /**
  * Interface Repository.
@@ -67,7 +68,7 @@ class TutorClassRequestRepository extends BaseRepository
      */
     public function getClassQuotes($id)
     {
-        return $this->where('id', $id)->first();
+        return $this->with('tutor')->with('class_request','class_request_detail')->where('id', $id)->first();
     }
 
     /**
@@ -166,7 +167,12 @@ class TutorClassRequestRepository extends BaseRepository
      */
     public function getAll(int $id)
     {
-        return $this->with('tutor')->where('class_request_id', $id)->where('status', 0)->paginate(10);
+        $datas =  $this->with('tutor','classrequestdetail','class_request')->where('class_request_id', $id)->where('status', 0)->paginate(10);
+        foreach($datas as $data)
+        {
+            $data['rating'] = RatingReview::getAverageRating($data->tutor_id);
+        }
+        return $datas;
     }
 
     /**
@@ -183,11 +189,19 @@ class TutorClassRequestRepository extends BaseRepository
             $quoteData = $this->find($id);
             $result = $this->update($post, $id);
 
-            $data1['type'] = 'Quote rejected by student';
-            $data1['extra_data'] = [];
+
+            $extra_data = [
+                'type' => 'reject_request',
+                'from_id' => Auth::id(),
+                'to_id' => $quoteData->tutor_id,
+                'notification_message' => "Hello, your proposal is rejected",
+            ];
+
+            $data1['type'] = 'reject_request';
+            $data1['extra_data'] = $extra_data;
             $data1['from_id'] = Auth::id();
             $data1['to_id'] = $quoteData->tutor_id;
-            $data1['notification_message'] = "Your quote is rejected by student";
+            $data1['notification_message'] = "Hello, your proposal is rejected";
             $this->notificationRepository
                 ->sendNotification($data1, true);
             DB::commit();
@@ -218,8 +232,16 @@ class TutorClassRequestRepository extends BaseRepository
                     $classRequest->reject_time = Carbon::now();
                     $classRequest->update();
 
-                    $data1['type'] = 'Quote rejected by student';
-                    $data1['extra_data'] = [];
+
+                    $extra_data = [
+                        'type' => 'reject_request',
+                        'from_id' => Auth::id(),
+                        'to_id' => $classRequest->tutor_id,
+                        'notification_message' => "Your quote is rejected by student",
+                    ];
+
+                    $data1['type'] = 'reject_request';
+                    $data1['extra_data'] = $extra_data;
                     $data1['from_id'] = Auth::id();
                     $data1['to_id'] = $classRequest->tutor_id;
                     $data1['notification_message'] = "Your quote is rejected by student";
@@ -228,12 +250,20 @@ class TutorClassRequestRepository extends BaseRepository
                 }
             }
 
+                    $extra_data1 = [
+                        'type' => 'accept_request',
+                        'from_id' => Auth::id(),
+                        'to_id' => $quoteData->tutor_id,
+                        'notification_message' => "Thank you your proposal is accepted",
+                    ];
+
+
             $result = $this->update($post, $id);
-            $data['type'] = 'Quote accepted by student';
-            $data['extra_data'] = [];
+            $data['type'] = 'accept_request';
+            $data['extra_data'] = $extra_data1;
             $data['from_id'] = Auth::id();
             $data['to_id'] = $quoteData->tutor_id;
-            $data['notification_message'] = "Your quote is accepted by student";
+            $data['notification_message'] = "Thank you your proposal is accepted";
             $this->notificationRepository
                 ->sendNotification($data, true);
 

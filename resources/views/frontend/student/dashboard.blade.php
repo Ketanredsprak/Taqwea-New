@@ -22,6 +22,21 @@
                 </div>
             </div>
         </section>
+        <section class="totalList position-relative">
+            <div class="container">
+                <div class="totalList-content common-shadow">
+                   <div class="row">
+                      <div class="col-12">
+                         <div class="btn-row text-center">
+                            <a class="btn btn-primary ripple-effect" href="{{ route('student.classrequest.create') }}">{{ __('labels.add_class_request') }}</a>
+                            <a class="btn btn-secondary ripple-effect" href="{{ route('student.classrequest.index') }}">{{ __('labels.view_class_request') }}</a>
+                              {{-- <a class="btn btn-light ripple-effect" href="{{ route('tutor.blogs.create') }}">{{ __('labels.add_blog') }}</a> --}}
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+            </section>
         <section class="classLevel">
             <div class="container">
                 <div class="commonHead">

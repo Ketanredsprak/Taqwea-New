@@ -167,6 +167,12 @@ Route::group(
             'classrequest/list',
             'Web\Student\ClassRequestController@classRequestList'
         )->name('student.classrequest.list');
+        
+        Route::get(
+            'test',
+            'Web\Student\ClassRequestController@checkfunction'
+        )->name('student.test');
+
 
 
         Route::get('getrequest/{id}', 'Web\Student\ClassRequestController@gettutorrequestget')->name('student.classrequest.getrequest');

@@ -81,6 +81,7 @@
                         <a class="btn btn-primary ripple-effect" href="{{ route('tutor.classes.create') }}">{{ __('labels.add_class') }}</a>
                         <a class="btn btn-secondary ripple-effect" href="{{ route('tutor.webinars.create') }}">{{ __('labels.add_webinar') }}</a>
                         <a class="btn btn-light ripple-effect" href="{{ route('tutor.blogs.create') }}">{{ __('labels.add_blog') }}</a>
+                        <a class="btn btn-dark ripple-effect" href="{{ route('tutor.classrequest.index') }}">{{ __('labels.view_class_request') }}</a>
                      </div>
                   </div>
                </div>

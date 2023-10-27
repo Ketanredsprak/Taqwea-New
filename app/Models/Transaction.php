@@ -14,7 +14,7 @@ class Transaction extends Model
         'total_amount', 'wallet_amount',
         'admin_commision', 'vat', 'transaction_fees', 'response_data',
         'checkout_id', 'card_type', 'booking_by', 
-        'is_fine_collected', 'class_id'
+        'is_fine_collected', 'class_id','class_request_id'
     ];
 
     public const PAYMENT_GATEWAY_HYPERPAY = "hyperpay";

@@ -57,9 +57,7 @@ class TutorClassRequestController extends Controller
      */
     public function store(QuoteRequest $request)
     {
-        
-        
-
+     
         return "hello store funstion";
     }
 
@@ -78,7 +76,6 @@ class TutorClassRequestController extends Controller
             if(count($check_tutor_send_quote_1) == 1)
             {
                     $result['is_quote_sent'] = 1;
-                    // $result['tutot_quote_data'] = $check_tutor_send_quote_1;
             }
             else {
                     $result['is_quote_sent'] = 0;
@@ -129,7 +126,7 @@ class TutorClassRequestController extends Controller
             }
             else
             {
-                return $this->apiSuccessResponse([], trans('error.quote_already_send'));
+                return $this->apiErrorResponse(trans('error.quote_already_send'),200);
             }
         } catch (Exception $ex) {
             return $this->apiErrorResponse($ex->getMessage(), 422);

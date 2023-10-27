@@ -145,8 +145,12 @@ class TutorClassRequestController extends Controller
             $tutorclassrequest = $this->tutorRequestRepositoty->gettutorclassrequest($userId);
             foreach($tutorclassrequest as $data)
             {
+               
                     $check_tutro_send_quote = ClassQuotes::where('class_request_id',$data-> class_request_id)->where('tutor_id',$data->tutor_id)->count();
                     $data->tutor_quote= $check_tutro_send_quote;
+
+                    $subject_data = Subject::withTranslation()->where('id', $data->classrequest->subject_id)->first();
+                    $data['subject_data'] = $subject_data;
             }
                            
             $html = view(
