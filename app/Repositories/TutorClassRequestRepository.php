@@ -214,16 +214,16 @@ class TutorClassRequestRepository extends BaseRepository
     public function tutorRequestAccept($post, $id)
     {
 
+    
         try {
 
-            DB::beginTransaction();
+            // DB::beginTransaction();
             $quoteData = $this->find($id);
-
             $quote_id = array($id);
 
-            $classRequests = $this->select("*")->where('status',0)->whereNotIn('id',$quote_id)->get();
-
-
+            
+            $classRequests = $this->select("*")->where('status',0)->where('class_request_id', $quoteData->class_request_id)->whereNotIn('id',$quote_id)->get();
+ 
 
             if (count($classRequests) > 0) {
                 foreach ($classRequests as $key => $classRequest) {
@@ -256,8 +256,18 @@ class TutorClassRequestRepository extends BaseRepository
                         'notification_message' => "Thank you your proposal is accepted",
                     ];
 
+            //accept request;
+            // $data1['id'] = $quoteData->$id;
+            $data1['status'] = 1;
+            //accept request
 
-            $result = $this->update($post, $id);
+
+            // $result = $this->update($data1,$quoteData->$id);
+            // $result = $this->update($post, $id);
+
+            $quoteData['status'] = 1;
+            $result =  $quoteData->update();
+            
             $data['type'] = 'accept_request';
             $data['extra_data'] = $extra_data1;
             $data['from_id'] = Auth::id();

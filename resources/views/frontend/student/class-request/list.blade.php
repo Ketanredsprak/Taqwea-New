@@ -182,21 +182,21 @@
                     <a href="{{ route('student.classrequest.show', $data->id) }}" type="button"
                         class="btn btn-primary btn-sm btn-lg text-right"><em class="icon-eye"></em></a>
 
-                     @if ($data->status == 'Active')
+                     {{-- @if ($data->status == 'Active')
                         @if($diff < 0)
-                        @else 
+                        @else  --}}
                                 <a href="{{ route('student.classrequest.getrequest', $data->id) }}" type="button"
                                 class="btn btn-primary btn-sm btn-lg text-right"><em class="icon-notsicon2"></em></a>
-                         @endif
-                    @endif 
+                         {{-- @endif
+                    @endif  --}}
 
-                     @if ($data->status == 'Active')
+                     {{-- @if ($data->status == 'Active')
                             @if($diff < 0)
-                            @else
+                            @else --}}
                                <a href="#" onclick="Cancelrequest('{{ $data->id }}')" type="button"
                                  class="btn btn-primary btn-sm" title="Cancel Request"><em class="icon-delete"></em></a>
-                            @endif
-                    @endif 
+                            {{-- @endif
+                    @endif  --}}
  
 
                 </td>
