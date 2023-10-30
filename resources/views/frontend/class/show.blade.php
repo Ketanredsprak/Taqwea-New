@@ -49,6 +49,7 @@
                 </h3>
             </div>
         </section>
+
         <section class="detailPageCnt">
             <div class="detailPageCnt__inner">
                 <div class="subject">
@@ -153,11 +154,11 @@
                                         @endforelse
 
                                     </div>
-                                    <!-- .accordion -->
+                                    {{-- <!-- .accordion -->
                                     <!-- <div class="btn-row text-center">
                                         <a href="javascript:void(0);" class="show-more text-uppercase h-16">Show
                                             Less</a>
-                                    </div> -->
+                                    </div> --> --}}
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -176,7 +177,7 @@
                                                 </div>
                                             </div>
                                             <div class="teacherInfo__right">
-                                                <a href="javascrpit:void(0);" data-toggle="modal" data-target="#shareModal" class="d-flex align-items-center justify-content-center shareLink"><em class="icon-share"></em></a> 
+                                                <a href="javascrpit:void(0);" data-toggle="modal" data-target="#shareModal" class="d-flex align-items-center justify-content-center shareLink"><em class="icon-share"></em></a>
                                             </div>
                                         </div>
                                     </div>
@@ -229,16 +230,17 @@
                                         <a href="{{ route('show/login').'?item_id='.Crypt::encryptString($class->id).'&item_type=class' }}" class="btn btn-primary--outline ripple-effect btn-lg">{{ __('labels.add_to_cart') }}</a>
                                         @endif
 
-                                        @if(Auth::check() && $class->status == 'active')
-                                        <a class="btn btn-primary ripple-effect btn-lg booking-disabled" href="{{ route('student.checkout.index').'?class_id='.Crypt::encryptString($class->id) }}" tabindex="0">{{ __('labels.book_now') }}</a>
-                                        @elseif (!Auth::check())
-                                        <a href="{{ route('show/login').'?item_id='.Crypt::encryptString($class->id).'&item_type=class' }}" class="btn btn-primary--outline ripple-effect btn-lg">{{ __('labels.book_now') }}</a>
-                                        @else
-                                        <a href="javascript:void(0)" class="btn btn-primary--outline ripple-effect btn-lg disabled">{{ __('labels.book_now') }}</a>
+
+                                                @if(Auth::check() && $class->status == 'active')
+                                                    <a class="btn btn-primary ripple-effect btn-lg booking-disabled" href="{{ route('student.checkout.index').'?class_id='.Crypt::encryptString($class->id) }}" tabindex="0">{{ __('labels.book_now') }}</a>
+                                                    @elseif (!Auth::check())
+                                                    <a href="{{ route('show/login').'?item_id='.Crypt::encryptString($class->id).'&item_type=class' }}" class="btn btn-primary--outline ripple-effect btn-lg">{{ __('labels.book_now') }}</a>
+                                                    @else
+                                                    <a href="javascript:void(0)" class="btn btn-primary--outline ripple-effect btn-lg disabled">{{ __('labels.book_now') }}</a>
+                                                @endif
 
                                         @endif
 
-                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -301,7 +303,7 @@
                 @endforelse
             </div>
             <div class="modal-footer border-top-0 justify-content-center">
-                
+
             </div>
         </div>
     </div>
