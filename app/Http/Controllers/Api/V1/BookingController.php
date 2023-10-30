@@ -18,12 +18,12 @@ class BookingController extends Controller
 {
     protected $classBookingRepository;
     protected $transactionRepository;
-    
+
     /**
      * Method __construct
-     * 
-     * @param ClassBookingRepository $classBookingRepository 
-     * @param TransactionRepository  $transactionRepository 
+     *
+     * @param ClassBookingRepository $classBookingRepository
+     * @param TransactionRepository  $transactionRepository
      *
      * @return void
      */
@@ -37,8 +37,8 @@ class BookingController extends Controller
 
     /**
      * Display a listing of the resource.
-     * 
-     * @param Request $request 
+     *
+     * @param Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -57,18 +57,19 @@ class BookingController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param CreateBookingRequest $request 
-     * 
+     * @param CreateBookingRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(CreateBookingRequest $request)
     {
+
         try {
             DB::beginTransaction();
             $data = $request->all();
             $data['item_id'] = (isset($data["class_id"]) && $data["class_id"] !=0 )
             ?$data["class_id"]:$data["blog_id"];
-            
+
             $data['item_type'] = (isset($data["class_id"]) && $data["class_id"] !=0 )
             ?'class':'blog';
             $data["itemTotal"] = $data['booking_total'];
@@ -95,8 +96,8 @@ class BookingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param ClassBooking $booking 
-     * 
+     * @param ClassBooking $booking
+     *
      * @return Response
      */
     public function show(ClassBooking $booking)
@@ -111,9 +112,9 @@ class BookingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request 
-     * @param int     $id 
-     * 
+     * @param Request $request
+     * @param int     $id
+     *
      * @return Response
      */
     public function update(Request $request, $id)
@@ -124,22 +125,22 @@ class BookingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id 
-     * 
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)
     {
         //
     }
-    
+
     /**
      * Method updateStatus
      *
-     * @param Request $request 
-     * @param int     $booking 
-     * @param string  $action  
-     * 
+     * @param Request $request
+     * @param int     $booking
+     * @param string  $action
+     *
      * @return void
      */
     public function updateStatus(
@@ -160,9 +161,9 @@ class BookingController extends Controller
 
     /**
      * Method Student list
-     * 
-     * @param int $id 
-     * 
+     *
+     * @param int $id
+     *
      * @return void
      */
     public function studentList(int $id)

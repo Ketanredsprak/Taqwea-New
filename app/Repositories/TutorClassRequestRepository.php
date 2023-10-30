@@ -222,9 +222,8 @@ class TutorClassRequestRepository extends BaseRepository
             $quote_id = array($id);
 
             $classRequests = $this->select("*")->where('status',0)->whereNotIn('id',$quote_id)->get();
-            // $classRequests = $this->where('class_request_id', $quoteData->class_request_id)->where('status',0)->get();
-          
-           
+
+
 
             if (count($classRequests) > 0) {
                 foreach ($classRequests as $key => $classRequest) {
