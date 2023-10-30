@@ -40,14 +40,14 @@ class ClassController extends Controller
     /**
      * Method __construct
      *
-     * @param ClassRepository           $classRepository
-     * @param CategoryRepository        $categoryRepository
-     * @param GradeRepository           $gradeRepository
-     * @param SubjectRepository         $subjectRepository
-     * @param TransactionRepository     $transactionRepository
-     * @param ThreadRepository          $threadRepository
-     * @param CategorySubjectRepository $categorySubjectRepository
-     *
+     * @param ClassRepository           $classRepository 
+     * @param CategoryRepository        $categoryRepository 
+     * @param GradeRepository           $gradeRepository 
+     * @param SubjectRepository         $subjectRepository 
+     * @param TransactionRepository     $transactionRepository 
+     * @param ThreadRepository          $threadRepository 
+     * @param CategorySubjectRepository $categorySubjectRepository   
+     * 
      * @return void
      */
     public function __construct(
@@ -70,7 +70,7 @@ class ClassController extends Controller
 
     /**
      *  Show webinars
-     *
+     * 
      * @return View
      */
     public function index(Request $request)
@@ -95,9 +95,9 @@ class ClassController extends Controller
 
     /**
      * Get list of webinar
-     *
+     * 
      * @param \Illuminate\Http\Request $request [explicite description]
-     *
+     * 
      * @return \Illuminate\Http\Response
      */
     public function list(Request $request)
@@ -144,14 +144,12 @@ class ClassController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Request $request
-     *
+     * @param Request $request 
+     * 
      * @return View
      */
     public function show(Request $request)
     {
-
-
         try {
             $class = $this->classRepository->getClass($request->class);
             if (!$class) {
@@ -174,7 +172,7 @@ class ClassController extends Controller
                 $typeLabel = __('labels.webinar');
             }
             $shareLinks = getShareLinks($url, __('message.share_message_text', ['type' => $typeLabel]));
-
+            
             return view(
                 'frontend.class.show',
                 [
@@ -194,8 +192,8 @@ class ClassController extends Controller
 
     /**
      * Method index
-     *
-     * @return View
+     * 
+     * @return View 
      */
     public function classSchedule(Request $request)
     {
@@ -228,15 +226,15 @@ class ClassController extends Controller
 
     /**
      * Method classScheduleList
-     *
-     * @param Request $request
-     *
+     * 
+     * @param Request $request 
+     * 
      * @return Json
      */
     public function scheduleList(Request $request)
     {
         try {
-
+           
             $timezone = Session::get('timezone') ?? config('app.timezone');
 
             $params = $request->all();
@@ -268,11 +266,11 @@ class ClassController extends Controller
         }
     }
 
-    /**
-     * Method checkBookingItems
-     *
-     * @param $data
-     *
+    /** 
+     * Method checkBookingItems 
+     * 
+     * @param $data 
+     * 
      * @return Bool
      */
     public function checkBookingItems($data)

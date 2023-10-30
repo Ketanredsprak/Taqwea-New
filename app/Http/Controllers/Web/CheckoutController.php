@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\Wallet;
 use App\Models\ClassWebinar;
+use App\Models\TransactionItem;
 use App\Models\ClassRequest;
 use App\Repositories\ClassRepository;
 use App\Repositories\ClassRequestRepository;
@@ -13,6 +14,8 @@ use App\Repositories\SubscriptionRepository;
 use App\Repositories\topUpRepository;
 use App\Repositories\TransactionRepository;
 use App\Repositories\TutorSubscriptionRepository;
+use App\Repositories\ClassBookingRepository;
+use App\Repositories\TutorClassRequestRepository;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +43,10 @@ class CheckoutController extends Controller
 
     protected $agoraService;
 
+    protected $classBookingRepository;
+
+    protected $tutorClassRequestRepository;
+
     /**
      * Method __construct
      *
@@ -50,6 +57,8 @@ class CheckoutController extends Controller
      * @param ClassRepository             $classRepository
      * @param ClassRequestRepository      $classRequestRepository
      * @param AgoraService      $agoraService
+     * @param ClassBookingRepository      $classBookingRepository;
+     * @param TutorClassRequestRepository      $tutorClassRequestRepository;
      *
      * @return void
      */
@@ -60,7 +69,9 @@ class CheckoutController extends Controller
         TopUpRepository $topUpRepository,
         ClassRepository $classRepository,
         ClassRequestRepository $classRequestRepository,
-        AgoraService $agoraService
+        AgoraService $agoraService,
+        ClassBookingRepository $classBookingRepository,
+        TutorClassRequestRepository $tutorClassRequestRepository
     ) {
         $this->transactionRepository = $transactionRepository;
         $this->subscriptionRepository = $subscriptionRepository;
@@ -69,6 +80,8 @@ class CheckoutController extends Controller
         $this->classRepository = $classRepository;
         $this->classRequestRepository = $classRequestRepository;
         $this->agoraService = $agoraService;
+        $this->classBookingRepository = $classBookingRepository;
+        $this->tutorClassRequestRepository = $tutorClassRequestRepository;
     }
 
     /**
@@ -302,7 +315,7 @@ class CheckoutController extends Controller
         // Carbon
         try {
 
-            DB::beginTransaction();
+            // DB::beginTransaction();
             $data = $request->all();
 
             $booking = [];
@@ -330,8 +343,8 @@ class CheckoutController extends Controller
              else {
                 $booking = $this->transactionRepository->checkout($data);
             }
+           
       
-
             //add by ketan
             $checktype =  gettype($booking);
 
@@ -353,8 +366,7 @@ class CheckoutController extends Controller
 
                                 foreach ($class_request_data->classRequestDetails as $class_request_detail) {
                                 
-                                    
-
+                                   
                                     $class_data['class_type'] = "class";
                                     $class_data['slug'] = "request_class_generate";
                                     $class_data['en']['class_name'] = "demo class en";
@@ -387,7 +399,37 @@ class CheckoutController extends Controller
                                     $class_data_update->uuid = $roomTokenData['uuid'];
                                     $class_data_update->room_token = $roomTokenData['room_token'];
                                     $class_data_update->update();
-                                
+
+
+                                    //for booking class
+                                    if($booking->id != null && $class->id !=  null){
+                                        
+
+                                            $class_booking['transaction_id'] = $booking->id;
+                                            $class_booking['class_id'] = $class->id;
+                                            $class_booking['student_id'] = Auth::user()->id;
+                                            
+                                            $class_booking_create   = $this->classBookingRepository->createBooking($class_booking);
+
+                                            $check = TransactionItem::where('transaction_id',$booking->id)->first();
+
+                                           if($check){
+                                            $transaction_item_update = TransactionItem::find($check->id);
+                                            $transaction_item_update['class_id'] = $class->id;
+                                            $transaction_item_update->update();
+                                           }
+
+
+                                          
+                                  
+                                    }
+                                   
+                                    //for send notification send tyo all tutor 
+                                    if($class_booking_create != null)
+                                    {
+                                        $status = 1;
+                                        $notification   = $this->tutorClassRequestRepository->tutorRequestAccept($status,$data['item_id']);
+                                    }
                                 
                                 }
 
@@ -402,7 +444,7 @@ class CheckoutController extends Controller
            }
             
 
-            DB::commit();
+            // DB::commit();
             return $this->apiSuccessResponse(
                 $booking,
                 trans('message.booking_success')

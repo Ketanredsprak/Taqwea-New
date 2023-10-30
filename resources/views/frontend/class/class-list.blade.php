@@ -26,7 +26,7 @@
             </div>
             <div class="textGray my-3">
                 @if($class->class_type=='class')
-                {{ @$class->bookings_count }}/5 {{__('labels.students')}} <span class="dot">&#183;</span>
+                {{ @$class->bookings_count }}/{{ @$class->no_of_attendee }} {{__('labels.students')}} <span class="dot">&#183;</span>
                 @endif
 
                 {{ getDuration($class->duration) }}

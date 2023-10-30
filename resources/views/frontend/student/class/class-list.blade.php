@@ -3,6 +3,8 @@
     <li class="commonList-item common-shadow d-md-flex bg-white">
         @if($class->class->class_type=='class')
         @php $url = route('classes/show', ['class' => $class->class->slug]) @endphp
+        @elseif($class->class->class_type=='class_request')
+        @php $url = route('classes/show', ['class' => $class->class->slug]) @endphp
         @else
         @php $url = route('webinars/show', ['class' => $class->class->slug]) @endphp
         @endif
